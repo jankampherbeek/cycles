@@ -1,0 +1,45 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tform1.btncancel.caption
+msgid "Cancel"
+msgstr ""
+
+#: tform1.btnhelp.caption
+msgid "Help"
+msgstr ""
+
+#: tform1.btnok.caption
+msgid "OK"
+msgstr ""
+
+#: tform1.caption
+msgid "Form1"
+msgstr ""
+
+#: tform1.lbledenddate.editlabel.caption
+msgid "End date (yyyy/mm/dd)"
+msgstr ""
+
+#: tform1.lbledenddate.hint
+msgctxt "tform1.lbledenddate.hint"
+msgid "yyyy/mm/dd"
+msgstr ""
+
+#: tform1.lbledinterval.editlabel.caption
+msgid "Interval in days"
+msgstr ""
+
+#: tform1.lbledstartdate.editlabel.caption
+msgid "Start date (yyyy/mm/dd)"
+msgstr ""
+
+#: tform1.lbledstartdate.texthint
+msgctxt "tform1.lbledstartdate.texthint"
+msgid "yyyy/mm/dd"
+msgstr ""
+
+#: tform1.lbltitle.caption
+msgid "Enigma - Cycles"
+msgstr ""
+
