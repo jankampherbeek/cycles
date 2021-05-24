@@ -5,7 +5,8 @@ unit unitstart;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
+  TAIntervalSources;
 
 type
 
@@ -15,6 +16,8 @@ type
     BtnOk: TButton;
     BtnCancel: TButton;
     BtnHelp: TButton;
+    CbCalendar: TComboBox;
+    LblCalendar: TLabel;
     LblEdEndDate: TLabeledEdit;
     LblEdInterval: TLabeledEdit;
     LblEdStartDate: TLabeledEdit;
@@ -35,7 +38,7 @@ implementation
 {$R *.lfm}
 
 uses
-  unitastron, unitdomainbe;
+  unitastron, unitdomainxchg;
 
 { TForm1 }
 

@@ -17,6 +17,14 @@ msgstr ""
 msgid "Form1"
 msgstr ""
 
+#: tform1.cbcalendar.text
+msgid "Gregorian"
+msgstr ""
+
+#: tform1.lblcalendar.caption
+msgid "Calendar"
+msgstr ""
+
 #: tform1.lbledenddate.editlabel.caption
 msgid "End date (yyyy/mm/dd)"
 msgstr ""
@@ -32,6 +40,11 @@ msgstr ""
 
 #: tform1.lbledstartdate.editlabel.caption
 msgid "Start date (yyyy/mm/dd)"
+msgstr ""
+
+#: tform1.lbledstartdate.hint
+msgctxt "tform1.lbledstartdate.hint"
+msgid "yyyy/mm/dd"
 msgstr ""
 
 #: tform1.lbledstartdate.texthint

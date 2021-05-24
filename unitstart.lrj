@@ -1,6 +1,7 @@
 {"version":1,"strings":[
 {"hash":5073153,"name":"tform1.caption","sourcebytes":[70,111,114,109,49],"value":"Form1"},
 {"hash":189594739,"name":"tform1.lbltitle.caption","sourcebytes":[69,110,105,103,109,97,32,45,32,67,121,99,108,101,115],"value":"Enigma - Cycles"},
+{"hash":208401572,"name":"tform1.lbledstartdate.hint","sourcebytes":[121,121,121,121,47,109,109,47,100,100],"value":"yyyy/mm/dd"},
 {"hash":49244169,"name":"tform1.lbledstartdate.editlabel.caption","sourcebytes":[83,116,97,114,116,32,100,97,116,101,32,40,121,121,121,121,47,109,109,47,100,100,41],"value":"Start date (yyyy/mm/dd)"},
 {"hash":208401572,"name":"tform1.lbledstartdate.texthint","sourcebytes":[121,121,121,121,47,109,109,47,100,100],"value":"yyyy/mm/dd"},
 {"hash":208401572,"name":"tform1.lbledenddate.hint","sourcebytes":[121,121,121,121,47,109,109,47,100,100],"value":"yyyy/mm/dd"},
@@ -8,5 +9,7 @@
 {"hash":77583555,"name":"tform1.lbledinterval.editlabel.caption","sourcebytes":[73,110,116,101,114,118,97,108,32,105,110,32,100,97,121,115],"value":"Interval in days"},
 {"hash":1339,"name":"tform1.btnok.caption","sourcebytes":[79,75],"value":"OK"},
 {"hash":77089212,"name":"tform1.btncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
-{"hash":322608,"name":"tform1.btnhelp.caption","sourcebytes":[72,101,108,112],"value":"Help"}
+{"hash":322608,"name":"tform1.btnhelp.caption","sourcebytes":[72,101,108,112],"value":"Help"},
+{"hash":199672318,"name":"tform1.cbcalendar.text","sourcebytes":[71,114,101,103,111,114,105,97,110],"value":"Gregorian"},
+{"hash":137121298,"name":"tform1.lblcalendar.caption","sourcebytes":[67,97,108,101,110,100,97,114],"value":"Calendar"}
 ]}

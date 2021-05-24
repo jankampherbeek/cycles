@@ -25,7 +25,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="1"/>
-      <BuildNr Value="4"/>
+      <BuildNr Value="7"/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -38,12 +38,15 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="TAChartLazarusPkg"/>
       </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="6">
       <Unit0>
         <Filename Value="cycles.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -65,10 +68,14 @@
         <UnitName Value="UnitAstron"/>
       </Unit3>
       <Unit4>
-        <Filename Value="be\unitdomainbe.pas"/>
+        <Filename Value="be\unitdomainxchg.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitDomainBe"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="be\unitprocess.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitProcess"/>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
