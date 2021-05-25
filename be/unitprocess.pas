@@ -28,8 +28,11 @@ type
   TTimeSeriesRequest = record
     StartDateTime: string;
     EndDateTime: string;
-    Interval: integer;
+    Calendar: Integer;
+    Interval: Integer;
     CoordinateType: TCoordinateTypes;
+    CycleType: TCycleTypes;
+    Ayanamsha: TAyanamsha;
     CelPoints: TCelPointArray;
   end;
 
@@ -64,10 +67,25 @@ type
     function DateTextToJulianDay(PDateText: string; PCalendar: integer): double;
   end;
 
+  { Handles requests for the calculation of a TimeSeries. }
+  TTimeSeriesHandler = class
+  strict private
+    Ephemeris: TEphemeris;
+    DatetimeConversion: TDateTimeConversion;
+    StartJD, EndJD: Double;
+    CelPoints: TCelPointArray;
+    NrOfCelPoints, Calendar: Integer;
+  public
+    constructor Create;
+    destructor Destroy;
+    function HandleRequest(Request: TTimeSeriesRequest): TTimeSeriesResponse;
+  end;
+
 implementation
 
 uses
   StrUtils, Types;
+
 { TSeFlags ----------------------------------------------------------------------------------------------------------- }
 
 constructor TSeFlags.Create(PCoordinateType: TCoordinateTypes; PAyanamsha: TAyanamshaNames);
@@ -100,10 +118,10 @@ begin
   FEphemeris := PEphemeris;
   FCelPoint := PCelPoint;
   FCycleDefinition := PCycleDefinition;
-  FTimedPositions := calculate();
+  FTimedPositions := Calculate();
 end;
 
-function TTimeSeries.calculate: TList;
+function TTimeSeries.Calculate: TList;
 var
   ActualJd, BeginJd, EndJd, Position: double;
   SeId, Interval: integer;
@@ -148,23 +166,67 @@ begin
 end;
 
 { TODO : Add validation to conversion from datetext to JD }
-function TDateTimeConversion.DateTextToJulianDay(PDateText: String; PCalendar: Integer): double;
+function TDateTimeConversion.DateTextToJulianDay(PDateText: string; PCalendar: integer): double;
 var
   TextElements: TStringDynArray;
-  FDateText: String;
-  Day, Month, Year, Calendar: Integer;
-  UT: Double;
+  FDateText: string;
+  Day, Month, Year, Calendar: integer;
+  UT: double;
 begin
-  FDateTExt:= PDateText;
-  Calendar:= PCalendar;
-  UT:= 0.0;
-  TextElements:= SplitString(PDateText, '/');
+  FDateTExt := PDateText;
+  Calendar := PCalendar;
+  UT := 0.0;
+  TextElements := SplitString(PDateText, '/');
   Year := StrToInt(TextElements[0]);
   Month := StrToInt(TextElements[1]);
   Day := StrToInt(TextElements[2]);
-  Result:= FEphemeris.CalcJdUt(Year, Month, Day, UT, Calendar);
+  Result := FEphemeris.CalcJdUt(Year, Month, Day, UT, Calendar);
 end;
 
+{ TTimeSeriesHandler ------------------------------------------------------------------------------------------------- }
+
+constructor TTimeSeriesHandler.Create;
+begin
+  Ephemeris:= TEphemeris.Create;
+  DatetimeConversion := TDateTimeConversion.Create(Ephemeris);
+end;
+
+destructor TTimeSeriesHandler.Destroy;
+begin
+  FreeAndNil(DatetimeConversion);
+  FreeAndNil(Ephemeris);
+end;
+
+function TTimeSeriesHandler.HandleRequest(Request: TTimeSeriesRequest): TTimeSeriesResponse;
+var
+  StartDate, EndDate: String;
+  AllTimeSeries: TTimeSeriesArray;
+  CycleDefinition: TCycleDefinition;
+  Response: TTimeSeriesResponse;
+  i: Integer;
+begin
+  StartDate:= Request.StartDateTime;
+  EndDate:= Request.EndDateTime;
+  Calendar:= Request.Calendar;
+  CelPoints:= Request.CelPoints;
+  NrOfCelPoints:= Length(CelPoints);
+  SetLength(AllTimeSeries, NrOfCelPoints);
+  StartJD := DatetimeConversion.DateTextToJulianDay(StartDate, Calendar);
+  EndJD:= DatetimeConversion.DateTextToJulianDay(EndDate, Calendar);
+  CycleDefinition.JdStart := StartJD;
+  CycleDefinition.JdEnd:= EndJD;
+  CycleDefinition.Interval:= Request.Interval;
+  CycleDefinition.CoordinateType:= Request.CoordinateType;
+  CycleDefinition.Ayanamsha:= Request.Ayanamsha;
+  CycleDefinition.CycleType:= Request.CycleType;
+  for i:= 0 to NrOfCelPoints-1 do begin
+    AllTimeSeries[i]:= TTimeSeries.Create(Ephemeris, CelPoints[i], CycleDefinition);
+  end;
+  Response.CalculatedTimeSeries:= AllTimeSeries;
+  Response.Errors:= false;
+  Response.ErrorText:= '';
+  Result:= Response;
+end;
 
 
 end.

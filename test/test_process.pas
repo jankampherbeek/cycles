@@ -17,6 +17,15 @@ type
     procedure TestFlagsEclSidereal;
   end;
 
+
+  TestDateTimeConversion = class(TTestCase)
+  protected
+    Ephemeris: TEphemeris;
+    DateTimeConversion: TDateTimeConversion;
+  published
+    procedure TestHappyFlow;
+  end;
+
   TestTimeSeries = class(TTestCase)
   protected
     Ephemeris: TEphemeris;
@@ -32,10 +41,8 @@ type
     procedure TestContentOfResults;
   end;
 
-  TestDateTimeConversion = class(TTestCase)
+  TestTimeSeriesHandler = class(TTestCase)
   protected
-    Ephemeris: TEphemeris;
-    DateTimeConversion: TDateTimeConversion;
   published
     procedure TestHappyFlow;
   end;
@@ -82,6 +89,22 @@ var
 begin
   SeFlags := TSeFlags.Create(CoordinateType, Ayanamsha);
   assertEquals(65794, SeFlags.FlagsValue);                // 2 or 256 or (64 * 1024))
+end;
+
+
+{ TestDateTimeConversion --------------------------------------------------------------------------------------------- }
+procedure TestDateTimeConversion.TestHappyFlow;
+var
+  ExpectedJD: double = 2434406.5;
+  CalculatedJD, Delta: double;
+  DateText: string = '1953/01/29';
+  Calendar: integer = 1;                   // Gregorian
+begin
+  Delta := 0.00000001;
+  Ephemeris := TEphemeris.Create;
+  DateTimeConversion := TDateTimeConversion.Create(Ephemeris);
+  CalculatedJD := DateTimeConversion.DateTextToJulianDay(DateText, Calendar);
+  AssertEquals(ExpectedJD, CalculatedJD, Delta);
 end;
 
 { TestTimeSeries ----------------------------------------------------------------------------------------------------- }
@@ -175,24 +198,53 @@ begin
   Result := CycleDefinition;
 end;
 
-{ TestDateTimeConversion --------------------------------------------------------------------------------------------- }
-procedure TestDateTimeConversion.TestHappyFlow;
+
+{ TestTimeSeriesHandler ----------------------------------------------------------------------------------------------- }
+procedure TestTimeSeriesHandler.TestHappyFlow;
 var
-  ExpectedJD: Double = 2434406.5;
-  CalculatedJD, Delta: Double;
-  DateText: String = '1953/01/29';
-  Calendar: Integer = 1;                   // Gregorian
+  Request: TTimeSeriesRequest;
+  Response: TTimeSeriesResponse;
+  Handler: TTimeSeriesHandler;
+  Ayanamsha: TAyanamsha;
+  AllCelPoints: TCelPointArray;
+  CelPointSun, CelPointMoon: TCelPoint;
+  TSResult: TList;
 begin
-  Delta:= 0.00000001;
-  Ephemeris:= TEphemeris.Create;
-  DateTimeConversion:= TDateTimeConversion.Create(Ephemeris);
-  CalculatedJD:= DateTimeConversion.DateTextToJulianDay(DateText, Calendar);
-  AssertEquals(ExpectedJD, CalculatedJD, Delta);
+  Ayanamsha.Name := None;
+  Ayanamsha.PresentationName := 'Tropical';
+  Ayanamsha.SeId := -1;
+  CelPointSun.SeId := 0;
+  CelPointSun.PresentationName := 'Sun';
+  CelPointSun.Name := Sun;
+  CelPointSun.FirstJd := -2000000;
+  CelPointSun.LastJD := 4000000;
+  CelPointSun.Glyph := 'a';
+  CelPointMoon.SeId := 0;
+  CelPointMoon.PresentationName := 'Moon';
+  CelPointMoon.Name := Moon;
+  CelPointMoon.FirstJd := -2000000;
+  CelPointMoon.LastJD := 4000000;
+  CelPointMoon.Glyph := 'b';
+  AllCelPoints := TCelPointArray.Create(CelPointSun, CelPointMoon);
+  Request.Ayanamsha := Ayanamsha;
+  Request.StartDateTime := '2021/05/25';
+  Request.EndDateTime := '2021/06/24';
+  Request.Calendar := 1;
+  Request.Interval := 1;
+  Request.CoordinateType := GeoLongitude;
+  Request.CycleType := SinglePoint;
+  Request.CelPoints := AllCelPoints;
+  Handler := TTimeSeriesHandler.Create;
+  Response := Handler.HandleRequest(Request);
+  AssertEquals(2, Length(Response.CalculatedTimeSeries));
+  TSResult := Response.CalculatedTimeSeries[0].TimedPositions;
+  AssertEquals(31, TSResult.Count);
 end;
 
 initialization
   RegisterTest('Process', TestSeFlags);
-  RegisterTest('Process', TestTimeSeries);
   RegisterTest('Process', TestDateTimeConversion);
+  RegisterTest('Process', TestTimeSeries);
+  RegisterTest('Process', TestTimeSeriesHandler);
 end.
 
