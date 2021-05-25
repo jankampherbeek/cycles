@@ -32,6 +32,14 @@ type
     procedure TestContentOfResults;
   end;
 
+  TestDateTimeConversion = class(TTestCase)
+  protected
+    Ephemeris: TEphemeris;
+    DateTimeConversion: TDateTimeConversion;
+  published
+    procedure TestHappyFlow;
+  end;
+
 implementation
 
 { TestSeFlags -------------------------------------------------------------------------------------------------------- }
@@ -167,8 +175,24 @@ begin
   Result := CycleDefinition;
 end;
 
+{ TestDateTimeConversion --------------------------------------------------------------------------------------------- }
+procedure TestDateTimeConversion.TestHappyFlow;
+var
+  ExpectedJD: Double = 2434406.5;
+  CalculatedJD, Delta: Double;
+  DateText: String = '1953/01/29';
+  Calendar: Integer = 1;                   // Gregorian
+begin
+  Delta:= 0.00000001;
+  Ephemeris:= TEphemeris.Create;
+  DateTimeConversion:= TDateTimeConversion.Create(Ephemeris);
+  CalculatedJD:= DateTimeConversion.DateTextToJulianDay(DateText, Calendar);
+  AssertEquals(ExpectedJD, CalculatedJD, Delta);
+end;
+
 initialization
   RegisterTest('Process', TestSeFlags);
   RegisterTest('Process', TestTimeSeries);
+  RegisterTest('Process', TestDateTimeConversion);
 end.
 

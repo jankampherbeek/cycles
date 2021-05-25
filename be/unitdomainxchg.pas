@@ -17,19 +17,21 @@ type
     MeanNode, OscNode, MeanApogee, OscApogee, Chiron, Pholus, Ceres, Pallas, Juno, Vesta,
     Nessus, Huya, Makemake, Haumea, Eris, Ixion, Orcus, Quaoar, Sedna, Varuna);
 
-  TCoordinateTypes = (GeoLongitude, GeoLatitude, HelioLongitude, HelioLatitude, RightAscension,
-    Declination, Distance);
-
-  TAyanamshaNames = (None, Fagan, Lahiri, Raman, Krishnamurti, Huber, GalicticCtrBrand);
-
-  TCycleTypes = (SinglePoint, Waves);
-
   TCelPoint = record
     Name: TCelPointNames;
     PresentationName, Glyph: string;
     FirstJd, LastJD: double;
     SeId: integer;
   end;
+
+  TCelPointArray = array of TCelPoint;
+
+  TCoordinateTypes = (GeoLongitude, GeoLatitude, HelioLongitude, HelioLatitude, RightAscension,
+    Declination, Distance);
+
+  TAyanamshaNames = (None, Fagan, Lahiri, Raman, Krishnamurti, Huber, GalicticCtrBrand);
+
+  TCycleTypes = (SinglePoint, Waves);
 
   TAyanamsha = record
     Name: TAyanamshaNames;

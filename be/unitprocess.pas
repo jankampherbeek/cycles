@@ -25,6 +25,14 @@ type
     property FlagsValue: longint read FFlagsValue;
   end;
 
+  TTimeSeriesRequest = record
+    StartDateTime: string;
+    EndDateTime: string;
+    Interval: integer;
+    CoordinateType: TCoordinateTypes;
+    CelPoints: TCelPointArray;
+  end;
+
   { Constructs a TimeSeries for a specific celestial point, and the specs found in a CycleDefinition. }
   TTimeSeries = class
   strict private
@@ -38,15 +46,34 @@ type
     property TimedPositions: TList read FTimedPositions;
   end;
 
+  TTimeSeriesArray = array of TTimeSeries;
+
+  TTimeSeriesResponse = record
+    Errors: boolean;
+    ErrorText: string;
+    CalculatedTimeSeries: TTimeSeriesArray;
+  end;
+
+  { Converter for date and time. Returns Julian day for UT for date in format yyyy/mm/dd.
+    Calendar: 1 = Gregorian, 0 = Julian. }
+  TDateTimeConversion = class
+  strict private
+    FEphemeris: TEphemeris;
+  public
+    constructor Create(PEphemeris: TEphemeris);
+    function DateTextToJulianDay(PDateText: string; PCalendar: integer): double;
+  end;
 
 implementation
 
+uses
+  StrUtils, Types;
 { TSeFlags ----------------------------------------------------------------------------------------------------------- }
 
 constructor TSeFlags.Create(PCoordinateType: TCoordinateTypes; PAyanamsha: TAyanamshaNames);
 begin
   FCoordinateType := PCoordinateType;
-  FAyanamsha:= PAyanamsha;
+  FAyanamsha := PAyanamsha;
   FFlagsValue := DefineFlags;
 end;
 
@@ -88,9 +115,9 @@ var
   SeFlags: TSeFlags;
   AyanamshaName: TAyanamshaNames;
 begin
-  ResultingTimedPositions:= TList.Create;
+  ResultingTimedPositions := TList.Create;
   CoordinateType := FCycleDefinition.coordinateType;
-  AyanamshaName:= FCycleDefinition.ayanamsha.name;
+  AyanamshaName := FCycleDefinition.ayanamsha.Name;
   BeginJd := FCycleDefinition.JdStart;
   EndJd := FCycleDefinition.JdEnd;
   ActualJd := BeginJd;
@@ -112,5 +139,32 @@ begin
   until ActualJd > EndJd;
   Result := ResultingTimedPositions;
 end;
+
+{ TDateTimeConversion ------------------------------------------------------------------------------------------------ }
+
+constructor TDateTimeConversion.Create(PEphemeris: TEphemeris);
+begin
+  FEphemeris := PEphemeris;
+end;
+
+{ TODO : Add validation to conversion from datetext to JD }
+function TDateTimeConversion.DateTextToJulianDay(PDateText: String; PCalendar: Integer): double;
+var
+  TextElements: TStringDynArray;
+  FDateText: String;
+  Day, Month, Year, Calendar: Integer;
+  UT: Double;
+begin
+  FDateTExt:= PDateText;
+  Calendar:= PCalendar;
+  UT:= 0.0;
+  TextElements:= SplitString(PDateText, '/');
+  Year := StrToInt(TextElements[0]);
+  Month := StrToInt(TextElements[1]);
+  Day := StrToInt(TextElements[2]);
+  Result:= FEphemeris.CalcJdUt(Year, Month, Day, UT, Calendar);
+end;
+
+
 
 end.
