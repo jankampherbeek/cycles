@@ -10,15 +10,15 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos X="62" Y="6"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="test\test_astron.pas"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="17"/>
-        <CursorPos X="38" Y="31"/>
-        <UsageCount Value="34"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="59" Y="54"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -26,9 +26,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitAstron"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="6"/>
-        <CursorPos Y="45"/>
-        <UsageCount Value="34"/>
+        <TopLine Value="37"/>
+        <CursorPos X="56" Y="66"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -36,14 +36,15 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitDomainBe"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="37"/>
       </Unit3>
       <Unit4>
         <Filename Value="be\swissdelphi.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="33"/>
-        <UsageCount Value="31"/>
+        <TopLine Value="700"/>
+        <CursorPos X="30" Y="729"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -52,17 +53,15 @@
         <EditorIndex Value="3"/>
         <TopLine Value="12"/>
         <CursorPos X="28" Y="28"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="test\test_process.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="133"/>
-        <CursorPos X="29" Y="167"/>
-        <UsageCount Value="26"/>
+        <CursorPos X="64" Y="148"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -72,130 +71,130 @@
         <EditorIndex Value="2"/>
         <TopLine Value="73"/>
         <CursorPos X="17" Y="90"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit7>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="44" TopLine="20"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="389" Column="72" TopLine="355"/>
       </Position1>
       <Position2>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="17" Column="36"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="583" Column="35" TopLine="549"/>
       </Position2>
       <Position3>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="50" Column="9" TopLine="19"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="584" Column="37" TopLine="550"/>
       </Position3>
       <Position4>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="78" Column="30" TopLine="47"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="585" Column="36" TopLine="551"/>
       </Position4>
       <Position5>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="103" Column="13" TopLine="73"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="623" Column="37" TopLine="589"/>
       </Position5>
       <Position6>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="99" Column="91" TopLine="77"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="631" Column="40" TopLine="597"/>
       </Position6>
       <Position7>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="22" Column="16"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="640" Column="21" TopLine="606"/>
       </Position7>
       <Position8>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="24" Column="70"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="649" Column="21" TopLine="615"/>
       </Position8>
       <Position9>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="96" Column="64" TopLine="77"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="658" Column="21" TopLine="624"/>
       </Position9>
       <Position10>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="94" Column="40" TopLine="73"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="667" Column="21" TopLine="633"/>
       </Position10>
       <Position11>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="112" TopLine="73"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="736" Column="17" TopLine="702"/>
       </Position11>
       <Position12>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="90" TopLine="64"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="737" Column="29" TopLine="703"/>
       </Position12>
       <Position13>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="91" TopLine="64"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="738" Column="54" TopLine="704"/>
       </Position13>
       <Position14>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="92" TopLine="64"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="740" Column="82" TopLine="706"/>
       </Position14>
       <Position15>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="93" TopLine="64"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="742" Column="38" TopLine="708"/>
       </Position15>
       <Position16>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="94" TopLine="64"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="754" Column="48" TopLine="720"/>
       </Position16>
       <Position17>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="95" TopLine="64"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="764" Column="49" TopLine="730"/>
       </Position17>
       <Position18>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="96" TopLine="64"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="830" Column="57" TopLine="796"/>
       </Position18>
       <Position19>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="97" TopLine="64"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="837" Column="76" TopLine="803"/>
       </Position19>
       <Position20>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="98" TopLine="64"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="855" Column="77" TopLine="821"/>
       </Position20>
       <Position21>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="100" TopLine="66"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="876" Column="57" TopLine="842"/>
       </Position21>
       <Position22>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="101" TopLine="67"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="882" Column="72" TopLine="848"/>
       </Position22>
       <Position23>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="102" TopLine="68"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="889" Column="76" TopLine="855"/>
       </Position23>
       <Position24>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="107" TopLine="73"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="899" Column="46" TopLine="865"/>
       </Position24>
       <Position25>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="111" Column="41" TopLine="73"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="905" Column="49" TopLine="871"/>
       </Position25>
       <Position26>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="115" Column="43" TopLine="79"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="964" Column="43" TopLine="930"/>
       </Position26>
       <Position27>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="123" Column="31" TopLine="87"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="974" Column="46" TopLine="940"/>
       </Position27>
       <Position28>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="126" Column="69" TopLine="107"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="989" Column="56" TopLine="955"/>
       </Position28>
       <Position29>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="115" Column="40" TopLine="84"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="997" Column="40" TopLine="961"/>
       </Position29>
       <Position30>
-        <Filename Value="test\test_process.pas"/>
-        <Caret Line="130" Column="42" TopLine="113"/>
+        <Filename Value="be\swissdelphi.pas"/>
+        <Caret Line="9" Column="82"/>
       </Position30>
     </JumpHistory>
     <RunParams>

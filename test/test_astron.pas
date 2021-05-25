@@ -10,8 +10,6 @@ uses
 type
 
   TTestSeFrontend = class(TTestCase)
-  var
-
   protected
     SeFrontend: TSeFrontend;
     Delta: double;
@@ -19,6 +17,7 @@ type
     procedure TearDown; override;
   published
     procedure TestCalcCelPoint;
+    procedure TestJulianDay;
   end;
 
 implementation
@@ -43,6 +42,17 @@ begin
   AssertEquals('Speed longitude Sun', ExpectedLonSpeed, AllPositions[3], Delta);
   AssertEquals('Speed latitude Sun', ExpectedLatSpeed, AllPositions[4], Delta);
   AssertEquals('Speed RADV Sun', ExpectedRadvSpeed, AllPositions[5], Delta);
+end;
+
+procedure TTestSeFrontend.TestJulianDay;
+var
+  Expected: double = 2434406.817361;     // 1953-1-29 UT 7:37, JD value is for UT: it includes Delta T.
+  UT, Calculated: double;
+begin
+  Delta := 0.000001;
+  UT := 7.6166666666667;
+  Calculated := SeFrontend.SeCalcJdUt(1953, 1, 29, UT, 1);
+  assertEquals('Calculate Julian Day for UT', Expected, Calculated, Delta);
 end;
 
 procedure TTestSeFrontend.SetUp;

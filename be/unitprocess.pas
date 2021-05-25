@@ -56,9 +56,10 @@ var
 begin
   Flags := 2 or 256;                                         // Swiss Ephemeris and speed
   case FCoordinateType of
-    HelioLongitude, HelioLatitude: Flags := Flags or 8;      // heliocentric
-    RightAscension, Declination: Flags := Flags or 2048;     // equatorial
-    { TODO : Create else for case (CoordinateTypes for Flags), should assume that longitude is chosen. }
+    HelioLongitude, HelioLatitude: Flags := Flags or 8;      // heliocentric ecliptic
+    RightAscension, Declination: Flags := Flags or 2048;     // geocentric equatorial
+    GeoLongitude, GeoLatitude: Flags := 2 or 256;            // geocentric ecliptic
+    { TODO : Create else for case (CoordinateTypes for Flags), should throw an exception. }
   end;
   if FAyanamsha <> None then
     Flags := Flags or (64 * 1024);   // sidereal

@@ -15,19 +15,29 @@ uses
 type
 
   TSeFrontend = class
-    // singleton based on last example at http://wiki.freepascal.org/Singleton_Pattern
   public
     constructor Create;
     { Calculate a celestial point. Uses Julian day for UT, the id for the object (SeId) and the combined flags
-      for the type of calculation.}
-    function SeCalcCelPoint(PJulianDay: double; PSeId: integer;
-      PFlags: longint): TDoubleArray;
+      for the type of calculation. Returns array with positionvalues. Access via TEphemeris.}
+    function SeCalcCelPoint(PJulianDay: double; PSeId: integer; PFlags: longint): TDoubleArray;
+    { Calculate Julian Day for UT, using Year (astronomical), Month, Day, UT(fractional hours),
+      and Calendar (Gregorian=1, Julian=0.  Access via TEphemeris. }
+    function SeCalcJdUt(Year: integer; Month: integer; Day: integer; UT: double; Calendar: integer): double;
   end;
 
   TEphemeris = class
+  strict private
+    SeFrontend: TSeFrontend;
   public
-    function CalcCelPoint(PJulianDay: double; PSeId: integer;
-      PFlags: longint): TFullPosForCoordinate;
+    constructor Create;
+    destructor Destroy;
+
+    { Calculate a celestial point. Uses Julian day for UT, the id for the object (SeId) and the combined flags
+      for the type of calculation. Returns record with position. }
+    function CalcCelPoint(PJulianDay: double; PSeId: integer; PFlags: longint): TFullPosForCoordinate;
+    { Calculate Julian Day for UT, using Year (astronomical), Month, Day, UT(fractional hours),
+      and Calendar (Gregorian=1, Julian=0. }
+    function CalcJdUt(Year: integer; Month: integer; Day: integer; UT: double; Calendar: integer): double;
   end;
 
 
@@ -41,8 +51,7 @@ begin
   // required to use the SE Data and for initialization of the SE.
 end;
 
-function TSeFrontend.SeCalcCelpoint(PJulianDay: double; PSeId: integer;
-  PFlags: longint): TDoubleArray;
+function TSeFrontend.SeCalcCelpoint(PJulianDay: double; PSeId: integer; PFlags: longint): TDoubleArray;
 var
   Positions: array[0..5] of double;
   CalcResult: longint;
@@ -52,16 +61,28 @@ begin
   Result := Positions;
 end;
 
+function TSeFrontend.SeCalcJdUt(Year: integer; Month: integer; Day: integer; UT: double; Calendar: integer): double;
+begin
+  Result := swe_julday(Year, Month, Day, UT, Calendar);
+end;
+
 { TEphemeris --------------------------------------------------------------------------------------------------------- }
 
-function TEphemeris.CalcCelPoint(PJulianDay: double; PSeId: integer;
-  PFlags: longint): TFullPosForCoordinate;
+constructor TEphemeris.Create;
+begin
+  SeFrontend := TSeFrontend.Create;
+end;
+
+destructor TEphemeris.Destroy;
+begin
+  FreeAndNil(SeFrontend);
+end;
+
+function TEphemeris.CalcCelPoint(PJulianDay: double; PSeId: integer; PFlags: longint): TFullPosForCoordinate;
 var
   Positions: TDoubleArray;
-  SeFrontend: TSeFrontend;
   FullPosForCoordinate: TFullPosForCoordinate;
 begin
-  SeFrontend := TSeFrontend.Create();
   Positions := SeFrontend.seCalcCelPoint(PJulianDay, PSeId, PFlags);
   FullPosForCoordinate.mainPos := Positions[0];
   FullPosForCoordinate.deviationPos := Positions[1];
@@ -72,5 +93,9 @@ begin
   Result := FullPosForCoordinate;
 end;
 
+function TEphemeris.CalcJdUt(Year: integer; Month: integer; Day: integer; UT: double; Calendar: integer): double;
+begin
+  Result := SeFrontend.SeCalcJdUt(Year, Month, Day, UT, Calendar);
+end;
 
 end.
