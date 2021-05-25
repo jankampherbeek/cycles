@@ -3,6 +3,8 @@
   Please check the file copyright.txt in the root of the source for further details }
 unit unitdomainxchg;
 
+{< Domain items that can be used by the frontend and the backend.}
+
 {$mode objfpc}{$H+}
 
 interface
