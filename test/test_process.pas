@@ -5,7 +5,7 @@ unit test_process;
 interface
 
 uses
-  Classes, SysUtils, fpcunit, testutils, testregistry, unitprocess, unitdomainxchg;
+  Classes, SysUtils, fpcunit, testutils, testregistry, unitprocess, unitdomainxchg, unitastron;
 
 type
 
@@ -15,6 +15,21 @@ type
     procedure TestFlagsHelioEclTrop;
     procedure TestFlagsEquatTrop;
     procedure TestFlagsEclSidereal;
+  end;
+
+  TestTimeSeries = class(TTestCase)
+  protected
+    Ephemeris: TEphemeris;
+    Delta: double;
+    procedure SetUp; override;
+    procedure TearDown; override;
+    function CreateCelPoint: TCelPoint;
+    function CreateAyanamsha: TAyanamsha;
+    function CreateCycleDefinition(JdStart: double; JdEnd: double; Interval: integer): TCycleDefinition;
+  published
+    procedure TestNrOfResults;
+    procedure TestNrOfResultsWithInterval3;
+    procedure TestContentOfResults;
   end;
 
 implementation
@@ -61,9 +76,99 @@ begin
   assertEquals(65794, SeFlags.FlagsValue);                // 2 or 256 or (64 * 1024))
 end;
 
+{ TestTimeSeries ----------------------------------------------------------------------------------------------------- }
+procedure TestTimeSeries.Setup;
+begin
+  Delta := 0.00003;   //  < 0.1 second
+  Ephemeris := TEphemeris.Create;
+end;
+
+procedure TestTimeSeries.TearDown;
+begin
+  FreeAndNil(Ephemeris);
+end;
+
+procedure TestTimeSeries.TestNrOfResults;
+var
+  CelPoint: TCelPoint;
+  CycleDefinition: TCycleDefinition;
+  TimeSeries: TTimeSeries;
+  ResultList: TList;
+begin
+  CelPoint := CreateCelPoint;
+  CycleDefinition := CreateCycleDefinition(2000001.5, 2000100.5, 1);
+  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition);
+  ResultList := TimeSeries.TimedPositions;
+  AssertEquals('Size of TimeSeries', 100, ResultList.Count);
+end;
+
+procedure TestTimeSeries.TestNrOfResultsWithInterval3;
+var
+  CelPoint: TCelPoint;
+  CycleDefinition: TCycleDefinition;
+  TimeSeries: TTimeSeries;
+  ResultList: TList;
+begin
+  CelPoint := CreateCelPoint;
+  CycleDefinition := CreateCycleDefinition(2000001.5, 2000100.5, 3);
+  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition);
+  ResultList := TimeSeries.TimedPositions;
+  AssertEquals('Size of TimeSeries', 34, ResultList.Count);          // 34, 33 comes short for the whole periode
+end;
+
+procedure TestTimeSeries.TestContentOfResults;
+var
+  CelPoint: TCelPoint;
+  CycleDefinition: TCycleDefinition;
+  TimeSeries: TTimeSeries;
+  ResultList: TList;
+begin
+  CelPoint := CreateCelPoint;
+  CycleDefinition := CreateCycleDefinition(2434406.817713, 2434409.817713, 1); // 1953-1-29 UT 7:37
+  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition);
+  ResultList := TimeSeries.TimedPositions;
+  AssertEquals('Longitude', 309.118517546, TTimedPosition(ResultList[0]).Position, Delta);
+
+end;
+
+function TestTimeSeries.CreateCelPoint: TCelPoint;
+var
+  CelPoint: TCelPoint;
+begin
+  Celpoint.Name := TCelPointNames.Sun;
+  CelPoint.PresentationName := 'Sun';
+  CelPoint.Glyph := 'a';
+  CelPoint.FirstJd := -2000000.5;
+  CelPoint.LastJd := 4000100.5;
+  CelPoint.SeId := 0;
+  Result := CelPoint;
+end;
+
+function TestTimeSeries.CreateAyanamsha: TAyanamsha;
+var
+  Ayanamsha: TAyanamsha;
+begin
+  Ayanamsha.Name := None;
+  Ayanamsha.SeId := -1;
+  Ayanamsha.PresentationName := 'Tropical';
+  Result := Ayanamsha;
+end;
+
+function TestTimeSeries.CreateCycleDefinition(JdStart: double; JdEnd: double; Interval: integer): TCycleDefinition;
+var
+  CycleDefinition: TCycleDefinition;
+begin
+  CycleDefinition.CycleType := SinglePoint;
+  CycleDefinition.JdStart := JdStart;
+  CycleDefinition.JdEnd := JdEnd;
+  CycleDefinition.Interval := Interval;
+  CycleDefinition.CoordinateType := GeoLongitude;
+  CycleDefinition.Ayanamsha := CreateAyanamsha;
+  Result := CycleDefinition;
+end;
 
 initialization
-
   RegisterTest('Process', TestSeFlags);
+  RegisterTest('Process', TestTimeSeries);
 end.
 

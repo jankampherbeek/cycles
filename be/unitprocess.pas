@@ -15,7 +15,7 @@ type
 
   { Flags as used by then Swiss Ephemeris. Assumes that always the SE-files are used and thart speed has always to be calculated.}
   TSeFlags = class
-  private
+  strict private
     FFlagsValue: longint;
     FCoordinateType: TCoordinateTypes;
     FAyanamsha: TAyanamshaNames;
@@ -27,7 +27,7 @@ type
 
   { Constructs a TimeSeries for a specific celestial point, and the specs found in a CycleDefinition. }
   TTimeSeries = class
-  private
+  strict private
     FCelPoint: TCelPoint;
     FCycleDefinition: TCycleDefinition;
     FTimedPositions: TList;   // filled with TTimedPosition
@@ -84,14 +84,19 @@ var
   ResultingTimedPositions: TList;
   FullPosForCoordinate: TFullPosForCoordinate;
   CoordinateType: TCoordinateTypes;
+  SeFlags: TSeFlags;
+  AyanamshaName: TAyanamshaNames;
 begin
+  ResultingTimedPositions:= TList.Create;
   CoordinateType := FCycleDefinition.coordinateType;
+  AyanamshaName:= FCycleDefinition.ayanamsha.name;
   BeginJd := FCycleDefinition.JdStart;
   EndJd := FCycleDefinition.JdEnd;
   ActualJd := BeginJd;
   Interval := FCycleDefinition.Interval;
   SeId := FCelPoint.seId;
-  Flags := 2 or 256;      { TODO : Create class to construct the values for flags }
+  SeFlags := TSeFlags.Create(CoordinateType, AyanamshaName);
+  Flags := SeFlags.FlagsValue;
   repeat
     FullPosForCoordinate := FEphemeris.CalcCelPoint(ActualJd, SeId, flags);
     case CoordinateType of
@@ -100,9 +105,8 @@ begin
       Distance: Position := FullPosForCoordinate.distancePos;
       { TODO : Create else for case (CoordinateTypes), should throw an exception. }
     end;
-    TimedPosition.jdUt := ActualJd;
-    TimedPosition.position := Position;
-    //ResultingTimedPositions.add(TimedPosition);    { TODO : add to list }
+    TimedPosition := TTimedPosition.Create(ActualJd, Position);
+    ResultingTimedPositions.add(TimedPosition);
     ActualJd := ActualJd + Interval;
   until ActualJd > EndJd;
   Result := ResultingTimedPositions;

@@ -14,7 +14,7 @@ type
 
   protected
     SeFrontend: TSeFrontend;
-    Delta: double;   //  < 0.1 second
+    Delta: double;
     procedure SetUp; override;
     procedure TearDown; override;
   published

@@ -11,55 +11,68 @@ uses
   Classes, SysUtils;
 
 type
-    TDoubleArray = Array of Double;
+  TDoubleArray = array of double;
 
-    TCelPointNames = (Sun, Moon, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto,
-                      MeanNode, OscNode, MeanApogee, OscApogee, Chiron, Pholus, Ceres, Pallas, Juno, Vesta,
-                      Nessus, Huya, Makemake, Haumea, Eris, Ixion, Orcus, Quaoar, Sedna, Varuna);
+  TCelPointNames = (Sun, Moon, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto,
+    MeanNode, OscNode, MeanApogee, OscApogee, Chiron, Pholus, Ceres, Pallas, Juno, Vesta,
+    Nessus, Huya, Makemake, Haumea, Eris, Ixion, Orcus, Quaoar, Sedna, Varuna);
 
-    TCoordinateTypes = (GeoLongitude, GeoLatitude, HelioLongitude, HelioLatitude, RightAscension, Declination, Distance);
+  TCoordinateTypes = (GeoLongitude, GeoLatitude, HelioLongitude, HelioLatitude, RightAscension,
+    Declination, Distance);
 
-    TAyanamshaNames = (None, Fagan, Lahiri, Raman, Krishnamurti, Huber, GalicticCtrBrand);
+  TAyanamshaNames = (None, Fagan, Lahiri, Raman, Krishnamurti, Huber, GalicticCtrBrand);
 
-    TCycleTypes = (SinglePoint, Waves);
+  TCycleTypes = (SinglePoint, Waves);
 
-    TCelPoint = record
-      name: TCelPointNames;
-      presentationName, glyph: String;
-      firstJd, lastJD: Double;
-      seId: Integer;
-    end;
+  TCelPoint = record
+    Name: TCelPointNames;
+    PresentationName, Glyph: string;
+    FirstJd, LastJD: double;
+    SeId: integer;
+  end;
 
-    TAyanamsha = record
-      name: TAyanamshaNames;
-      presentationName: String;
-      seId: Integer;
-    end;
+  TAyanamsha = record
+    Name: TAyanamshaNames;
+    PresentationName: string;
+    SeId: integer;
+  end;
 
-    TCycleDefinition = record
-      jdStart,jdEnd: Double;
-      interval: Integer;
-      coordinateType: TCoordinateTypes;
-      ayanamsha: TAyanamsha;
-      cycleType: TCycleTypes;
-    end;
+  TCycleDefinition = record
+    JdStart, JdEnd: double;
+    Interval: integer;
+    CoordinateType: TCoordinateTypes;
+    Ayanamsha: TAyanamsha;
+    CycleType: TCycleTypes;
+  end;
 
-    TTimedPosition = record
-      jdUt: Double;
-      position: Double;
-    end;
+  TTimedPosition = class
+  strict private
+    FJdUt: double;
+    FPosition: double;
+  public
+    constructor Create(PJdUt: double; PPosition: double);
+    property JdUt: double read FJdUt;
+    property Position: double read FPosition;
+  end;
 
-    TFullPosForCoordinate = record
-      mainPos: Double;
-      deviationPos: Double;
-      distancePos: Double;
-      mainSpeed: Double;
-      deviationSpeed: Double;
-      distanceSpeed: Double;
-    end;
+  TFullPosForCoordinate = record
+    MainPos: double;
+    DeviationPos: double;
+    DistancePos: double;
+    MainSpeed: double;
+    DeviationSpeed: double;
+    DistanceSpeed: double;
+  end;
 
 
 implementation
 
-end.
+{ TTimedPosition ----------------------------------------------------------------------------------------------------- }
 
+constructor TTimedPosition.Create(PJdUt: double; PPosition: double);
+begin
+  FJdUt := PJdUt;
+  FPosition := PPosition;
+end;
+
+end.
