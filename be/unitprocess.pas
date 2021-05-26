@@ -28,8 +28,8 @@ type
   TTimeSeriesRequest = record
     StartDateTime: string;
     EndDateTime: string;
-    Calendar: Integer;
-    Interval: Integer;
+    Calendar: integer;
+    Interval: integer;
     CoordinateType: TCoordinateTypes;
     CycleType: TCycleTypes;
     Ayanamsha: TAyanamsha;
@@ -72,9 +72,9 @@ type
   strict private
     Ephemeris: TEphemeris;
     DatetimeConversion: TDateTimeConversion;
-    StartJD, EndJD: Double;
+    StartJD, EndJD: double;
     CelPoints: TCelPointArray;
-    NrOfCelPoints, Calendar: Integer;
+    NrOfCelPoints, Calendar: integer;
   public
     constructor Create;
     destructor Destroy;
@@ -132,6 +132,11 @@ var
   CoordinateType: TCoordinateTypes;
   SeFlags: TSeFlags;
   AyanamshaName: TAyanamshaNames;
+  //CsvFileName: string = 'xxdata.csv';
+  CsvFile: TextFile;
+  CsvLine: String;
+  CsvHeading: String;
+
 begin
   ResultingTimedPositions := TList.Create;
   CoordinateType := FCycleDefinition.coordinateType;
@@ -143,20 +148,45 @@ begin
   SeId := FCelPoint.seId;
   SeFlags := TSeFlags.Create(CoordinateType, AyanamshaName);
   Flags := SeFlags.FlagsValue;
-  repeat
-    FullPosForCoordinate := FEphemeris.CalcCelPoint(ActualJd, SeId, flags);
-    case CoordinateType of
-      GeoLongitude, HelioLongitude, RightAscension: Position := FullPosForCoordinate.MainPos;
-      GeoLatitude, HelioLatitude, Declination: Position := FullPosForCoordinate.DeviationPos;
-      Distance: Position := FullPosForCoordinate.distancePos;
-      { TODO : Create else for case (CoordinateTypes), should throw an exception. }
-    end;
-    TimedPosition := TTimedPosition.Create(ActualJd, Position);
-    ResultingTimedPositions.add(TimedPosition);
-    ActualJd := ActualJd + Interval;
-  until ActualJd > EndJd;
+  CsvHeading:= Concat('Date; Julian Day nr; Geoc. Longitude ', FCelPoint.PresentationName);
+  AssignFile(CsvFile, 'xxxdata.csv');
+  try
+    rewrite(CsvFile);
+
+    writeLn(CsvFile, CsvHeading);
+    repeat
+      FullPosForCoordinate := FEphemeris.CalcCelPoint(ActualJd, SeId, flags);
+      case CoordinateType of
+        GeoLongitude, HelioLongitude, RightAscension: Position := FullPosForCoordinate.MainPos;
+        GeoLatitude, HelioLatitude, Declination: Position := FullPosForCoordinate.DeviationPos;
+        Distance: Position := FullPosForCoordinate.distancePos;
+        { TODO : Create else for case (CoordinateTypes), should throw an exception. }
+      end;
+      TimedPosition := TTimedPosition.Create(ActualJd, Position);
+      CsvLine := 'date; ' + FloatToStr(ActualJd) + '; ' + FloatToStr(Position);
+      writeln(CsvFile, CsvLine);
+      ResultingTimedPositions.add(TimedPosition);
+      ActualJd := ActualJd + Interval;
+    until ActualJd > EndJd;
+    //except
+    //  //on E: EInOutError do
+    //  //writeln('File handling error occurred. Details: ', E.ClassName, '/', E.Message);
+    //end;
+  finally
+    CloseFile(CsvFile);
+  end;
   Result := ResultingTimedPositions;
 end;
+
+                                 {AssignFile(File1,Path);
+   Try
+   Rewrite(File1);
+   Writeln(File1,'Some Data');//Remember AnsiStrings are case sensitive
+   Finally
+   CloseFile(File1);
+   End;
+   Readln;}
+
 
 { TDateTimeConversion ------------------------------------------------------------------------------------------------ }
 
@@ -187,7 +217,7 @@ end;
 
 constructor TTimeSeriesHandler.Create;
 begin
-  Ephemeris:= TEphemeris.Create;
+  Ephemeris := TEphemeris.Create;
   DatetimeConversion := TDateTimeConversion.Create(Ephemeris);
 end;
 
@@ -199,33 +229,34 @@ end;
 
 function TTimeSeriesHandler.HandleRequest(Request: TTimeSeriesRequest): TTimeSeriesResponse;
 var
-  StartDate, EndDate: String;
+  StartDate, EndDate: string;
   AllTimeSeries: TTimeSeriesArray;
   CycleDefinition: TCycleDefinition;
   Response: TTimeSeriesResponse;
-  i: Integer;
+  i: integer;
 begin
-  StartDate:= Request.StartDateTime;
-  EndDate:= Request.EndDateTime;
-  Calendar:= Request.Calendar;
-  CelPoints:= Request.CelPoints;
-  NrOfCelPoints:= Length(CelPoints);
+  StartDate := Request.StartDateTime;
+  EndDate := Request.EndDateTime;
+  Calendar := Request.Calendar;
+  CelPoints := Request.CelPoints;
+  NrOfCelPoints := Length(CelPoints);
   SetLength(AllTimeSeries, NrOfCelPoints);
   StartJD := DatetimeConversion.DateTextToJulianDay(StartDate, Calendar);
-  EndJD:= DatetimeConversion.DateTextToJulianDay(EndDate, Calendar);
+  EndJD := DatetimeConversion.DateTextToJulianDay(EndDate, Calendar);
   CycleDefinition.JdStart := StartJD;
-  CycleDefinition.JdEnd:= EndJD;
-  CycleDefinition.Interval:= Request.Interval;
-  CycleDefinition.CoordinateType:= Request.CoordinateType;
-  CycleDefinition.Ayanamsha:= Request.Ayanamsha;
-  CycleDefinition.CycleType:= Request.CycleType;
-  for i:= 0 to NrOfCelPoints-1 do begin
-    AllTimeSeries[i]:= TTimeSeries.Create(Ephemeris, CelPoints[i], CycleDefinition);
+  CycleDefinition.JdEnd := EndJD;
+  CycleDefinition.Interval := Request.Interval;
+  CycleDefinition.CoordinateType := Request.CoordinateType;
+  CycleDefinition.Ayanamsha := Request.Ayanamsha;
+  CycleDefinition.CycleType := Request.CycleType;
+  for i := 0 to NrOfCelPoints - 1 do
+  begin
+    AllTimeSeries[i] := TTimeSeries.Create(Ephemeris, CelPoints[i], CycleDefinition);
   end;
-  Response.CalculatedTimeSeries:= AllTimeSeries;
-  Response.Errors:= false;
-  Response.ErrorText:= '';
-  Result:= Response;
+  Response.CalculatedTimeSeries := AllTimeSeries;
+  Response.Errors := False;
+  Response.ErrorText := '';
+  Result := Response;
 end;
 
 

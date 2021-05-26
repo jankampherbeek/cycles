@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 1414
-  Height = 356
-  Top = 461
-  Width = 389
+  Left = 329
+  Height = 731
+  Top = 85
+  Width = 720
   Caption = 'Form1'
-  ClientHeight = 356
-  ClientWidth = 389
+  ClientHeight = 731
+  ClientWidth = 720
   LCLVersion = '2.0.12.0'
   object LblTitle: TLabel
     Left = 24
@@ -36,10 +36,10 @@ object Form1: TForm1
     TextHint = 'yyyy/mm/dd'
   end
   object LblEdEndDate: TLabeledEdit
-    Left = 224
+    Left = 24
     Height = 23
     Hint = 'yyyy/mm/dd'
-    Top = 80
+    Top = 128
     Width = 144
     EditLabel.Height = 15
     EditLabel.Width = 144
@@ -50,7 +50,7 @@ object Form1: TForm1
   object LblEdInterval: TLabeledEdit
     Left = 24
     Height = 23
-    Top = 176
+    Top = 224
     Width = 144
     EditLabel.Height = 15
     EditLabel.Width = 144
@@ -59,50 +59,62 @@ object Form1: TForm1
     TabOrder = 2
   end
   object BtnOk: TButton
-    Left = 293
+    Left = 24
     Height = 25
-    Top = 288
+    Top = 472
     Width = 75
     Caption = 'OK'
     OnClick = BtnOkClick
     TabOrder = 3
   end
-  object BtnCancel: TButton
-    Left = 208
-    Height = 25
-    Top = 288
-    Width = 75
-    Caption = 'Cancel'
-    TabOrder = 4
-  end
   object BtnHelp: TButton
-    Left = 120
+    Left = 112
     Height = 25
-    Top = 288
+    Top = 472
     Width = 75
     Caption = 'Help'
-    TabOrder = 5
+    TabOrder = 4
   end
   object CbCalendar: TComboBox
     Left = 24
     Height = 23
-    Top = 128
-    Width = 344
+    Top = 176
+    Width = 144
     ItemHeight = 15
     ItemIndex = 0
     Items.Strings = (
       'Gregorian'
       'Julian'
     )
-    TabOrder = 6
+    TabOrder = 5
     Text = 'Gregorian'
   end
   object LblCalendar: TLabel
     Left = 24
     Height = 15
-    Top = 112
+    Top = 160
     Width = 47
     Caption = 'Calendar'
     ParentColor = False
+  end
+  object SgPositions: TStringGrid
+    Left = 208
+    Height = 616
+    Top = 72
+    Width = 432
+    AutoFillColumns = True
+    ColCount = 3
+    Constraints.MinWidth = 200
+    DefaultColWidth = 200
+    FixedCols = 0
+    Flat = True
+    RowCount = 20
+    TabOrder = 6
+    TabStop = False
+    ColWidths = (
+      143
+      143
+      145
+    )
   end
 end
