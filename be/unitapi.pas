@@ -18,7 +18,7 @@ type
     Handler: TTimeSeriesHandler;
   public
     constructor Create;
-    destructor Destroy;
+    destructor Destroy; override;
     function GetTimeSeries(request: TTimeSeriesRequest): TTimeSeriesResponse;
   end;
 
@@ -35,6 +35,7 @@ end;
 destructor TTimeSeriesAPI.Destroy;
 begin
   FreeAndNil(Handler);
+  Inherited;
 end;
 
 function TTimeSeriesAPI.GetTimeSeries(request: TTimeSeriesRequest): TTimeSeriesResponse;

@@ -128,7 +128,7 @@ var
 begin
   CelPoint := CreateCelPoint;
   CycleDefinition := CreateCycleDefinition(2000001.5, 2000100.5, 1);
-  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition);
+  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition, 1);
   ResultList := TimeSeries.TimedPositions;
   AssertEquals('Size of TimeSeries', 100, ResultList.Count);
 end;
@@ -142,7 +142,7 @@ var
 begin
   CelPoint := CreateCelPoint;
   CycleDefinition := CreateCycleDefinition(2000001.5, 2000100.5, 3);
-  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition);
+  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition, 1);
   ResultList := TimeSeries.TimedPositions;
   AssertEquals('Size of TimeSeries', 34, ResultList.Count);          // 34, 33 comes short for the whole periode
 end;
@@ -156,7 +156,7 @@ var
 begin
   CelPoint := CreateCelPoint;
   CycleDefinition := CreateCycleDefinition(2434406.817713, 2434409.817713, 1); // 1953-1-29 UT 7:37
-  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition);
+  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition, 1);
   ResultList := TimeSeries.TimedPositions;
   AssertEquals('Longitude', 309.118517546, TTimedPosition(ResultList[0]).Position, Delta);
 

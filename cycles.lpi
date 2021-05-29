@@ -25,7 +25,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="1"/>
-      <BuildNr Value="14"/>
+      <BuildNr Value="32"/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -46,7 +46,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="7">
+    <Units Count="8">
       <Unit0>
         <Filename Value="cycles.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -81,6 +81,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitAPI"/>
       </Unit6>
+      <Unit7>
+        <Filename Value="be\unitconversions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitConversions"/>
+      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

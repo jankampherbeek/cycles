@@ -9,7 +9,7 @@ unit UnitProcess;
 interface
 
 uses
-  Classes, SysUtils, unitdomainxchg, unitastron;
+  Classes, SysUtils, unitdomainxchg, unitastron, UnitConversions;
 
 type
 
@@ -41,12 +41,21 @@ type
   strict private
     FCelPoint: TCelPoint;
     FCycleDefinition: TCycleDefinition;
-    FTimedPositions: TList;   // filled with TTimedPosition
     FEphemeris: TEphemeris;
-    function calculate: TList;
+    FJulianDayConversion: TJulianDayConversion;
+    FloatingToDecimalDegreeConversion: TFloatingToDecimalDegreeConversion;
+    FCalendar: integer;
+    FileNamePrefix: string;
+    FFileNameData, FFileNameMeta: string;
+    procedure DefineFiles;
+    procedure WriteMeta;
+    procedure Calculate;
+
   public
-    constructor Create(PEphemeris: TEphemeris; PCelPoint: TCelPoint; PCycleDefinition: TCycleDefinition);
-    property TimedPositions: TList read FTimedPositions;
+    constructor Create(PEphemeris: TEphemeris; PCelPoint: TCelPoint; PCycleDefinition: TCycleDefinition;
+      Calendar: integer);
+      property FileNameData: string read FFileNameData;
+      property FileNameMEta: string read FFileNameMeta;
   end;
 
   TTimeSeriesArray = array of TTimeSeries;
@@ -54,7 +63,7 @@ type
   TTimeSeriesResponse = record
     Errors: boolean;
     ErrorText: string;
-    CalculatedTimeSeries: TTimeSeriesArray;
+    FileNameData, FileNameMeta: string;
   end;
 
   { Converter for date and time. Returns Julian day for UT for date in format yyyy/mm/dd.
@@ -77,7 +86,7 @@ type
     NrOfCelPoints, Calendar: integer;
   public
     constructor Create;
-    destructor Destroy;
+    destructor Destroy; override;
     function HandleRequest(Request: TTimeSeriesRequest): TTimeSeriesResponse;
   end;
 
@@ -113,32 +122,67 @@ end;
 
 { TTimeSeries -------------------------------------------------------------------------------------------------------- }
 
-constructor TTimeSeries.Create(PEphemeris: TEphemeris; PCelPoint: TCelPoint; PCycleDefinition: TCycleDefinition);
+constructor TTimeSeries.Create(PEphemeris: TEphemeris; PCelPoint: TCelPoint;
+  PCycleDefinition: TCycleDefinition; Calendar: integer);
 begin
   FEphemeris := PEphemeris;
+  FCalendar := Calendar;
+  FJulianDayConversion := TJulianDayConversion.Create(FEphemeris.SeFrontend);
   FCelPoint := PCelPoint;
   FCycleDefinition := PCycleDefinition;
-  FTimedPositions := Calculate();
+  DefineFiles;
+  WriteMeta;
+  Calculate;
 end;
 
-function TTimeSeries.Calculate: TList;
+procedure TTimeSeries.DefineFiles;
+begin
+  FileNamePrefix := FormatDateTime('YYYYMMDD_HHNNSS', Now) + '_' + FCelPoint.PresentationName;
+  FFileNameData:= FilenamePrefix + '_data.csv';
+  FFileNameMeta:= FileNamePrefix + '_meta.csv';
+end;
+
+{ TODO : Variablenames in file should vary based on i18n. }
+procedure TTimeSeries.WriteMeta;
+var
+  MetaHeading: string;
+  CycleTypeText, CoordinateTypeText: string;
+  MetaFile: TextFile;
+begin
+  MetaHeading := 'Variable; Value';
+  WriteStr(CycleTypeText, FCycleDefinition.CycleType);
+  WriteStr(CoordinateTypeText, FCycleDefinition.CoordinateType);
+  AssignFile(MetaFile, FFileNameMeta);
+  try
+    rewrite(MetaFile);
+    writeLn(MetaFile, MetaHeading);
+    writeln(MetaFile, 'File identification;' + FileNamePrefix);
+    writeln(MetaFile, 'Celestial Point;' + FCelPoint.PresentationName);
+    writeln(MetaFile, 'CycleType;' + CycleTypeText);
+    writeln(MetaFile, 'Coordinate;' + CoordinateTypeText);
+    writeln(MetaFile, 'Ayanamsha;' + FCycleDefinition.Ayanamsha.PresentationName);
+    writeln(MetaFile, 'Start Date;' + FJulianDayConversion.ConvertJdToDateText(FCycleDefinition.JdStart, FCalendar));
+    writeln(MetaFile, 'End Date;' + FJulianDayConversion.ConvertJdToDateText(FCycleDefinition.JdEnd, FCalendar));
+    writeln(MetaFile, 'Interval;' + IntToStr(FCycleDefinition.Interval));
+  finally
+    CloseFile(MetaFile);
+  end;
+end;
+
+procedure TTimeSeries.Calculate;
 var
   ActualJd, BeginJd, EndJd, Position: double;
   SeId, Interval: integer;
   Flags: longint;
-  TimedPosition: TTimedPosition;
-  ResultingTimedPositions: TList;
   FullPosForCoordinate: TFullPosForCoordinate;
   CoordinateType: TCoordinateTypes;
   SeFlags: TSeFlags;
   AyanamshaName: TAyanamshaNames;
-  //CsvFileName: string = 'xxdata.csv';
   CsvFile: TextFile;
-  CsvLine: String;
-  CsvHeading: String;
-
+  CsvLine: string;
+  CsvHeading: string;
+  DateTimeText, PositionText: string;
 begin
-  ResultingTimedPositions := TList.Create;
   CoordinateType := FCycleDefinition.coordinateType;
   AyanamshaName := FCycleDefinition.ayanamsha.Name;
   BeginJd := FCycleDefinition.JdStart;
@@ -148,11 +192,10 @@ begin
   SeId := FCelPoint.seId;
   SeFlags := TSeFlags.Create(CoordinateType, AyanamshaName);
   Flags := SeFlags.FlagsValue;
-  CsvHeading:= Concat('Date; Julian Day nr; Geoc. Longitude ', FCelPoint.PresentationName);
-  AssignFile(CsvFile, 'xxxdata.csv');
+  CsvHeading := Concat('Date; Julian Day nr; Geoc. Longitude ', FCelPoint.PresentationName);
+  AssignFile(CsvFile, FFileNameData);
   try
     rewrite(CsvFile);
-
     writeLn(CsvFile, CsvHeading);
     repeat
       FullPosForCoordinate := FEphemeris.CalcCelPoint(ActualJd, SeId, flags);
@@ -162,30 +205,17 @@ begin
         Distance: Position := FullPosForCoordinate.distancePos;
         { TODO : Create else for case (CoordinateTypes), should throw an exception. }
       end;
-      TimedPosition := TTimedPosition.Create(ActualJd, Position);
-      CsvLine := 'date; ' + FloatToStr(ActualJd) + '; ' + FloatToStr(Position);
+      DateTimeText := FJulianDayConversion.ConvertJdToDateText(ActualJd, FCalendar);
+      PositionText := FloatingToDecimalDegreeConversion.ConvertDoubleToFormattedText(Position);
+      CsvLine := DateTimeText + '; ' + FloatToStr(ActualJd) + '; ' + PositionText;
       writeln(CsvFile, CsvLine);
-      ResultingTimedPositions.add(TimedPosition);
       ActualJd := ActualJd + Interval;
     until ActualJd > EndJd;
-    //except
-    //  //on E: EInOutError do
-    //  //writeln('File handling error occurred. Details: ', E.ClassName, '/', E.Message);
-    //end;
   finally
     CloseFile(CsvFile);
   end;
-  Result := ResultingTimedPositions;
 end;
 
-                                 {AssignFile(File1,Path);
-   Try
-   Rewrite(File1);
-   Writeln(File1,'Some Data');//Remember AnsiStrings are case sensitive
-   Finally
-   CloseFile(File1);
-   End;
-   Readln;}
 
 
 { TDateTimeConversion ------------------------------------------------------------------------------------------------ }
@@ -199,11 +229,9 @@ end;
 function TDateTimeConversion.DateTextToJulianDay(PDateText: string; PCalendar: integer): double;
 var
   TextElements: TStringDynArray;
-  FDateText: string;
   Day, Month, Year, Calendar: integer;
   UT: double;
 begin
-  FDateTExt := PDateText;
   Calendar := PCalendar;
   UT := 0.0;
   TextElements := SplitString(PDateText, '/');
@@ -225,6 +253,7 @@ destructor TTimeSeriesHandler.Destroy;
 begin
   FreeAndNil(DatetimeConversion);
   FreeAndNil(Ephemeris);
+  Inherited;
 end;
 
 function TTimeSeriesHandler.HandleRequest(Request: TTimeSeriesRequest): TTimeSeriesResponse;
@@ -251,11 +280,13 @@ begin
   CycleDefinition.CycleType := Request.CycleType;
   for i := 0 to NrOfCelPoints - 1 do
   begin
-    AllTimeSeries[i] := TTimeSeries.Create(Ephemeris, CelPoints[i], CycleDefinition);
+    { TODO : Add handling of multiple celestial points }
+    AllTimeSeries[i] := TTimeSeries.Create(Ephemeris, CelPoints[i], CycleDefinition, Calendar);
   end;
-  Response.CalculatedTimeSeries := AllTimeSeries;
   Response.Errors := False;
   Response.ErrorText := '';
+  Response.FileNameData:= AllTimeSeries[0].FileNameData;
+  Response.FileNameMeta:= AllTimeSeries[0].FileNameMeta;
   Result := Response;
 end;
 

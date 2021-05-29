@@ -18,6 +18,7 @@ type
   published
     procedure TestCalcCelPoint;
     procedure TestJulianDay;
+    procedure TestSeRevJul;
   end;
 
 implementation
@@ -53,6 +54,20 @@ begin
   UT := 7.6166666666667;
   Calculated := SeFrontend.SeCalcJdUt(1953, 1, 29, UT, 1);
   assertEquals('Calculate Julian Day for UT', Expected, Calculated, Delta);
+end;
+
+procedure TTestSeFrontend.TestSeRevJul;
+var
+  JdNr: Double = 2434406.817361;     // 1953-1-29 UT 7:37, JD value is for UT: it includes Delta T.
+  DateTime: TSimpleDateTime;
+begin
+  Delta := 0.00001;
+  DateTime:= SeFrontend.SeRevJul(JdNr, 1);
+  AssertEquals('Year', 1953, DateTime.Year);
+  AssertEquals('Month', 1, DateTime.Month);
+  AssertEquals('Day', 29, DateTime.Day);
+  AssertEquals('Time', 7.6166666666667, DateTime.UT, Delta);
+
 end;
 
 procedure TTestSeFrontend.SetUp;

@@ -68,6 +68,13 @@ type
     DistanceSpeed: double;
   end;
 
+  TSimpleDateTime = record
+    Year: Integer;
+    Month: Integer;
+    Day: Integer;
+    UT: Double;
+  end;
+
 
 implementation
 

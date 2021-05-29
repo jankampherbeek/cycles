@@ -23,21 +23,25 @@ type
     { Calculate Julian Day for UT, using Year (astronomical), Month, Day, UT(fractional hours),
       and Calendar (Gregorian=1, Julian=0.  Access via TEphemeris. }
     function SeCalcJdUt(Year: integer; Month: integer; Day: integer; UT: double; Calendar: integer): double;
+    { Define date and Time (UT) in the specified calendar (1: Gregorian, 0: Julian ) for a given Julian Day number.}
+    function SeRevJul(JdNr: double; Calendar: integer): TSimpleDateTime;
+
   end;
 
   TEphemeris = class
   strict private
-    SeFrontend: TSeFrontend;
+    FSeFrontend: TSeFrontend;
   public
     constructor Create;
-    destructor Destroy;
-
+    destructor Destroy; override;
+    property SeFrontend: TSeFrontend read FSeFrontend;
     { Calculate a celestial point. Uses Julian day for UT, the id for the object (SeId) and the combined flags
       for the type of calculation. Returns record with position. }
     function CalcCelPoint(PJulianDay: double; PSeId: integer; PFlags: longint): TFullPosForCoordinate;
     { Calculate Julian Day for UT, using Year (astronomical), Month, Day, UT(fractional hours),
       and Calendar (Gregorian=1, Julian=0. }
     function CalcJdUt(Year: integer; Month: integer; Day: integer; UT: double; Calendar: integer): double;
+
   end;
 
 
@@ -58,6 +62,7 @@ var
   ErrorText: array[0..255] of char;
 begin
   CalcResult := swe_calc_ut(PJulianDay, PSeId, PFlags, Positions[0], ErrorText);
+  { TODO : Check for CaclResult and throw exception if required. }
   Result := Positions;
 end;
 
@@ -66,16 +71,35 @@ begin
   Result := swe_julday(Year, Month, Day, UT, Calendar);
 end;
 
+{ TODO : Check UT, there is a difference the size of Delta T }
+function TSeFrontend.SeRevJul(JdNr: double; Calendar: integer): TSimpleDateTime;
+var
+  Year: Integer = 0;
+  Month: Integer = 0;
+  Day: Integer = 0;
+  UT: double = 0.0;
+  DateTime: TSimpleDateTime;
+begin
+  swe_revjul(JdNr, Calendar, Year, Month, Day, UT);
+  DateTime.Year := Year;
+  DateTime.Month := Month;
+  DateTime.Day := Day;
+  DateTime.UT := UT;
+  Result := DateTime;
+end;
+
+
 { TEphemeris --------------------------------------------------------------------------------------------------------- }
 
 constructor TEphemeris.Create;
 begin
-  SeFrontend := TSeFrontend.Create;
+  FSeFrontend := TSeFrontend.Create;
 end;
 
 destructor TEphemeris.Destroy;
 begin
-  FreeAndNil(SeFrontend);
+  FreeAndNil(FSeFrontend);
+  inherited;
 end;
 
 function TEphemeris.CalcCelPoint(PJulianDay: double; PSeId: integer; PFlags: longint): TFullPosForCoordinate;
@@ -83,7 +107,7 @@ var
   Positions: TDoubleArray;
   FullPosForCoordinate: TFullPosForCoordinate;
 begin
-  Positions := SeFrontend.seCalcCelPoint(PJulianDay, PSeId, PFlags);
+  Positions := FSeFrontend.seCalcCelPoint(PJulianDay, PSeId, PFlags);
   FullPosForCoordinate.mainPos := Positions[0];
   FullPosForCoordinate.deviationPos := Positions[1];
   FullPosForCoordinate.distancePos := Positions[2];
@@ -95,7 +119,7 @@ end;
 
 function TEphemeris.CalcJdUt(Year: integer; Month: integer; Day: integer; UT: double; Calendar: integer): double;
 begin
-  Result := SeFrontend.SeCalcJdUt(Year, Month, Day, UT, Calendar);
+  Result := FSeFrontend.SeCalcJdUt(Year, Month, Day, UT, Calendar);
 end;
 
 end.

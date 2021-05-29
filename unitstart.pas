@@ -22,6 +22,7 @@ type
     LblEdStartDate: TLabeledEdit;
     LblTitle: TLabel;
     SgPositions: TStringGrid;
+    SgMeta: TStringGrid;
     procedure BtnOkClick(Sender: TObject);
   private
     function DefineRequest: TTimeSeriesRequest;
@@ -38,7 +39,7 @@ implementation
 {$R *.lfm}
 
 uses
-  unitastron, unitapi;
+  unitapi;
 
 { TForm1 }
 
@@ -47,11 +48,17 @@ var
   Api: TTimeSeriesAPI;
   Request: TTimeSeriesRequest;
   Response: TTimeSeriesResponse;
+  DataFileName, MetaFileName: string;
 begin
+  SgMeta.Clear;
+  SgPositions.Clear;
   Api:= TTimeSeriesApi.Create;
   Request:= DefineRequest;
   Response:= Api.GetTimeSeries(Request);
-  SgPositions.LoadFromCSVFile('xxxdata.csv',';', true, 0, true);
+  MetaFileName:= Response.FileNameMeta;
+  SgMeta.LoadFromCSVFile(MetaFileName, ';', true, 0, true);
+  DataFileName:= Response.FileNameData;
+  SgPositions.LoadFromCSVFile(DataFileName,';', true, 0, true);
 
 end;
 
@@ -81,7 +88,8 @@ begin
   AllCelPOints:= TCelPointArray.Create(CelPoint1);
   { TODO : Request is now retrieved from UnitProcess. It should be moved to a unit that is exchangeable. Same for response. }
   Request.Ayanamsha:= Ayanamsha;
-  Request.Calendar:= CbCalendar.ItemIndex;
+  Request.Calendar:= 1;
+  if CbCalendar.ItemIndex = 1 then Request.Calendar := 0;
   Request.CoordinateType:= GeoLongitude;
   Request.CycleType:= SinglePoint;
   Request.StartDateTime:= LblEdStartDate.Text;

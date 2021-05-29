@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, tachartlazaruspkg, unitstart, swissdelphi, unitastron, UnitProcess,
-  UnitAPI
+  UnitAPI, UnitConversions
   { you can add units after this };
 
 {$R *.res}

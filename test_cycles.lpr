@@ -3,8 +3,9 @@ program test_cycles;
 {$mode objfpc}{$H+}
 
 uses
-  Interfaces, Forms, GuiTestRunner, test_astron, UnitAstron,
-  swissdelphi, unitdomainxchg, UnitProcess, test_process, UnitAPI;
+  Interfaces, Forms, GuiTestRunner, test_astron, UnitAstron, swissdelphi,
+  unitdomainxchg, UnitProcess, test_process, UnitAPI, UnitConversions,
+  test_conversions;
 
 {$R *.res}
 
