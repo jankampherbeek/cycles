@@ -8,7 +8,7 @@ unit UnitAPI;
 
 interface
 
-uses Classes, SysUtils, UnitProcess;
+uses Classes, SysUtils, UnitProcess, UnitReqResp;
 
 type
 

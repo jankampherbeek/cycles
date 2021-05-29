@@ -9,7 +9,7 @@ unit UnitProcess;
 interface
 
 uses
-  Classes, SysUtils, unitdomainxchg, unitastron, UnitConversions;
+  Classes, SysUtils, unitdomainxchg, unitastron, UnitConversions, UnitReqResp;
 
 type
 
@@ -25,16 +25,6 @@ type
     property FlagsValue: longint read FFlagsValue;
   end;
 
-  TTimeSeriesRequest = record
-    StartDateTime: string;
-    EndDateTime: string;
-    Calendar: integer;
-    Interval: integer;
-    CoordinateType: TCoordinateTypes;
-    CycleType: TCycleTypes;
-    Ayanamsha: TAyanamsha;
-    CelPoints: TCelPointArray;
-  end;
 
   { Constructs a TimeSeries for a specific celestial point, and the specs found in a CycleDefinition. }
   TTimeSeries = class
@@ -59,12 +49,6 @@ type
   end;
 
   TTimeSeriesArray = array of TTimeSeries;
-
-  TTimeSeriesResponse = record
-    Errors: boolean;
-    ErrorText: string;
-    FileNameData, FileNameMeta: string;
-  end;
 
   { Converter for date and time. Returns Julian day for UT for date in format yyyy/mm/dd.
     Calendar: 1 = Gregorian, 0 = Julian. }

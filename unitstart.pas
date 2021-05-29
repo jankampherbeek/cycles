@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  Grids, TAIntervalSources, unitdomainxchg, UnitProcess;
+  Grids, TAIntervalSources, unitdomainxchg, UnitProcess, UnitReqResp;
 
 type
 
