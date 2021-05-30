@@ -52,3 +52,7 @@ msgstr ""
 msgid "Enigma - Cycles"
 msgstr ""
 
+#: tform2.caption
+msgid "Form2"
+msgstr ""
+

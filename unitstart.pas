@@ -39,7 +39,7 @@ implementation
 {$R *.lfm}
 
 uses
-  unitapi;
+  unitapi, unitdata;
 
 { TForm1 }
 
@@ -48,7 +48,7 @@ var
   Api: TTimeSeriesAPI;
   Request: TTimeSeriesRequest;
   Response: TTimeSeriesResponse;
-  DataFileName, MetaFileName: string;
+  DataFilename, MetaFileName: string;
 begin
   SgMeta.Clear;
   SgPositions.Clear;
@@ -57,9 +57,10 @@ begin
   Response:= Api.GetTimeSeries(Request);
   MetaFileName:= Response.FileNameMeta;
   SgMeta.LoadFromCSVFile(MetaFileName, ';', true, 0, true);
-  DataFileName:= Response.FileNameData;
+  DataFilename:= Response.FileNameData;
+  Form2.DataFilename:= DataFilename;
   SgPositions.LoadFromCSVFile(DataFileName,';', true, 0, true);
-
+  Form2.Show;
 end;
 
 
