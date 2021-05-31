@@ -36,9 +36,7 @@ type
     function CreateAyanamsha: TAyanamsha;
     function CreateCycleDefinition(JdStart: double; JdEnd: double; Interval: integer): TCycleDefinition;
   published
-    procedure TestNrOfResults;
-    procedure TestNrOfResultsWithInterval3;
-    procedure TestContentOfResults;
+    procedure TestCreationOfFilename;
   end;
 
   TestTimeSeriesHandler = class(TTestCase)
@@ -48,6 +46,9 @@ type
   end;
 
 implementation
+
+uses
+  UnitReqResp;
 
 { TestSeFlags -------------------------------------------------------------------------------------------------------- }
 
@@ -119,35 +120,7 @@ begin
   FreeAndNil(Ephemeris);
 end;
 
-procedure TestTimeSeries.TestNrOfResults;
-var
-  CelPoint: TCelPoint;
-  CycleDefinition: TCycleDefinition;
-  TimeSeries: TTimeSeries;
-  ResultList: TList;
-begin
-  CelPoint := CreateCelPoint;
-  CycleDefinition := CreateCycleDefinition(2000001.5, 2000100.5, 1);
-  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition, 1);
-  ResultList := TimeSeries.TimedPositions;
-  AssertEquals('Size of TimeSeries', 100, ResultList.Count);
-end;
-
-procedure TestTimeSeries.TestNrOfResultsWithInterval3;
-var
-  CelPoint: TCelPoint;
-  CycleDefinition: TCycleDefinition;
-  TimeSeries: TTimeSeries;
-  ResultList: TList;
-begin
-  CelPoint := CreateCelPoint;
-  CycleDefinition := CreateCycleDefinition(2000001.5, 2000100.5, 3);
-  TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition, 1);
-  ResultList := TimeSeries.TimedPositions;
-  AssertEquals('Size of TimeSeries', 34, ResultList.Count);          // 34, 33 comes short for the whole periode
-end;
-
-procedure TestTimeSeries.TestContentOfResults;
+procedure TestTimeSeries.TestCreationOfFileName;
 var
   CelPoint: TCelPoint;
   CycleDefinition: TCycleDefinition;
@@ -157,8 +130,7 @@ begin
   CelPoint := CreateCelPoint;
   CycleDefinition := CreateCycleDefinition(2434406.817713, 2434409.817713, 1); // 1953-1-29 UT 7:37
   TimeSeries := TTimeSeries.Create(Ephemeris, CelPoint, CycleDefinition, 1);
-  ResultList := TimeSeries.TimedPositions;
-  AssertEquals('Longitude', 309.118517546, TTimedPosition(ResultList[0]).Position, Delta);
+  AssertTrue(TimeSeries.FileNameData.Contains('data'));                  // No exception occurred.
 
 end;
 
@@ -236,9 +208,7 @@ begin
   Request.CelPoints := AllCelPoints;
   Handler := TTimeSeriesHandler.Create;
   Response := Handler.HandleRequest(Request);
-  AssertEquals(2, Length(Response.CalculatedTimeSeries));
-  TSResult := Response.CalculatedTimeSeries[0].TimedPositions;
-  AssertEquals(31, TSResult.Count);
+  AssertFalse(Response.Errors);
 end;
 
 initialization

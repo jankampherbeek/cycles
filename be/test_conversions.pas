@@ -67,7 +67,7 @@ end;
 
 procedure TestFloatingToDecimalDegreeConversion.TestConvertDoubleToFormattedText;
 begin
-  AssertEquals(' 24,50000', Conversion.ConvertDoubleToFormattedText(24.5));
+  AssertEquals('024,50000', Conversion.ConvertDoubleToFormattedText(24.5));
 end;
 
 initialization
