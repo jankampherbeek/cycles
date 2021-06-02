@@ -1,20 +1,21 @@
 object Form2: TForm2
-  Left = 782
-  Height = 682
-  Top = 236
-  Width = 1077
+  Left = 2180
+  Height = 1023
+  Top = 889
+  Width = 1616
   Caption = 'Form2'
-  ClientHeight = 682
-  ClientWidth = 1077
+  ClientHeight = 1023
+  ClientWidth = 1616
+  DesignTimePPI = 144
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.12.0'
   object Chart1: TChart
-    Left = 32
-    Height = 573
-    Top = 32
-    Width = 1065
+    Left = 48
+    Height = 860
+    Top = 48
+    Width = 1598
     AntialiasingMode = amOn
     AxisList = <    
       item
@@ -63,16 +64,16 @@ object Form2: TForm2
     end
   end
   object ChartGUIConnectorBGRA1: TChartGUIConnectorBGRA
-    Left = 1000
-    Top = 296
+    Left = 1500
+    Top = 444
   end
   object UserDefinedChartSource1: TUserDefinedChartSource
     OnGetChartDataItem = UserDefinedChartSource1GetChartDataItem
-    Left = 992
-    Top = 184
+    Left = 1488
+    Top = 276
   end
   object DateTimeIntervalChartSource1: TDateTimeIntervalChartSource
-    Left = 1019
-    Top = 118
+    Left = 1529
+    Top = 177
   end
 end

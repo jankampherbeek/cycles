@@ -1,21 +1,23 @@
 object Form1: TForm1
-  Left = 312
-  Height = 784
-  Top = 162
-  Width = 664
+  Left = 276
+  Height = 1176
+  Top = 203
+  Width = 996
   Caption = 'Form1'
-  ClientHeight = 784
-  ClientWidth = 664
+  ClientHeight = 1176
+  ClientWidth = 996
+  DesignTimePPI = 144
+  OnCreate = FormCreate
   LCLVersion = '2.0.12.0'
   object LblTitle: TLabel
-    Left = 24
-    Height = 45
+    Left = 36
+    Height = 65
     Top = 0
-    Width = 225
+    Width = 333
     Caption = 'Enigma - Cycles'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -32
+    Font.Height = -48
     Font.Name = 'Segoe UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -23,116 +25,144 @@ object Form1: TForm1
     ParentFont = False
   end
   object LblEdStartDate: TLabeledEdit
-    Left = 24
-    Height = 23
+    Left = 36
+    Height = 33
     Hint = 'yyyy/mm/dd'
-    Top = 80
-    Width = 144
-    EditLabel.Height = 15
-    EditLabel.Width = 144
+    Top = 120
+    Width = 216
+    EditLabel.Height = 25
+    EditLabel.Width = 216
     EditLabel.Caption = 'Start date (yyyy/mm/dd)'
     EditLabel.ParentColor = False
+    EditLabel.ParentFont = False
+    ParentFont = False
     TabOrder = 0
     TextHint = 'yyyy/mm/dd'
   end
   object LblEdEndDate: TLabeledEdit
-    Left = 24
-    Height = 23
+    Left = 36
+    Height = 33
     Hint = 'yyyy/mm/dd'
-    Top = 128
-    Width = 144
-    EditLabel.Height = 15
-    EditLabel.Width = 144
+    Top = 192
+    Width = 216
+    EditLabel.Height = 25
+    EditLabel.Width = 216
     EditLabel.Caption = 'End date (yyyy/mm/dd)'
     EditLabel.ParentColor = False
+    EditLabel.ParentFont = False
+    ParentFont = False
     TabOrder = 1
   end
   object LblEdInterval: TLabeledEdit
-    Left = 24
-    Height = 23
-    Top = 224
-    Width = 144
-    EditLabel.Height = 15
-    EditLabel.Width = 144
+    Left = 36
+    Height = 33
+    Top = 336
+    Width = 216
+    EditLabel.Height = 25
+    EditLabel.Width = 216
     EditLabel.Caption = 'Interval in days'
     EditLabel.ParentColor = False
+    EditLabel.ParentFont = False
+    ParentFont = False
     TabOrder = 2
   end
   object BtnOk: TButton
-    Left = 24
-    Height = 25
-    Top = 472
-    Width = 75
+    Left = 36
+    Height = 38
+    Top = 952
+    Width = 112
     Caption = 'OK'
     OnClick = BtnOkClick
+    ParentFont = False
     TabOrder = 3
   end
   object BtnHelp: TButton
-    Left = 112
-    Height = 25
-    Top = 472
-    Width = 75
+    Left = 168
+    Height = 38
+    Top = 952
+    Width = 112
     Caption = 'Help'
+    ParentFont = False
     TabOrder = 4
   end
   object CbCalendar: TComboBox
-    Left = 24
-    Height = 23
-    Top = 176
-    Width = 144
-    ItemHeight = 15
+    Left = 32
+    Height = 33
+    Top = 264
+    Width = 216
+    ItemHeight = 25
     ItemIndex = 0
     Items.Strings = (
       'Gregorian'
       'Julian'
     )
+    ParentFont = False
     TabOrder = 5
     Text = 'Gregorian'
   end
   object LblCalendar: TLabel
-    Left = 24
-    Height = 15
-    Top = 160
-    Width = 47
+    Left = 36
+    Height = 25
+    Top = 240
+    Width = 69
     Caption = 'Calendar'
     ParentColor = False
+    ParentFont = False
   end
   object SgPositions: TStringGrid
-    Left = 208
-    Height = 440
-    Top = 288
-    Width = 432
+    Left = 312
+    Height = 660
+    Top = 432
+    Width = 648
     AutoFillColumns = True
     ColCount = 3
-    Constraints.MinWidth = 200
-    DefaultColWidth = 200
+    Constraints.MinWidth = 300
+    DefaultColWidth = 300
     DefaultDrawing = False
     FixedCols = 0
     Flat = True
+    ParentFont = False
     RowCount = 20
     TabOrder = 6
     TabStop = False
     ColWidths = (
-      143
-      143
-      145
+      215
+      215
+      217
     )
   end
   object SgMeta: TStringGrid
-    Left = 208
-    Height = 197
-    Top = 75
-    Width = 432
+    Left = 312
+    Height = 296
+    Top = 112
+    Width = 648
     AutoFillColumns = True
     ColCount = 2
-    Constraints.MinWidth = 300
-    DefaultColWidth = 300
+    Constraints.MinWidth = 450
+    DefaultColWidth = 450
     FixedCols = 0
     Flat = True
+    ParentFont = False
     TabOrder = 7
     ColWidths = (
-      215
-      216
+      323
+      324
     )
+  end
+  object LblAyanamsha: TLabel
+    Left = 36
+    Height = 25
+    Top = 383
+    Width = 92
+    Caption = 'Ayanamsha'
+    ParentColor = False
+  end
+  object CbAyanamsha: TComboBox
+    Left = 36
+    Height = 33
+    Top = 408
+    Width = 214
+    ItemHeight = 25
+    TabOrder = 8
   end
 end

@@ -33,7 +33,7 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="11">
+    <Units Count="13">
       <Unit0>
         <Filename Value="test_cycles.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -83,6 +83,15 @@
         <Filename Value="be\test_conversions.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="test\test_init.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="be\unitinit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitInit"/>
+      </Unit12>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

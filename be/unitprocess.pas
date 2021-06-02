@@ -18,10 +18,10 @@ type
   strict private
     FFlagsValue: longint;
     FCoordinateType: TCoordinateTypes;
-    FAyanamsha: TAyanamshaNames;
+    FAyanamsha: TAyanamshaSpec;
     function DefineFlags: longint;
   public
-    constructor Create(PCoordinateType: TCoordinateTypes; PAyanamsha: TAyanamshaNames);
+    constructor Create(PCoordinateType: TCoordinateTypes; PAyanamsha: TAyanamshaSpec);
     property FlagsValue: longint read FFlagsValue;
   end;
 
@@ -77,11 +77,11 @@ type
 implementation
 
 uses
-  StrUtils, Types;
+  StrUtils, Types, swissdelphi;
 
 { TSeFlags ----------------------------------------------------------------------------------------------------------- }
 
-constructor TSeFlags.Create(PCoordinateType: TCoordinateTypes; PAyanamsha: TAyanamshaNames);
+constructor TSeFlags.Create(PCoordinateType: TCoordinateTypes; PAyanamsha: TAyanamshaSpec);
 begin
   FCoordinateType := PCoordinateType;
   FAyanamsha := PAyanamsha;
@@ -99,7 +99,8 @@ begin
     GeoLongitude, GeoLatitude: Flags := 2 or 256;            // geocentric ecliptic
     { TODO : Create else for case (CoordinateTypes for Flags), should throw an exception. }
   end;
-  if FAyanamsha <> None then
+  { TODO : Test compariosn with AyanamshaSpec.Name using i18N }
+  if FAyanamsha.Name <> 'None' then
     Flags := Flags or (64 * 1024);   // sidereal
   Result := Flags;
 end;
@@ -144,7 +145,7 @@ begin
     writeln(MetaFile, 'Celestial Point;' + FCelPoint.PresentationName);
     writeln(MetaFile, 'CycleType;' + CycleTypeText);
     writeln(MetaFile, 'Coordinate;' + CoordinateTypeText);
-    writeln(MetaFile, 'Ayanamsha;' + FCycleDefinition.Ayanamsha.PresentationName);
+    writeln(MetaFile, 'Ayanamsha;' + FCycleDefinition.Ayanamsha.Name);
     writeln(MetaFile, 'Start Date;' + FJulianDayConversion.ConvertJdToDateText(FCycleDefinition.JdStart, FCalendar));
     writeln(MetaFile, 'End Date;' + FJulianDayConversion.ConvertJdToDateText(FCycleDefinition.JdEnd, FCalendar));
     writeln(MetaFile, 'Interval;' + IntToStr(FCycleDefinition.Interval));
@@ -161,21 +162,25 @@ var
   FullPosForCoordinate: TFullPosForCoordinate;
   CoordinateType: TCoordinateTypes;
   SeFlags: TSeFlags;
-  AyanamshaName: TAyanamshaNames;
   CsvFile: TextFile;
   CsvLine: string;
   CsvHeading: string;
   DateTimeText, PositionText: string;
 begin
   CoordinateType := FCycleDefinition.coordinateType;
-  AyanamshaName := FCycleDefinition.ayanamsha.Name;
   BeginJd := FCycleDefinition.JdStart;
   EndJd := FCycleDefinition.JdEnd;
   ActualJd := BeginJd;
   Interval := FCycleDefinition.Interval;
   SeId := FCelPoint.seId;
-  SeFlags := TSeFlags.Create(CoordinateType, AyanamshaName);
+  SeFlags := TSeFlags.Create(CoordinateType, FCycleDefinition.Ayanamsha);
   Flags := SeFlags.FlagsValue;
+  { TODO : Check use of 'None' in combination with i18N }
+  if not(FCycleDefinition.Ayanamsha.Name = 'None') then begin
+    swe_set_sid_mode(FCycleDefinition.Ayanamsha.SeId, 0.0, 0.0);
+  end;
+
+
   CsvHeading := Concat('Date; Julian Day nr; Geoc. Longitude ', FCelPoint.PresentationName);
   AssignFile(CsvFile, FFileNameData);
   try

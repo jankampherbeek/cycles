@@ -15,6 +15,7 @@ uses
 type
   TDoubleArray = array of double;
 
+
   TCelPointNames = (Sun, Moon, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto,
     MeanNode, OscNode, MeanApogee, OscApogee, Chiron, Pholus, Ceres, Pallas, Juno, Vesta,
     Nessus, Huya, Makemake, Haumea, Eris, Ixion, Orcus, Quaoar, Sedna, Varuna);
@@ -31,6 +32,14 @@ type
   TCoordinateTypes = (GeoLongitude, GeoLatitude, HelioLongitude, HelioLatitude, RightAscension,
     Declination, Distance);
 
+  TAyanamshaSpec = record
+    SeId: integer;
+    Name, Descr: string;
+  end;
+
+  TAyanamshaSpecArray = array of TAyanamshaSpec;
+
+
   TAyanamshaNames = (None, Fagan, Lahiri, Raman, Krishnamurti, Huber, GalicticCtrBrand);
 
   TCycleTypes = (SinglePoint, Waves);
@@ -45,7 +54,7 @@ type
     JdStart, JdEnd: double;
     Interval: integer;
     CoordinateType: TCoordinateTypes;
-    Ayanamsha: TAyanamsha;
+    Ayanamsha: TAyanamshaSpec;
     CycleType: TCycleTypes;
   end;
 
@@ -69,11 +78,13 @@ type
   end;
 
   TSimpleDateTime = record
-    Year: Integer;
-    Month: Integer;
-    Day: Integer;
-    UT: Double;
+    Year: integer;
+    Month: integer;
+    Day: integer;
+    UT: double;
   end;
+
+
 
 
 implementation

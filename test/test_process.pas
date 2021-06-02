@@ -1,3 +1,6 @@
+{ Jan Kampherbeek, (c)  2021.
+  Enigma Cycles is open source.
+  Please check the file copyright.txt in the root of the source for further details }
 unit test_process;
 
 {$mode objfpc}{$H+}

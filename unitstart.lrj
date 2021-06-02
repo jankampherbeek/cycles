@@ -10,5 +10,6 @@
 {"hash":1339,"name":"tform1.btnok.caption","sourcebytes":[79,75],"value":"OK"},
 {"hash":322608,"name":"tform1.btnhelp.caption","sourcebytes":[72,101,108,112],"value":"Help"},
 {"hash":199672318,"name":"tform1.cbcalendar.text","sourcebytes":[71,114,101,103,111,114,105,97,110],"value":"Gregorian"},
-{"hash":137121298,"name":"tform1.lblcalendar.caption","sourcebytes":[67,97,108,101,110,100,97,114],"value":"Calendar"}
+{"hash":137121298,"name":"tform1.lblcalendar.caption","sourcebytes":[67,97,108,101,110,100,97,114],"value":"Calendar"},
+{"hash":138936593,"name":"tform1.lblayanamsha.caption","sourcebytes":[65,121,97,110,97,109,115,104,97],"value":"Ayanamsha"}
 ]}

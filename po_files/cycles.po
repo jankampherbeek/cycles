@@ -17,6 +17,10 @@ msgstr ""
 msgid "Gregorian"
 msgstr ""
 
+#: tform1.lblayanamsha.caption
+msgid "Ayanamsha"
+msgstr ""
+
 #: tform1.lblcalendar.caption
 msgid "Calendar"
 msgstr ""

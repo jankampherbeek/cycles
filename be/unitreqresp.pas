@@ -20,7 +20,7 @@ type
     Interval: integer;
     CoordinateType: TCoordinateTypes;
     CycleType: TCycleTypes;
-    Ayanamsha: TAyanamsha;
+    Ayanamsha: TAyanamshaSpec;
     CelPoints: TCelPointArray;
   end;
 

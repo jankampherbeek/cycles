@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  Grids, TAIntervalSources, unitdomainxchg, UnitProcess, UnitReqResp;
+  Grids, TAIntervalSources, unitdomainxchg, UnitProcess, UnitReqResp, unitcentralcontroller;
 
 type
 
@@ -16,6 +16,8 @@ type
     BtnOk: TButton;
     BtnHelp: TButton;
     CbCalendar: TComboBox;
+    CbAyanamsha: TComboBox;
+    LblAyanamsha: TLabel;
     LblCalendar: TLabel;
     LblEdEndDate: TLabeledEdit;
     LblEdInterval: TLabeledEdit;
@@ -24,7 +26,10 @@ type
     SgPositions: TStringGrid;
     SgMeta: TStringGrid;
     procedure BtnOkClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
+    CenCon: TCenCon;
+    procedure DefineAyanamshaItems;
     function DefineRequest: TTimeSeriesRequest;
   public
 
@@ -63,17 +68,36 @@ begin
   Form2.Show;
 end;
 
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  CenCon:= TCenCon.Create;
+  DefineAyanamshaItems;
+end;
+
+
+procedure TForm1.DefineAyanamshaItems;
+var
+  AllAyanamshas: TAyanamshaSpecArray;
+  i, NrOfAyanamshas: Integer;
+begin
+  AllAyanamshas:= CenCon.LookupValues.AllAyanamshas;
+    CbAyanamsha.Items.Clear;
+  NrOfAyanamshas:= Length(AllAyanamshas);
+  for i:=0 to NrOfAyanamshas-1 do
+  begin
+    CbAyanamsha.Items.add(AllAyanamshas[i].Name);
+  end;
+  CbAyanamsha.ItemIndex:= 0;
+end;
 
 function TForm1.DefineRequest: TTimeSeriesRequest;
 var
   Request: TTimeSeriesRequest;
-  Ayanamsha: TAyanamsha;
+  Ayanamsha: TAyanamshaSpec;
+  AyanamshaIndex: Integer;
   CelPoint1, CelPoint2: TCelPoint;
   AllCelPoints: TCelPointArray;
 begin
-  Ayanamsha.Name:= None;
-  Ayanamsha.PresentationName:= 'Tropical';
-  Ayanamsha.SeId:= -1;
   CelPoint1.SeId:= 0;  // Sun
   CelPoint1.PresentationName:= 'Sun';
   CelPoint1.Name:= Sun;
@@ -88,7 +112,9 @@ begin
   //CelPoint2.Glyph:= 'b';
   AllCelPOints:= TCelPointArray.Create(CelPoint1);
   { TODO : Request is now retrieved from UnitProcess. It should be moved to a unit that is exchangeable. Same for response. }
-  Request.Ayanamsha:= Ayanamsha;
+
+  AyanamshaIndex:= CbAyanamsha.ItemIndex;
+  Request.Ayanamsha:= CenCon.LookupValues.AllAyanamshas[AyanamshaIndex];
   Request.Calendar:= 1;
   if CbCalendar.ItemIndex = 1 then Request.Calendar := 0;
   Request.CoordinateType:= GeoLongitude;
