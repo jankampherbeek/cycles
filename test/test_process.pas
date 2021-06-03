@@ -13,6 +13,10 @@ uses
 type
 
   TestSeFlags = class(TTestCase)
+  strict private
+    AyanamshaSpecTropical: TAyanamshaSpec;
+  protected
+    procedure SetUp; override;
   published
     procedure TestFlagsGeoEclTrop;
     procedure TestFlagsHelioEclTrop;
@@ -36,7 +40,7 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
     function CreateCelPoint: TCelPoint;
-    function CreateAyanamsha: TAyanamsha;
+    function CreateAyanamsha: TAyanamshaSpec;
     function CreateCycleDefinition(JdStart: double; JdEnd: double; Interval: integer): TCycleDefinition;
   published
     procedure TestCreationOfFilename;
@@ -55,43 +59,54 @@ uses
 
 { TestSeFlags -------------------------------------------------------------------------------------------------------- }
 
+procedure TestSeFlags.SetUp;
+begin
+  AyanamshaSpecTropical.SeId:= -1;
+  AyanamshaSpecTropical.Name:= 'None';
+  AyanamshaSpecTropical.Descr:= 'Tropical';
+end;
+
 procedure TestSeFlags.TestFlagsGeoEclTrop;
 var
-  CoordinateType: TCoordinateTypes = GeoLongitude;
-  Ayanamsha: TAyanamshaNames = None;
+  CoordinateSpec: TCoordinateSpec;
   SeFlags: TSeFlags;
 begin
-  SeFlags := TSeFlags.Create(CoordinateType, Ayanamsha);
+  CoordinateSpec.Identification:= 'GeoLong';
+  SeFlags := TSeFlags.Create(CoordinateSpec, AyanamshaSpecTropical);
   assertEquals(258, SeFlags.FlagsValue);                // 2 or 256
 end;
 
 procedure TestSeFlags.TestFlagsHelioEclTrop;
 var
-  CoordinateType: TCoordinateTypes = HelioLongitude;
-  Ayanamsha: TAyanamshaNames = None;
+  CoordinateSpec: TCoordinateSpec;
   SeFlags: TSeFlags;
 begin
-  SeFlags := TSeFlags.Create(CoordinateType, Ayanamsha);
+  CoordinateSpec.Identification:= 'HelioLong';
+  SeFlags := TSeFlags.Create(CoordinateSpec, AyanamshaSpecTropical);
   assertEquals(266, SeFlags.FlagsValue);                // 2 or 256 or 8
 end;
 
 procedure TestSeFlags.TestFlagsEquatTrop;
 var
-  CoordinateType: TCoordinateTypes = RightAscension;
-  Ayanamsha: TAyanamshaNames = None;
+  CoordinateSpec: TCoordinateSpec;
   SeFlags: TSeFlags;
 begin
-  SeFlags := TSeFlags.Create(CoordinateType, Ayanamsha);
+  CoordinateSpec.Identification:= 'RightAsc';
+  SeFlags := TSeFlags.Create(CoordinateSpec, AyanamshaSpecTropical);
   assertEquals(2306, SeFlags.FlagsValue);                // 2 or 256 or 2048
 end;
 
 procedure TestSeFlags.TestFlagsEclSidereal;
 var
-  CoordinateType: TCoordinateTypes = GeoLongitude;
-  Ayanamsha: TAyanamshaNames = Huber;
+  CoordinateSpec: TCoordinateSpec;
+  Ayanamsha: TAyanamshaSpec;
   SeFlags: TSeFlags;
 begin
-  SeFlags := TSeFlags.Create(CoordinateType, Ayanamsha);
+  CoordinateSpec.Identification:= 'GeoLong';
+  Ayanamsha.Name:= 'Huber';
+  Ayanamsha.SeId:= 4;
+  Ayanamsha.Descr:= 'Mean value of Babylonian Ayanamshas, defined by Peter Huber';
+  SeFlags := TSeFlags.Create(CoordinateSpec, Ayanamsha);
   assertEquals(65794, SeFlags.FlagsValue);                // 2 or 256 or (64 * 1024))
 end;
 
@@ -150,25 +165,29 @@ begin
   Result := CelPoint;
 end;
 
-function TestTimeSeries.CreateAyanamsha: TAyanamsha;
+function TestTimeSeries.CreateAyanamsha: TAyanamshaSpec;
 var
-  Ayanamsha: TAyanamsha;
+  Ayanamsha: TAyanamshaSpec;
 begin
-  Ayanamsha.Name := None;
+  Ayanamsha.Name := 'None';
+  Ayanamsha.Descr:= 'Tropical';
   Ayanamsha.SeId := -1;
-  Ayanamsha.PresentationName := 'Tropical';
   Result := Ayanamsha;
 end;
 
 function TestTimeSeries.CreateCycleDefinition(JdStart: double; JdEnd: double; Interval: integer): TCycleDefinition;
 var
   CycleDefinition: TCycleDefinition;
+  CycleType: TCycleTypeSpec;
+  CoordinateType: TCoordinateSpec;
 begin
-  CycleDefinition.CycleType := SinglePoint;
+  CycleType.Identification:= 'SinglePos';
+  CycleDefinition.CycleType := CycleType;
   CycleDefinition.JdStart := JdStart;
   CycleDefinition.JdEnd := JdEnd;
   CycleDefinition.Interval := Interval;
-  CycleDefinition.CoordinateType := GeoLongitude;
+  CoordinateType.Identification:= 'GeoLong';
+  CycleDefinition.CoordinateType := CoordinateType;
   CycleDefinition.Ayanamsha := CreateAyanamsha;
   Result := CycleDefinition;
 end;
@@ -180,13 +199,15 @@ var
   Request: TTimeSeriesRequest;
   Response: TTimeSeriesResponse;
   Handler: TTimeSeriesHandler;
-  Ayanamsha: TAyanamsha;
+  Ayanamsha: TAyanamshaSpec;
   AllCelPoints: TCelPointArray;
   CelPointSun, CelPointMoon: TCelPoint;
   TSResult: TList;
+  CoordinateSpec: TCoordinateSpec;
+  CycleTypeSpec: TCycleTypeSpec;
 begin
-  Ayanamsha.Name := None;
-  Ayanamsha.PresentationName := 'Tropical';
+  Ayanamsha.Name := 'None';
+  Ayanamsha.Descr := 'Tropical';
   Ayanamsha.SeId := -1;
   CelPointSun.SeId := 0;
   CelPointSun.PresentationName := 'Sun';
@@ -206,8 +227,10 @@ begin
   Request.EndDateTime := '2021/06/24';
   Request.Calendar := 1;
   Request.Interval := 1;
-  Request.CoordinateType := GeoLongitude;
-  Request.CycleType := SinglePoint;
+  CoordinateSpec.Identification:='GeoLong';
+  Request.CoordinateType := CoordinateSpec;
+  CycleTypeSpec.Identification:= 'SinglePos';
+  Request.CycleType := CycleTYpeSpec;
   Request.CelPoints := AllCelPoints;
   Handler := TTimeSeriesHandler.Create;
   Response := Handler.HandleRequest(Request);

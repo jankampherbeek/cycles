@@ -19,6 +19,8 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
     procedure TestAyanamshas;
+    procedure TestCoordinates;
+    procedure TestCycleTypes;
   end;
 
 implementation
@@ -31,6 +33,7 @@ end;
 procedure TTestLookupValues.TearDown;
 begin
   FreeAndNil(LookupValues);
+  inherited;
 end;
 
 procedure TTestLookupValues.TestAyanamshas;
@@ -38,7 +41,15 @@ begin
   AssertEquals(7, Length(LookUpValues.AllAyanamshas));
 end;
 
+procedure TTestLookupValues.TestCoordinates;
+begin
+  AssertEquals(7, Length(LookupValues.AllCoordinates));
+end;
 
+procedure TTestLookupValues.TestCycleTypes;
+begin
+  AssertEquals(2, Length(LookupValues.AllCycleTypes));
+end;
 
 initialization
 

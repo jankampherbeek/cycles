@@ -17,6 +17,10 @@ type
     BtnHelp: TButton;
     CbCalendar: TComboBox;
     CbAyanamsha: TComboBox;
+    CbCoordinate: TComboBox;
+    CbCycleType: TComboBox;
+    LblCycleType: TLabel;
+    LblCoordinate: TLabel;
     LblAyanamsha: TLabel;
     LblCalendar: TLabel;
     LblEdEndDate: TLabeledEdit;
@@ -30,6 +34,8 @@ type
   private
     CenCon: TCenCon;
     procedure DefineAyanamshaItems;
+    procedure DefineCoordinateItems;
+    procedure DefineCycleTypeItems;
     function DefineRequest: TTimeSeriesRequest;
   public
 
@@ -57,74 +63,101 @@ var
 begin
   SgMeta.Clear;
   SgPositions.Clear;
-  Api:= TTimeSeriesApi.Create;
-  Request:= DefineRequest;
-  Response:= Api.GetTimeSeries(Request);
-  MetaFileName:= Response.FileNameMeta;
-  SgMeta.LoadFromCSVFile(MetaFileName, ';', true, 0, true);
-  DataFilename:= Response.FileNameData;
-  Form2.DataFilename:= DataFilename;
-  SgPositions.LoadFromCSVFile(DataFileName,';', true, 0, true);
+  Api := TTimeSeriesApi.Create;
+  Request := DefineRequest;
+  Response := Api.GetTimeSeries(Request);
+  MetaFileName := Response.FileNameMeta;
+  SgMeta.LoadFromCSVFile(MetaFileName, ';', True, 0, True);
+  DataFilename := Response.FileNameData;
+  Form2.DataFilename := DataFilename;
+  SgPositions.LoadFromCSVFile(DataFileName, ';', True, 0, True);
   Form2.Show;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  CenCon:= TCenCon.Create;
+  CenCon := TCenCon.Create;
   DefineAyanamshaItems;
+  DefineCoordinateItems;
+  DefineCycleTypeItems;
 end;
 
 
 procedure TForm1.DefineAyanamshaItems;
 var
   AllAyanamshas: TAyanamshaSpecArray;
-  i, NrOfAyanamshas: Integer;
+  i, NrOfAyanamshas: integer;
 begin
-  AllAyanamshas:= CenCon.LookupValues.AllAyanamshas;
-    CbAyanamsha.Items.Clear;
-  NrOfAyanamshas:= Length(AllAyanamshas);
-  for i:=0 to NrOfAyanamshas-1 do
-  begin
+  AllAyanamshas := CenCon.LookupValues.AllAyanamshas;
+  CbAyanamsha.Items.Clear;
+  NrOfAyanamshas := Length(AllAyanamshas);
+  for i := 0 to NrOfAyanamshas - 1 do
     CbAyanamsha.Items.add(AllAyanamshas[i].Name);
-  end;
-  CbAyanamsha.ItemIndex:= 0;
+  CbAyanamsha.ItemIndex := 0;
+end;
+
+
+procedure TForm1.DefineCoordinateItems;
+var
+  AllCoordinates: TCoordinateSpecArray;
+  i, NrOfCoordinates: integer;
+begin
+  AllCoordinates := CenCon.LookupValues.AllCoordinates;
+  CbCoordinate.Items.Clear;
+  NrOfCoordinates := Length(AllCoordinates);
+  for i := 0 to NrOfCoordinates - 1 do
+    CbCoordinate.Items.add(AllCoordinates[i].Name);
+  CbCoordinate.ItemIndex := 0;
+end;
+
+procedure TForm1.DefineCycleTypeItems;
+var
+  AllCycleTypes: TCycleTypeSpecArray;
+  i, NrOfCycleTypes: integer;
+begin
+  AllCycleTypes:= CenCon.LookupValues.AllCycleTypes;
+  CbCycleType.Items.Clear;
+  NrOfCycleTypes:= Length(AllCycleTypes);
+  for i:= 0 to NrOfCycleTypes - 1 do
+    CbCycleType.Items.add(AllCycleTypes[i].Name);
+  CbCycleType.ItemIndex:= 0;
 end;
 
 function TForm1.DefineRequest: TTimeSeriesRequest;
 var
   Request: TTimeSeriesRequest;
   Ayanamsha: TAyanamshaSpec;
-  AyanamshaIndex: Integer;
   CelPoint1, CelPoint2: TCelPoint;
   AllCelPoints: TCelPointArray;
 begin
-  CelPoint1.SeId:= 0;  // Sun
-  CelPoint1.PresentationName:= 'Sun';
-  CelPoint1.Name:= Sun;
-  CelPoint1.FirstJd:= 0.0;
-  CelPoint1.LastJd:= 0.0;
-  CelPoint1.Glyph:= 'a';
+  //CelPoint1.SeId := 0;  // Sun
+  CelPoint1.SeId:= 14;
+  CelPoint1.PresentationName := 'Sun';
+  CelPoint1.Name := Sun;
+  CelPoint1.FirstJd := 0.0;
+  CelPoint1.LastJd := 0.0;
+  CelPoint1.Glyph := 'a';
   //CelPoint2.SeId:= 1;  // Moon
   //CelPoint2.PresentationName:= 'Moon';
   //CelPoint2.Name:= Moon;
   //CelPoint2.FirstJd:= 0.0;
   //CelPoint2.LastJd:= 0.0;
   //CelPoint2.Glyph:= 'b';
-  AllCelPOints:= TCelPointArray.Create(CelPoint1);
+  AllCelPOints := TCelPointArray.Create(CelPoint1);
   { TODO : Request is now retrieved from UnitProcess. It should be moved to a unit that is exchangeable. Same for response. }
 
-  AyanamshaIndex:= CbAyanamsha.ItemIndex;
-  Request.Ayanamsha:= CenCon.LookupValues.AllAyanamshas[AyanamshaIndex];
-  Request.Calendar:= 1;
-  if CbCalendar.ItemIndex = 1 then Request.Calendar := 0;
-  Request.CoordinateType:= GeoLongitude;
-  Request.CycleType:= SinglePoint;
-  Request.StartDateTime:= LblEdStartDate.Text;
-  Request.EndDateTime:= LblEdEndDate.Text;
+
+  Request.Calendar := 1;
+  if CbCalendar.ItemIndex = 1 then
+    Request.Calendar := 0;
+  Request.Ayanamsha := CenCon.LookupValues.AllAyanamshas[CbAyanamsha.ItemIndex];
+  Request.CoordinateType := CenCon.LookupValues.AllCoordinates[CbCoordinate.ItemIndex];
+  Request.CycleType := CenCon.LookupValues.AllCycleTypes[CbCycleType.ItemIndex];
+  Request.StartDateTime := LblEdStartDate.Text;
+  Request.EndDateTime := LblEdEndDate.Text;
   Request.Interval := StrToInt(LblEdInterval.Text);
-  Request.CelPoints:= AllCelPoints;
-  Result:= Request;
+  Request.CelPoints := AllCelPoints;
+  Result := Request;
 end;
 
 end.
-

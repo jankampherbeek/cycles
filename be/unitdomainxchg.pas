@@ -29,9 +29,6 @@ type
 
   TCelPointArray = array of TCelPoint;
 
-  TCoordinateTypes = (GeoLongitude, GeoLatitude, HelioLongitude, HelioLatitude, RightAscension,
-    Declination, Distance);
-
   TAyanamshaSpec = record
     SeId: integer;
     Name, Descr: string;
@@ -39,23 +36,24 @@ type
 
   TAyanamshaSpecArray = array of TAyanamshaSpec;
 
-
-  TAyanamshaNames = (None, Fagan, Lahiri, Raman, Krishnamurti, Huber, GalicticCtrBrand);
-
-  TCycleTypes = (SinglePoint, Waves);
-
-  TAyanamsha = record
-    Name: TAyanamshaNames;
-    PresentationName: string;
-    SeId: integer;
+  TCoordinateSpec = record
+    Identification, Name: string
   end;
+
+  TCoordinateSpecArray = array of TCoordinateSpec;
+
+  TCycleTypeSpec = record
+    Identification, Name: string;
+  end;
+
+  TCycleTypeSpecArray = array of TCycleTypeSpec;
 
   TCycleDefinition = record
     JdStart, JdEnd: double;
     Interval: integer;
-    CoordinateType: TCoordinateTypes;
+    CoordinateType: TCoordinateSpec;
     Ayanamsha: TAyanamshaSpec;
-    CycleType: TCycleTypes;
+    CycleType: TCycleTypeSpec;
   end;
 
   TTimedPosition = class

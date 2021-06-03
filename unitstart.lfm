@@ -56,7 +56,7 @@ object Form1: TForm1
   object LblEdInterval: TLabeledEdit
     Left = 36
     Height = 33
-    Top = 336
+    Top = 344
     Width = 216
     EditLabel.Height = 25
     EditLabel.Width = 216
@@ -86,7 +86,7 @@ object Form1: TForm1
     TabOrder = 4
   end
   object CbCalendar: TComboBox
-    Left = 32
+    Left = 36
     Height = 33
     Top = 264
     Width = 216
@@ -152,7 +152,7 @@ object Form1: TForm1
   object LblAyanamsha: TLabel
     Left = 36
     Height = 25
-    Top = 383
+    Top = 528
     Width = 92
     Caption = 'Ayanamsha'
     ParentColor = False
@@ -160,9 +160,41 @@ object Form1: TForm1
   object CbAyanamsha: TComboBox
     Left = 36
     Height = 33
-    Top = 408
-    Width = 214
+    Top = 552
+    Width = 216
     ItemHeight = 25
     TabOrder = 8
+  end
+  object LblCoordinate: TLabel
+    Left = 36
+    Height = 25
+    Top = 606
+    Width = 88
+    Caption = 'Coordinate'
+    ParentColor = False
+  end
+  object CbCoordinate: TComboBox
+    Left = 36
+    Height = 33
+    Top = 632
+    Width = 216
+    ItemHeight = 25
+    TabOrder = 9
+  end
+  object LblCycleType: TLabel
+    Left = 36
+    Height = 25
+    Top = 404
+    Width = 81
+    Caption = 'Cycle type'
+    ParentColor = False
+  end
+  object CbCycleType: TComboBox
+    Left = 36
+    Height = 33
+    Top = 432
+    Width = 216
+    ItemHeight = 25
+    TabOrder = 10
   end
 end

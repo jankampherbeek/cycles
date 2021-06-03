@@ -17,11 +17,11 @@ type
   TSeFlags = class
   strict private
     FFlagsValue: longint;
-    FCoordinateType: TCoordinateTypes;
+    FCoordinateType: TCoordinateSpec;
     FAyanamsha: TAyanamshaSpec;
     function DefineFlags: longint;
   public
-    constructor Create(PCoordinateType: TCoordinateTypes; PAyanamsha: TAyanamshaSpec);
+    constructor Create(PCoordinateSpec: TCoordinateSpec; PAyanamsha: TAyanamshaSpec);
     property FlagsValue: longint read FFlagsValue;
   end;
 
@@ -44,8 +44,8 @@ type
   public
     constructor Create(PEphemeris: TEphemeris; PCelPoint: TCelPoint; PCycleDefinition: TCycleDefinition;
       Calendar: integer);
-      property FileNameData: string read FFileNameData;
-      property FileNameMEta: string read FFileNameMeta;
+    property FileNameData: string read FFileNameData;
+    property FileNameMEta: string read FFileNameMeta;
   end;
 
   TTimeSeriesArray = array of TTimeSeries;
@@ -81,9 +81,9 @@ uses
 
 { TSeFlags ----------------------------------------------------------------------------------------------------------- }
 
-constructor TSeFlags.Create(PCoordinateType: TCoordinateTypes; PAyanamsha: TAyanamshaSpec);
+constructor TSeFlags.Create(PCoordinateSpec: TCoordinateSpec; PAyanamsha: TAyanamshaSpec);
 begin
-  FCoordinateType := PCoordinateType;
+  FCoordinateType := PCoordinateSpec;
   FAyanamsha := PAyanamsha;
   FFlagsValue := DefineFlags;
 end;
@@ -92,11 +92,13 @@ function TSeFlags.DefineFlags: longint;
 var
   Flags: longint;
 begin
-  Flags := 2 or 256;                                         // Swiss Ephemeris and speed
-  case FCoordinateType of
-    HelioLongitude, HelioLatitude: Flags := Flags or 8;      // heliocentric ecliptic
-    RightAscension, Declination: Flags := Flags or 2048;     // geocentric equatorial
-    GeoLongitude, GeoLatitude: Flags := 2 or 256;            // geocentric ecliptic
+  Flags := 2 or 256;                                   // Swiss Ephemeris and speed
+  case FCoordinateType.Identification of
+
+    'HelioLong', 'HelioLat': Flags := Flags or 8;      // heliocentric ecliptic
+    'RightAsc', 'Decl': Flags := Flags or 2048;        // geocentric equatorial
+    'GeoLong', 'GeoLat': Flags := 2 or 256;            // geocentric ecliptic
+
     { TODO : Create else for case (CoordinateTypes for Flags), should throw an exception. }
   end;
   { TODO : Test compariosn with AyanamshaSpec.Name using i18N }
@@ -123,8 +125,8 @@ end;
 procedure TTimeSeries.DefineFiles;
 begin
   FileNamePrefix := FormatDateTime('YYYYMMDD_HHNNSS', Now) + '_' + FCelPoint.PresentationName;
-  FFileNameData:= FilenamePrefix + '_data.csv';
-  FFileNameMeta:= FileNamePrefix + '_meta.csv';
+  FFileNameData := FilenamePrefix + '_data.csv';
+  FFileNameMeta := FileNamePrefix + '_meta.csv';
 end;
 
 { TODO : Variablenames in file should vary based on i18n. }
@@ -135,8 +137,6 @@ var
   MetaFile: TextFile;
 begin
   MetaHeading := 'Variable; Value';
-  WriteStr(CycleTypeText, FCycleDefinition.CycleType);
-  WriteStr(CoordinateTypeText, FCycleDefinition.CoordinateType);
   AssignFile(MetaFile, FFileNameMeta);
   try
     rewrite(MetaFile);
@@ -160,23 +160,24 @@ var
   SeId, Interval: integer;
   Flags: longint;
   FullPosForCoordinate: TFullPosForCoordinate;
-  CoordinateType: TCoordinateTypes;
+  CoordinateSpec: TCoordinateSpec;
   SeFlags: TSeFlags;
   CsvFile: TextFile;
   CsvLine: string;
   CsvHeading: string;
   DateTimeText, PositionText: string;
 begin
-  CoordinateType := FCycleDefinition.coordinateType;
+  CoordinateSpec := FCycleDefinition.coordinateType;
   BeginJd := FCycleDefinition.JdStart;
   EndJd := FCycleDefinition.JdEnd;
   ActualJd := BeginJd;
   Interval := FCycleDefinition.Interval;
   SeId := FCelPoint.seId;
-  SeFlags := TSeFlags.Create(CoordinateType, FCycleDefinition.Ayanamsha);
+  SeFlags := TSeFlags.Create(CoordinateSpec, FCycleDefinition.Ayanamsha);
   Flags := SeFlags.FlagsValue;
   { TODO : Check use of 'None' in combination with i18N }
-  if not(FCycleDefinition.Ayanamsha.Name = 'None') then begin
+  if not (FCycleDefinition.Ayanamsha.Name = 'None') then
+  begin
     swe_set_sid_mode(FCycleDefinition.Ayanamsha.SeId, 0.0, 0.0);
   end;
 
@@ -188,10 +189,10 @@ begin
     writeLn(CsvFile, CsvHeading);
     repeat
       FullPosForCoordinate := FEphemeris.CalcCelPoint(ActualJd, SeId, flags);
-      case CoordinateType of
-        GeoLongitude, HelioLongitude, RightAscension: Position := FullPosForCoordinate.MainPos;
-        GeoLatitude, HelioLatitude, Declination: Position := FullPosForCoordinate.DeviationPos;
-        Distance: Position := FullPosForCoordinate.distancePos;
+      case CoordinateSpec.Identification of
+        'GeoLong', 'HelioLong', 'RightAsc': Position := FullPosForCoordinate.MainPos;
+        'GeoLat', 'HelioLat', 'Decl': Position := FullPosForCoordinate.DeviationPos;
+        'Radv': Position := FullPosForCoordinate.distancePos;
         { TODO : Create else for case (CoordinateTypes), should throw an exception. }
       end;
       DateTimeText := FJulianDayConversion.ConvertJdToDateText(ActualJd, FCalendar);
@@ -242,7 +243,7 @@ destructor TTimeSeriesHandler.Destroy;
 begin
   FreeAndNil(DatetimeConversion);
   FreeAndNil(Ephemeris);
-  Inherited;
+  inherited;
 end;
 
 function TTimeSeriesHandler.HandleRequest(Request: TTimeSeriesRequest): TTimeSeriesResponse;
@@ -274,8 +275,8 @@ begin
   end;
   Response.Errors := False;
   Response.ErrorText := '';
-  Response.FileNameData:= AllTimeSeries[0].FileNameData;
-  Response.FileNameMeta:= AllTimeSeries[0].FileNameMeta;
+  Response.FileNameData := AllTimeSeries[0].FileNameData;
+  Response.FileNameMeta := AllTimeSeries[0].FileNameMeta;
   Result := Response;
 end;
 

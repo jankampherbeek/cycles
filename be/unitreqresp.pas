@@ -18,8 +18,8 @@ type
     EndDateTime: string;
     Calendar: integer;
     Interval: integer;
-    CoordinateType: TCoordinateTypes;
-    CycleType: TCycleTypes;
+    CoordinateType: TCoordinateSpec;
+    CycleType: TCycleTypeSpec;
     Ayanamsha: TAyanamshaSpec;
     CelPoints: TCelPointArray;
   end;

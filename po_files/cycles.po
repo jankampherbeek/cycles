@@ -25,6 +25,14 @@ msgstr ""
 msgid "Calendar"
 msgstr ""
 
+#: tform1.lblcoordinate.caption
+msgid "Coordinate"
+msgstr ""
+
+#: tform1.lblcycletype.caption
+msgid "Cycle type"
+msgstr ""
+
 #: tform1.lbledenddate.editlabel.caption
 msgid "End date (yyyy/mm/dd)"
 msgstr ""
