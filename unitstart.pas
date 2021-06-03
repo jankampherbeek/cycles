@@ -19,6 +19,8 @@ type
     CbAyanamsha: TComboBox;
     CbCoordinate: TComboBox;
     CbCycleType: TComboBox;
+    CbCelPoint: TComboBox;
+    LblCelPoint: TLabel;
     LblCycleType: TLabel;
     LblCoordinate: TLabel;
     LblAyanamsha: TLabel;
@@ -36,6 +38,7 @@ type
     procedure DefineAyanamshaItems;
     procedure DefineCoordinateItems;
     procedure DefineCycleTypeItems;
+    procedure DefineCelPoints;
     function DefineRequest: TTimeSeriesRequest;
   public
 
@@ -63,6 +66,7 @@ var
 begin
   SgMeta.Clear;
   SgPositions.Clear;
+
   Api := TTimeSeriesApi.Create;
   Request := DefineRequest;
   Response := Api.GetTimeSeries(Request);
@@ -80,6 +84,7 @@ begin
   DefineAyanamshaItems;
   DefineCoordinateItems;
   DefineCycleTypeItems;
+  DefineCelPoints;
 end;
 
 
@@ -123,30 +128,28 @@ begin
   CbCycleType.ItemIndex:= 0;
 end;
 
+procedure TForm1.DefineCelPoints;
+var
+  AllCelPoints: TCelPointSpecArray;
+  i, NrOfCelPOints: Integer;
+begin
+  AllCelPOints:= CenCon.LookupValues.AllCelPoints;
+  CbCelPoint.Items.Clear;
+  NrOfCelPOints:= LEngth(AllCelPoints);
+  for i:= 0 to NrOfCelPoints -1 do
+    CbCelPoint.Items.add(AllCelPoints[i].Name);
+  CbCelPoint.ItemIndex:= 0;
+end;
+
 function TForm1.DefineRequest: TTimeSeriesRequest;
 var
   Request: TTimeSeriesRequest;
   Ayanamsha: TAyanamshaSpec;
-  CelPoint1, CelPoint2: TCelPoint;
-  AllCelPoints: TCelPointArray;
+  CelPoint1, CelPoint2: TCelPointSpec;
+  AllCelPoints: TCelPointSpecArray;
 begin
-  //CelPoint1.SeId := 0;  // Sun
-  CelPoint1.SeId:= 14;
-  CelPoint1.PresentationName := 'Sun';
-  CelPoint1.Name := Sun;
-  CelPoint1.FirstJd := 0.0;
-  CelPoint1.LastJd := 0.0;
-  CelPoint1.Glyph := 'a';
-  //CelPoint2.SeId:= 1;  // Moon
-  //CelPoint2.PresentationName:= 'Moon';
-  //CelPoint2.Name:= Moon;
-  //CelPoint2.FirstJd:= 0.0;
-  //CelPoint2.LastJd:= 0.0;
-  //CelPoint2.Glyph:= 'b';
-  AllCelPOints := TCelPointArray.Create(CelPoint1);
+  AllCelPoints := TCelPointSpecArray.Create(CenCon.LookupValues.AllCelPoints[CbCelPoint.ItemIndex]);
   { TODO : Request is now retrieved from UnitProcess. It should be moved to a unit that is exchangeable. Same for response. }
-
-
   Request.Calendar := 1;
   if CbCalendar.ItemIndex = 1 then
     Request.Calendar := 0;

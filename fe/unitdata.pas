@@ -60,6 +60,7 @@ procedure TForm2.FormShow(Sender: TObject);
 //const
 //  POPULATION_FILE = '20210530_212247_Sun_Data.csv';
 begin
+  Chart1LineSeries1.Clear;
   LoadPopulationData(FDataFilename, PopulationData);
   UserDefinedChartSource1.PointsNumber := Length(PopulationData);
 end;

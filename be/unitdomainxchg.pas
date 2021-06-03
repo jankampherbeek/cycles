@@ -15,19 +15,13 @@ uses
 type
   TDoubleArray = array of double;
 
-
-  TCelPointNames = (Sun, Moon, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto,
-    MeanNode, OscNode, MeanApogee, OscApogee, Chiron, Pholus, Ceres, Pallas, Juno, Vesta,
-    Nessus, Huya, Makemake, Haumea, Eris, Ixion, Orcus, Quaoar, Sedna, Varuna);
-
-  TCelPoint = record
-    Name: TCelPointNames;
-    PresentationName, Glyph: string;
-    FirstJd, LastJD: double;
+  TCelPointSpec = record
     SeId: integer;
+    Identification, Name: string;
+    FirstJd, LastJD: Double;
   end;
 
-  TCelPointArray = array of TCelPoint;
+  TCelPointSpecArray = array of TCelPointSpec;
 
   TAyanamshaSpec = record
     SeId: integer;

@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 276
+  Left = 341
   Height = 1176
-  Top = 203
+  Top = 486
   Width = 996
   Caption = 'Form1'
   ClientHeight = 1176
@@ -196,5 +196,21 @@ object Form1: TForm1
     Width = 216
     ItemHeight = 25
     TabOrder = 10
+  end
+  object LblCelPoint: TLabel
+    Left = 36
+    Height = 25
+    Top = 688
+    Width = 109
+    Caption = 'Celestial Point'
+    ParentColor = False
+  end
+  object CbCelPoint: TComboBox
+    Left = 36
+    Height = 33
+    Top = 715
+    Width = 216
+    ItemHeight = 25
+    TabOrder = 11
   end
 end

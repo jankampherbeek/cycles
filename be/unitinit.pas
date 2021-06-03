@@ -19,17 +19,22 @@ type
     FAllAyanamshas: TAyanamshaSpecArray;
     FAllCoordinates: TCoordinateSpecArray;
     FAllCycleTypes: TCycleTypeSpecArray;
+    FAllCelpoints: TCelPointSpecArray;
     function ConstructAyanamshaSpec(SeId: integer; Name: string; Descr: string): TAyanamshaSpec;
     function ConstructCoordinateSpec(Identification: string; Name: string): TCoordinateSpec;
     function ConstructCycleTypeSpec(Identification: string; Name: string): TCycleTypeSpec;
+    function ConstructCelpointSpec(SeId: integer; Identification: string; Name: string;
+      FirstJd: double; lastJd: double): TCelPointSpec;
   public
     constructor Create;
     procedure DefineAllAyanamshas;
     procedure DefineAllCoordinates;
     procedure DefineAllCycleTypes;
+    procedure DefineAllCelpoints;
     property AllAyanamshas: TAyanamshaSpecArray read FAllAyanamshas;
     property AllCoordinates: TCoordinateSpecArray read FAllCoordinates;
     property AllCycleTypes: TCycleTypeSpecArray read FAllCycleTypes;
+    property AllCelPoints: TCelPointSpecArray read FAllCelpoints;
 
   end;
 
@@ -45,6 +50,7 @@ begin
   DefineAllAyanamshas;
   DefineAllCoordinates;
   DefineAllCycleTypes;
+  DefineAllCelPoints;
 end;
 
 procedure TLookupValues.DefineAllAyanamshas;
@@ -101,18 +107,71 @@ var
   NrOfCycleTypes: integer = 2;
 begin
   SetLength(FAllCycleTypes, NrOfCycleTypes);
-  FAllCycleTypes[0]:= ConstructCycleTypeSpec('SinglePos', 'Position for single point');
-  FAllCycleTypes[1]:= ConstructCycleTypeSpec('Waves', 'Waves according to Robert Doolaard');
+  FAllCycleTypes[0] := ConstructCycleTypeSpec('SinglePos', 'Position for single point');
+  FAllCycleTypes[1] := ConstructCycleTypeSpec('Waves', 'Waves according to Robert Doolaard');
 end;
 
 function TLookupValues.ConstructCycleTypeSpec(Identification: string; Name: string): TCycleTypeSpec;
 var
   CycleTypeSpec: TCycleTypeSpec;
 begin
-  CycleTypeSpec.Identification:= Identification;
-  CycleTypeSpec.Name:= Name;
-  Result:= CycleTypeSpec;
+  CycleTypeSpec.Identification := Identification;
+  CycleTypeSpec.Name := Name;
+  Result := CycleTypeSpec;
 end;
+
+procedure TLookupValues.DefineAllCelpoints;
+var
+  NrOfCelPoints: integer = 31;
+begin
+  SetLength(FAllCelpoints, NrOfCelPoints);
+  FAllCelpoints[0] := ConstructCelpointSpec(0, 'Sun', 'Sun', -3026613.5, 5227458.5);
+  FAllCelpoints[1] := ConstructCelpointSpec(1, 'Moon', 'Moon', -3026613.5, 5227458.5);
+  FAllCelpoints[2] := ConstructCelpointSpec(2, 'Mercury', 'Mercury', -3026613.5, 5227458.5);
+  FAllCelpoints[3] := ConstructCelpointSpec(3, 'Venus', 'Venus', -3026613.5, 5227458.5);
+  FAllCelpoints[4] := ConstructCelpointSpec(4, 'Mars', 'Mars', -3026613.5, 5227458.5);
+  FAllCelpoints[5] := ConstructCelpointSpec(5, 'Jupiter', 'Jupiter', -3026613.5, 5227458.5);
+  FAllCelpoints[6] := ConstructCelpointSpec(6, 'Saturn', 'Saturn', -3026613.5, 5227458.5);
+  FAllCelpoints[7] := ConstructCelpointSpec(7, 'Uranus', 'Uranus', -3026613.5, 5227458.5);
+  FAllCelpoints[8] := ConstructCelpointSpec(8, 'Neptune', 'Neptune', -3026613.5, 5227458.5);
+  FAllCelpoints[9] := ConstructCelpointSpec(9, 'Pluto', 'Pluto', -3026613.5, 5227458.5);
+  FAllCelpoints[10] := ConstructCelpointSpec(10, 'Node_mean', 'Mean Node', -3026613.5, 5227458.5);
+  FAllCelpoints[11] := ConstructCelpointSpec(11, 'Node_oscu', 'True Node', -3026613.5, 5227458.5);
+  FAllCelpoints[12] := ConstructCelpointSpec(14, 'Earth', 'Earth (helioc.)', -3026613.5, 5227458.5);
+  FAllCelpoints[13] := ConstructCelpointSpec(15, 'Chiron', 'Chiron', 1967601.5, 3419437.5);
+  FAllCelpoints[14] := ConstructCelpointSpec(16, 'Pholus', 'Pholus', 640648.5, 4390615.5);
+  FAllCelpoints[15] := ConstructCelpointSpec(17, 'Ceres', 'Ceres', -3026613.5, 5224242.5);
+  FAllCelpoints[16] := ConstructCelpointSpec(18, 'Pallas', 'Pallas', -3026613.5, 5227458.5);
+  FAllCelpoints[17] := ConstructCelpointSpec(19, 'Juno', 'Juno', -3026613.5, 5227458.5);
+  FAllCelpoints[18] := ConstructCelpointSpec(20, 'Vesta', 'Vesta', -3026613.5, 5221544.5);
+  FAllCelpoints[19] := ConstructCelpointSpec(17066, 'Nessus', 'Nessus', 625372.5, 2816371.5);
+  FAllCelpoints[20] := ConstructCelpointSpec(48628, 'Huya', 'Huya', 625296.5, 2816295.5);
+  FAllCelpoints[21] := ConstructCelpointSpec(146472, 'Makemake', 'MakeMake', 625292.5, 2816291.5);
+  FAllCelpoints[22] := ConstructCelpointSpec(146108, 'Haumea', 'Haumea', 625292.5, 2816291.5);
+  FAllCelpoints[23] := ConstructCelpointSpec(146199, 'Eris', 'Eris', 625384.5, 2816383.5);
+  FAllCelpoints[24] := ConstructCelpointSpec(38978, 'Ixion', 'Ixion', 625296.5, 2816295.5);
+  FAllCelpoints[25] := ConstructCelpointSpec(100482, 'Orcus', 'Orcus', 625296.5, 2816295.5);
+  FAllCelpoints[26] := ConstructCelpointSpec(60000, 'Quaoar', 'Quaoar', 625292.5, 2816291.5);
+  FAllCelpoints[27] := ConstructCelpointSpec(100377, 'Sedna', 'Sedna', 624947.5, 2816295.5);
+  FAllCelpoints[28] := ConstructCelpointSpec(30000, 'Varuna', 'Varuna', 625296.5, 2816295.5);
+  FAllCelpoints[29] := ConstructCelpointSpec(12, 'Apogee_mean', 'Mean Apogee', -3026613.5, 5227458.5);
+  FAllCelpoints[30] := ConstructCelpointSpec(13, 'Apogee_oscu', 'Oscul. Apogee', -3026613.5, 5227458.5);
+
+end;
+
+function TLookupValues.ConstructCelpointSpec(SeId: integer; Identification: string; Name: string;
+  FirstJd: double; LastJd: double): TCelPointSpec;
+var
+  CelPointSpec: TCelPointSpec;
+begin
+  CelPointSpec.SeId := SeId;
+  CelPointSpec.Identification := Identification;
+  CelPointSpec.Name := Name;
+  CelPointSpec.FirstJd := FirstJd;
+  CelPointSpec.LastJD := LastJd;
+  Result := CelPointSpec;
+end;
+
 
 end.
 

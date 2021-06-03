@@ -25,6 +25,10 @@ msgstr ""
 msgid "Calendar"
 msgstr ""
 
+#: tform1.lblcelpoint.caption
+msgid "Celestial Point"
+msgstr ""
+
 #: tform1.lblcoordinate.caption
 msgid "Coordinate"
 msgstr ""

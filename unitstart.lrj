@@ -13,5 +13,6 @@
 {"hash":137121298,"name":"tform1.lblcalendar.caption","sourcebytes":[67,97,108,101,110,100,97,114],"value":"Calendar"},
 {"hash":138936593,"name":"tform1.lblayanamsha.caption","sourcebytes":[65,121,97,110,97,109,115,104,97],"value":"Ayanamsha"},
 {"hash":145551045,"name":"tform1.lblcoordinate.caption","sourcebytes":[67,111,111,114,100,105,110,97,116,101],"value":"Coordinate"},
-{"hash":41103301,"name":"tform1.lblcycletype.caption","sourcebytes":[67,121,99,108,101,32,116,121,112,101],"value":"Cycle type"}
+{"hash":41103301,"name":"tform1.lblcycletype.caption","sourcebytes":[67,121,99,108,101,32,116,121,112,101],"value":"Cycle type"},
+{"hash":211663588,"name":"tform1.lblcelpoint.caption","sourcebytes":[67,101,108,101,115,116,105,97,108,32,80,111,105,110,116],"value":"Celestial Point"}
 ]}

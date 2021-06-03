@@ -21,7 +21,7 @@ type
     CoordinateType: TCoordinateSpec;
     CycleType: TCycleTypeSpec;
     Ayanamsha: TAyanamshaSpec;
-    CelPoints: TCelPointArray;
+    CelPoints: TCelPointSpecArray;
   end;
 
   TTimeSeriesResponse = record

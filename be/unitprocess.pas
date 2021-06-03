@@ -29,7 +29,7 @@ type
   { Constructs a TimeSeries for a specific celestial point, and the specs found in a CycleDefinition. }
   TTimeSeries = class
   strict private
-    FCelPoint: TCelPoint;
+    FCelPoint: TCelPointSpec;
     FCycleDefinition: TCycleDefinition;
     FEphemeris: TEphemeris;
     FJulianDayConversion: TJulianDayConversion;
@@ -42,7 +42,7 @@ type
     procedure Calculate;
 
   public
-    constructor Create(PEphemeris: TEphemeris; PCelPoint: TCelPoint; PCycleDefinition: TCycleDefinition;
+    constructor Create(PEphemeris: TEphemeris; PCelPoint: TCelPointSpec; PCycleDefinition: TCycleDefinition;
       Calendar: integer);
     property FileNameData: string read FFileNameData;
     property FileNameMEta: string read FFileNameMeta;
@@ -66,7 +66,7 @@ type
     Ephemeris: TEphemeris;
     DatetimeConversion: TDateTimeConversion;
     StartJD, EndJD: double;
-    CelPoints: TCelPointArray;
+    CelPoints: TCelPointSpecArray;
     NrOfCelPoints, Calendar: integer;
   public
     constructor Create;
@@ -109,7 +109,7 @@ end;
 
 { TTimeSeries -------------------------------------------------------------------------------------------------------- }
 
-constructor TTimeSeries.Create(PEphemeris: TEphemeris; PCelPoint: TCelPoint;
+constructor TTimeSeries.Create(PEphemeris: TEphemeris; PCelPoint: TCelPointSpec;
   PCycleDefinition: TCycleDefinition; Calendar: integer);
 begin
   FEphemeris := PEphemeris;
@@ -124,7 +124,7 @@ end;
 
 procedure TTimeSeries.DefineFiles;
 begin
-  FileNamePrefix := FormatDateTime('YYYYMMDD_HHNNSS', Now) + '_' + FCelPoint.PresentationName;
+  FileNamePrefix := FormatDateTime('YYYYMMDD_HHNNSS', Now) + '_' + FCelPoint.Name;
   FFileNameData := FilenamePrefix + '_data.csv';
   FFileNameMeta := FileNamePrefix + '_meta.csv';
 end;
@@ -142,7 +142,7 @@ begin
     rewrite(MetaFile);
     writeLn(MetaFile, MetaHeading);
     writeln(MetaFile, 'File identification;' + FileNamePrefix);
-    writeln(MetaFile, 'Celestial Point;' + FCelPoint.PresentationName);
+    writeln(MetaFile, 'Celestial Point;' + FCelPoint.Name);
     writeln(MetaFile, 'CycleType;' + CycleTypeText);
     writeln(MetaFile, 'Coordinate;' + CoordinateTypeText);
     writeln(MetaFile, 'Ayanamsha;' + FCycleDefinition.Ayanamsha.Name);
@@ -182,7 +182,7 @@ begin
   end;
 
 
-  CsvHeading := Concat('Date; Julian Day nr; Geoc. Longitude ', FCelPoint.PresentationName);
+  CsvHeading := Concat('Date; Julian Day nr; Geoc. Longitude ', FCelPoint.Name);
   AssignFile(CsvFile, FFileNameData);
   try
     rewrite(CsvFile);
