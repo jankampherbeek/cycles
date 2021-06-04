@@ -53,7 +53,7 @@ implementation
 {$R *.lfm}
 
 uses
-  unitapi, unitdata;
+  unitapi, unitdata, unitgraph;
 
 { TForm1 }
 
@@ -66,16 +66,16 @@ var
 begin
   SgMeta.Clear;
   SgPositions.Clear;
-
   Api := TTimeSeriesApi.Create;
   Request := DefineRequest;
   Response := Api.GetTimeSeries(Request);
   MetaFileName := Response.FileNameMeta;
   SgMeta.LoadFromCSVFile(MetaFileName, ';', True, 0, True);
   DataFilename := Response.FileNameData;
-  Form2.DataFilename := DataFilename;
+  FormGraph.DataFileName:= Response.FileNameData;
   SgPositions.LoadFromCSVFile(DataFileName, ';', True, 0, True);
-  Form2.Show;
+  FormGraph.Close;
+  FormGraph.Show;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

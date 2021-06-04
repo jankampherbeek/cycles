@@ -72,3 +72,7 @@ msgstr ""
 msgid "Form2"
 msgstr ""
 
+#: tformgraph.caption
+msgid "FormGraph"
+msgstr ""
+

@@ -8,7 +8,8 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, tachartlazaruspkg, unitstart, swissdelphi, unitastron, UnitProcess,
-  UnitAPI, UnitConversions, UnitReqResp, unitdata, UnitInit, unitcentralcontroller
+  UnitAPI, UnitConversions, UnitReqResp, unitdata, UnitInit,
+  unitcentralcontroller, unitgraph
   { you can add units after this };
 
 {$R *.res}
@@ -19,6 +20,7 @@ begin
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TFormGraph, FormGraph);
   Application.Run;
 end.
 
