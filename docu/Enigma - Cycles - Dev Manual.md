@@ -4,21 +4,36 @@
 
 Information for programmers about the program *Cycles*.
 
-
-
 ### Setting up your development environment
 
 #### Free Pascal and Lazarus
 
-..
+You can install Lazarus which includes a current version of FreePascal. Download Lazarus from https://www.lazarus-ide.org/  and navigate to *Downloads*. Make sure you select *Windows (32 and 64 Bits)*. 
+
+Lazarus also works on Linux but I did not test that.
+
+The installation itself is straightforward. One point to keep in mind: do not install in the standard *Program files* folder. This will cause troubles if you want to update and updates happen frequently.  The standard folder *c:\lazarus* is the best way to go.
 
 #### Additional packages
 
-..
+It is easy to install additional packages in Lazarus. This will cause the environment to be rebuild, but that is an automatic process.
 
-#### External libraries and data
+Enigma Cycles uses the following additional packages:
 
-..
+- BGRABitmap (graphics, supports anti-aliasing)
+- BGRAControls (required for BGRABitmap)
+- 
+
+#### External software and data
+
+Enigma uses software by the Swiss Ephemeris (SE) to perform most astronomical calculations. You need to install the following:
+
+- The file swedll32.dll
+- The datafiles from the SE.
+
+You can use the dll and datafiles that are part of the installation package of Enigma-Cycles. The dll should be in the root of your Lazarus project. The datafiles should be in a folder *se* that is one level up, so at the same level as folder for the project itself.
+
+
 
 
 

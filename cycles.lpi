@@ -114,6 +114,7 @@
         <Filename Value="fe\unitgraph.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormGraph"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnitGraph"/>
       </Unit12>

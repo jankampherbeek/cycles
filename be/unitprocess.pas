@@ -124,7 +124,7 @@ end;
 
 procedure TTimeSeries.DefineFiles;
 begin
-  FileNamePrefix := FormatDateTime('YYYYMMDD_HHNNSS', Now) + '_' + FCelPoint.Name;
+  FileNamePrefix := 'data/' + FCelPoint.Name;
   FFileNameData := FilenamePrefix + '_data.csv';
   FFileNameMeta := FileNamePrefix + '_meta.csv';
 end;
@@ -133,7 +133,6 @@ end;
 procedure TTimeSeries.WriteMeta;
 var
   MetaHeading: string;
-  CycleTypeText, CoordinateTypeText: string;
   MetaFile: TextFile;
 begin
   MetaHeading := 'Variable; Value';
@@ -143,8 +142,8 @@ begin
     writeLn(MetaFile, MetaHeading);
     writeln(MetaFile, 'File identification;' + FileNamePrefix);
     writeln(MetaFile, 'Celestial Point;' + FCelPoint.Name);
-    writeln(MetaFile, 'CycleType;' + CycleTypeText);
-    writeln(MetaFile, 'Coordinate;' + CoordinateTypeText);
+    writeln(MetaFile, 'CycleType;' + FCycleDefinition.CycleType.Name);
+    writeln(MetaFile, 'Coordinate;' + FCycleDefinition.CoordinateType.Name);
     writeln(MetaFile, 'Ayanamsha;' + FCycleDefinition.Ayanamsha.Name);
     writeln(MetaFile, 'Start Date;' + FJulianDayConversion.ConvertJdToDateText(FCycleDefinition.JdStart, FCalendar));
     writeln(MetaFile, 'End Date;' + FJulianDayConversion.ConvertJdToDateText(FCycleDefinition.JdEnd, FCalendar));
