@@ -22,6 +22,8 @@ type
     procedure TestCalcCelPoint;
     procedure TestJulianDay;
     procedure TestSeRevJul;
+    procedure TestCheckDateHappyFlow;
+    procedure TestCheckDateError;
   end;
 
 implementation
@@ -70,7 +72,16 @@ begin
   AssertEquals('Month', 1, DateTime.Month);
   AssertEquals('Day', 29, DateTime.Day);
   AssertEquals('Time', 7.6166666666667, DateTime.UT, Delta);
+end;
 
+procedure TTestSeFrontend.TestCheckDateHappyFlow;
+begin
+  AssertTrue(SeFrontend.CheckDate(1953,1,29,1).IsValid);
+end;
+
+procedure TTestSeFrontend.TestCheckDateError;
+begin
+  AssertFalse(SeFrontend.CheckDate(1953,13,29,1).IsValid);
 end;
 
 procedure TTestSeFrontend.SetUp;
@@ -82,6 +93,7 @@ end;
 procedure TTestSeFrontend.TearDown;
 begin
   FreeAndNil(SeFrontend);
+  inherited;
 end;
 
 initialization

@@ -102,8 +102,7 @@ begin
     { TODO : Create else for case (CoordinateTypes for Flags), should throw an exception. }
   end;
   { TODO : Test compariosn with AyanamshaSpec.Name using i18N }
-  if FAyanamsha.Name <> 'None' then
-    Flags := Flags or (64 * 1024);   // sidereal
+  if FAyanamsha.Name <> 'None' then Flags := Flags or (64 * 1024);   // sidereal
   Result := Flags;
 end;
 
@@ -175,8 +174,7 @@ begin
   SeFlags := TSeFlags.Create(CoordinateSpec, FCycleDefinition.Ayanamsha);
   Flags := SeFlags.FlagsValue;
   { TODO : Check use of 'None' in combination with i18N }
-  if not (FCycleDefinition.Ayanamsha.Name = 'None') then
-  begin
+  if not (FCycleDefinition.Ayanamsha.Name = 'None') then begin
     swe_set_sid_mode(FCycleDefinition.Ayanamsha.SeId, 0.0, 0.0);
   end;
 
@@ -215,12 +213,14 @@ begin
 end;
 
 { TODO : Add validation to conversion from datetext to JD }
+{ TODO : combine with DateTimeValidation }
 function TDateTimeConversion.DateTextToJulianDay(PDateText: string; PCalendar: integer): double;
 var
   TextElements: TStringDynArray;
   Day, Month, Year, Calendar: integer;
   UT: double;
 begin
+
   Calendar := PCalendar;
   UT := 0.0;
   TextElements := SplitString(PDateText, '/');
@@ -267,8 +267,10 @@ begin
   CycleDefinition.CoordinateType := Request.CoordinateType;
   CycleDefinition.Ayanamsha := Request.Ayanamsha;
   CycleDefinition.CycleType := Request.CycleType;
-  for i := 0 to NrOfCelPoints - 1 do
-  begin
+  for i := 0 to NrOfCelPoints - 1 do begin
+
+
+
     { TODO : Add handling of multiple celestial points }
     AllTimeSeries[i] := TTimeSeries.Create(Ephemeris, CelPoints[i], CycleDefinition, Calendar);
   end;

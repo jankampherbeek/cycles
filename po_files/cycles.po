@@ -64,6 +64,10 @@ msgctxt "tform1.lbledstartdate.texthint"
 msgid "yyyy/mm/dd"
 msgstr ""
 
+#: tform1.lblstatus.caption
+msgid "Status"
+msgstr ""
+
 #: tform1.lbltitle.caption
 msgid "Enigma - Cycles"
 msgstr ""

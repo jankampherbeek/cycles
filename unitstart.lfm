@@ -213,4 +213,12 @@ object Form1: TForm1
     ItemHeight = 25
     TabOrder = 11
   end
+  object LblStatus: TLabel
+    Left = 36
+    Height = 25
+    Top = 808
+    Width = 48
+    Caption = 'Status'
+    ParentColor = False
+  end
 end

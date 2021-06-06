@@ -28,6 +28,7 @@ implementation
 procedure TTestLookupValues.SetUp;
 begin
   LookUpValues:= TLookupValues.Create;
+  inherited;
 end;
 
 procedure TTestLookupValues.TearDown;

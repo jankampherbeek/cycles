@@ -5,7 +5,7 @@ program test_cycles;
 uses
   Interfaces, Forms, GuiTestRunner, test_astron, UnitAstron, swissdelphi,
   unitdomainxchg, UnitProcess, test_process, UnitAPI, UnitConversions,
-  test_conversions, UnitInit, test_init;
+  test_conversions, UnitInit, UnitValidation, test_init, test_validation;
 
 {$R *.res}
 

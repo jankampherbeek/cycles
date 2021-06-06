@@ -39,11 +39,13 @@ procedure TestJulianDayConversion.SetUp;
 begin
   SeFrontend:= TSeFrontend.Create;
   JulianDayConversion:= TJulianDayConversion.Create(SeFrontend);
+  inherited;
 end;
 
 procedure TestJulianDayConversion.TearDown;
 begin
   FreeAndNil(SeFrontend);
+  inherited;
 end;
 
 procedure TestJulianDayConversion.TestConvertJdToDateText;

@@ -14,11 +14,23 @@ uses
 
 type
   TDoubleArray = array of double;
+  TIntegerArray = array of integer;
+
+  TValidatedDate = record
+    IsValid: boolean;
+    JulianDay: double;
+    Year, Month, Day, Calendar: integer;
+  end;
+
+  TValidatedJulianDay = record
+    IsValid: Boolean;
+    JulianDay: double;
+  end;
 
   TCelPointSpec = record
     SeId: integer;
     Identification, Name: string;
-    FirstJd, LastJD: Double;
+    FirstJd, LastJD: double;
   end;
 
   TCelPointSpecArray = array of TCelPointSpec;

@@ -17,6 +17,9 @@ type
   TSeFrontend = class
   public
     constructor Create;
+    { Check the validty of a string containing a date in the format yyyy/mm/dd. Leading zero's can be omitted.
+      Returns true if valid, otherwise false. }
+    function CheckDate(Year, Month, Day, Calendar: Integer): TValidatedJulianDay;
     { Calculate a celestial point. Uses Julian day for UT, the id for the object (SeId) and the combined flags
       for the type of calculation. Returns array with positionvalues. Access via TEphemeris.}
     function SeCalcCelPoint(PJulianDay: double; PSeId: integer; PFlags: longint): TDoubleArray;
@@ -53,6 +56,20 @@ constructor TSeFrontend.Create;
 begin
   swe_set_ephe_path('..\\se');
   // required to use the SE Data and for initialization of the SE.
+end;
+
+function TSeFrontend.CheckDate(Year, Month, Day, Calendar: Integer): TValidatedJulianDay;
+var
+  ReturnStatus: Integer;
+  GregorianFlag: char;
+  JulianDay: Double;
+  ValidatedJulianDay: TValidatedJulianDay;
+begin
+  if Calendar = 1 then GregorianFlag:= 'g' else GregorianFlag:= 'j';
+  ReturnStatus := swe_date_conversion(Year, Month, Day, 0.0, GregorianFlag, JulianDay);
+  ValidatedJulianDay.IsValid:= ReturnStatus = 0;
+  ValidatedJulianDay.JulianDay:= JulianDay;
+  Result := ValidatedJulianDay;
 end;
 
 function TSeFrontend.SeCalcCelpoint(PJulianDay: double; PSeId: integer; PFlags: longint): TDoubleArray;
