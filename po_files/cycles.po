@@ -1,13 +1,24 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: tform1.btnhelp.caption
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: tform1.btnok.caption
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: tform1.caption
 msgid "Form1"
@@ -15,58 +26,54 @@ msgstr ""
 
 #: tform1.cbcalendar.text
 msgid "Gregorian"
-msgstr ""
+msgstr "Gregoriaans"
 
 #: tform1.lblayanamsha.caption
 msgid "Ayanamsha"
-msgstr ""
+msgstr "Ayanamsha"
 
 #: tform1.lblcalendar.caption
 msgid "Calendar"
-msgstr ""
+msgstr "Kalender"
 
 #: tform1.lblcelpoint.caption
 msgid "Celestial Point"
-msgstr ""
+msgstr "Hemelpunt"
 
 #: tform1.lblcoordinate.caption
 msgid "Coordinate"
-msgstr ""
+msgstr "Coördinaat"
 
 #: tform1.lblcycletype.caption
 msgid "Cycle type"
-msgstr ""
+msgstr "Soort cyclus"
 
 #: tform1.lbledenddate.editlabel.caption
 msgid "End date (yyyy/mm/dd)"
-msgstr ""
+msgstr "Eind datum (jjjj//mm/dd)"
 
 #: tform1.lbledenddate.hint
 msgctxt "tform1.lbledenddate.hint"
 msgid "yyyy/mm/dd"
-msgstr ""
+msgstr "jjjj/mm/dd"
 
 #: tform1.lbledinterval.editlabel.caption
 msgid "Interval in days"
-msgstr ""
+msgstr "Interval in dagen"
 
 #: tform1.lbledstartdate.editlabel.caption
 msgid "Start date (yyyy/mm/dd)"
-msgstr ""
+msgstr "Begin datun (jjjj/mm/dd)"
 
 #: tform1.lbledstartdate.hint
 msgctxt "tform1.lbledstartdate.hint"
 msgid "yyyy/mm/dd"
-msgstr ""
+msgstr "jjjj/mm/dd"
 
 #: tform1.lbledstartdate.texthint
 msgctxt "tform1.lbledstartdate.texthint"
 msgid "yyyy/mm/dd"
-msgstr ""
-
-#: tform1.lblstatus.caption
-msgid "Status"
-msgstr ""
+msgstr "jjjj/mm/dd"
 
 #: tform1.lbltitle.caption
 msgid "Enigma - Cycles"

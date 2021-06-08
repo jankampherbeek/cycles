@@ -21,7 +21,6 @@ type
     CbCoordinate: TComboBox;
     CbCycleType: TComboBox;
     CbCelPoint: TComboBox;
-    LblStatus: TLabel;
     LblCelPoint: TLabel;
     LblCycleType: TLabel;
     LblCoordinate: TLabel;
@@ -34,7 +33,12 @@ type
     SgPositions: TStringGrid;
     SgMeta: TStringGrid;
     procedure BtnOkClick(Sender: TObject);
+    procedure CbCelPointEditingDone(Sender: TObject);
+    procedure CbCoordinateChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure LblEdEndDateEditingDone(Sender: TObject);
+    procedure LblEdIntervalEditingDone(Sender: TObject);
+    procedure LblEdStartDateEditingDone(Sender: TObject);
   private
     CenCon: TCenCon;
     DateTimeValidation: TDateTimeValidation;
@@ -46,7 +50,8 @@ type
     procedure ProcessEndDate;
     procedure CheckDateSequence;
     procedure ProcessInterval;
-    procedure CheckCelPoints;
+    procedure CheckStatus;
+    //procedure CheckCelPoints;
     function DefineRequest: TTimeSeriesRequest;
   public
 
@@ -54,8 +59,6 @@ type
 
 var
   Form1: TForm1;
-  ErrorText: string;
-  ErrorFlag: boolean;
 
 implementation
 
@@ -67,68 +70,59 @@ uses
 
 var
   ValidatedStartDate, ValidatedEndDate: TValidatedDate;
-  StartJD, EndJD: Double;
-    SelectedCelPoints: TCelPointSpecArray;
+  StartJD, EndJD: double;
+  AvailableCelPoints, SelectedCelPoints: TCelPointSpecArray;
   ValidatedInterval: integer;
-
-const
-  ERROR_START_DATE = 'Enter a valid start date.';
-  ERROR_END_DATE = 'Enter a valid end date.';
-  ERROR_SEQUENCE_OF_DATES = 'Check sequence of dates.';
-  ERROR_INTERVAL = 'Enter a valid interval.';
-  ERROR_OUT_OF_RANGE = ' not supported for this period.';
-  INSTRUCTION = 'Enter all values and click ''Calculate''.';
+  StartDateOk, EndDateOk, DateSequenceOk, IntervalOk: boolean;
 
 
 { TForm1 }
 
-procedure TForm1.BtnOkClick(Sender: TObject);
-var
-  Api: TTimeSeriesAPI;
-  Request: TTimeSeriesRequest;
-  Response: TTimeSeriesResponse;
-  DataFilename, MetaFileName: string;
-begin
-  ErrorText := '';
-  ErrorFlag := False;
-  LblStatus.Caption := INSTRUCTION;
-  LblStatus.Color := clDefault;
-  ProcessStartDate;
-  ProcessEndDate;
-  CheckDateSequence;
-  ProcessInterval;
-  CheckCelPoints;
-  if not ErrorFlag then begin
-
-    SgMeta.Clear;
-    SgPositions.Clear;
-    Api := TTimeSeriesApi.Create;
-    Request := DefineRequest;
-    Response := Api.GetTimeSeries(Request);
-    MetaFileName := Response.FileNameMeta;
-    SgMeta.LoadFromCSVFile(MetaFileName, ';', True, 0, True);
-    DataFilename := Response.FileNameData;
-    FormGraph.DataFileName := Response.FileNameData;
-    SgPositions.LoadFromCSVFile(DataFileName, ';', True, 0, True);
-    FormGraph.Close;
-    FormGraph.Show;
-
-  end else begin
-    LblStatus.Color := clYellow;
-    LblStatus.Caption := ErrorText;
-
-  end;
-end;
-
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  StartDateOk := False;
+  EndDateOk := False;
+  DateSequenceOk := False;
+  IntervalOk := False;
   CenCon := TCenCon.Create;
+  //AvailableCelPoints:= TCelPointSpecArray.Create;
+  //SelectedCelPoints := TCelPointSpecArray.Create;
   DateTimeValidation := TDateTimeValidation.Create;
   DefineAyanamshaItems;
   DefineCoordinateItems;
   DefineCycleTypeItems;
   DefineCelPoints;
-  LblStatus.Caption := INSTRUCTION;
+  CbCelPoint.Enabled := False;
+  BtnOk.Enabled := False;
+end;
+
+
+procedure TForm1.CbCoordinateChange(Sender: TObject);
+begin
+  DefineCelPoints;
+end;
+
+
+
+procedure TForm1.LblEdEndDateEditingDone(Sender: TObject);
+begin
+  ProcessEndDate;
+  CheckDateSequence;
+  CheckStatus;
+end;
+
+procedure TForm1.LblEdIntervalEditingDone(Sender: TObject);
+begin
+  ProcessInterval;
+  CheckStatus;
+end;
+
+
+procedure TForm1.LblEdStartDateEditingDone(Sender: TObject);
+begin
+  ProcessStartDate;
+  CheckDateSequence;
+  CheckStatus;
 end;
 
 
@@ -172,22 +166,55 @@ end;
 procedure TForm1.DefineCelPoints;
 var
   AllCelPoints: TCelPointSpecArray;
-  i, NrOfCelPoints: integer;
+  CurrentCP: TCelPointSpec;
+  FirstCpFound: boolean;
+  i, SelectedSeId, NrOfCelPoints, CoordIndex, FirstCpIndex, AvailableIndex: integer;
 begin
+  FirstCpFound := False;
+  AvailableIndex:= 0;
   AllCelPOints := CenCon.LookupValues.AllCelPoints;
+  SelectedSeId := CbCelPoint.ItemIndex;
+  //SetLength(AvailableCelPoints,0);
   CbCelPoint.Items.Clear;
-  NrOfCelPOints := LEngth(AllCelPoints);
-  for i := 0 to NrOfCelPoints - 1 do CbCelPoint.Items.add(AllCelPoints[i].Name);
-  CbCelPoint.ItemIndex := 0;
+  NrOfCelPoints := Length(AllCelPoints);
+  CoordIndex := CbCoordinate.ItemIndex;
+  for i := 0 to NrOfCelPoints - 1 do begin
+    CurrentCP := AllCelPoints[i];
+    if ((((CoordIndex in [0, 2, 4, 5]) and (CurrentCP.GeoCentric)) or  // GeoLong, GeolAt, RA, Decl
+      ((CoordIndex in [1, 3]) and (CurrentCP.HelioCentric)) or          // HelioLong, HelioLat
+      ((CoordIndex = 6) and (CurrentCP.Distance))) and                  // Distance (RADV)
+      ((CurrentCP.FirstJd <= StartJD) and (CurrentCP.LastJD >= EndJD))) then begin     // supported period
+      CbCelPoint.Items.add(CurrentCP.Name);
+      AvailableCelPoints[AvailableIndex]:= CurrentCP;    { TODO : Check for max length of array }
+      Inc(AvailableIndex);
+      if (not FirstCpFound) then begin
+        FirstCpFound := True;
+        CbCelPoint.ItemIndex := 0;
+      end;
+      if (CurrentCP.SeId = SelectedSeId) then begin
+        CbCelPoint.ItemIndex := i;
+        //SetLength(SelectedCelPoints, 0);       { TODO : Handle selection of multiple celpoints }
+        SelectedCelPoints[0] := CurrentCP;
+      end;
+    end;
+  end;
 end;
+
+procedure TForm1.CbCelPointEditingDone(Sender: TObject);
+var
+  CelPointIndex: integer;
+begin
+  //SetLength(SelectedCelPoints, 0);
+  CelPointIndex := CbCelPoint.ItemIndex;
+  SelectedCelPoints[0] := AvailableCelPoints[CelPointIndex];
+end;
+
 
 function TForm1.DefineRequest: TTimeSeriesRequest;
 var
   Request: TTimeSeriesRequest;
   Ayanamsha: TAyanamshaSpec;
-  CelPoint1, CelPoint2: TCelPointSpec;
 begin
-
   { TODO : Request is now retrieved from UnitProcess. It should be moved to a unit that is exchangeable. Same for response. }
   Request.Calendar := 1;
   if CbCalendar.ItemIndex = 1 then Request.Calendar := 0;
@@ -196,6 +223,8 @@ begin
   Request.CycleType := CenCon.LookupValues.AllCycleTypes[CbCycleType.ItemIndex];
   Request.StartDateTime := LblEdStartDate.Text;
   Request.EndDateTime := LblEdEndDate.Text;
+  Request.StartJd := StartJD;
+  Request.EndJd := EndJd;
   Request.Interval := StrToInt(LblEdInterval.Text);
   Request.CelPoints := SelectedCelPoints;
   Result := Request;
@@ -211,10 +240,14 @@ begin
     Calendar := 1;
   ValidatedStartDate := DateTimeValidation.CheckDate(LblEdStartDate.Text, Calendar);
   if not ValidatedStartDate.IsValid then begin
-    ErrorFlag := True;
-    ErrorText := ErrorText + ERROR_START_DATE + LineEnding;
     LblEdStartDate.Color := clYellow;
-  end else StartJD:= ValidatedStartDate.JulianDay;
+    StartDateOk := False;
+  end else begin
+    StartJD := ValidatedStartDate.JulianDay;
+    LblEdStartDate.Color := clDefault;
+    ;
+    StartDateOk := True;
+  end;
 end;
 
 procedure TForm1.ProcessEndDate;
@@ -227,23 +260,26 @@ begin
     Calendar := 1;
   ValidatedEndDate := DateTimeValidation.CheckDate(LblEdEndDate.Text, Calendar);
   if not ValidatedEndDate.IsValid then begin
-    ErrorFlag := True;
-    ErrorText := ErrorText + ERROR_END_DATE + LineEnding;
     LblEdEndDate.Color := clYellow;
-  end else EndJD:= ValidatedEndDate.JulianDay;
+    EndDateOk := False;
+  end else begin
+    EndJD := ValidatedEndDate.JulianDay;
+    LblEdEndDate.Color := clDefault;
+    EndDateOk := True;
+  end;
 end;
 
 procedure TForm1.CheckDateSequence;
 begin
   if ValidatedStartDate.IsValid and ValidatedEndDate.IsValid then begin
+    DateSequenceOk := True;
     LblEdStartDate.Color := clDefault;
-    LblEdEndDate.Color := clYellow;
+    LblEdEndDate.Color := clDefault;
     if (ValidatedStartDate.Year > ValidatedEndDate.Year) or
       ((ValidatedStartDate.Year = ValidatedEndDate.Year) and (ValidatedStartDate.Month > ValidatedEndDate.Month)) or
       ((ValidatedStartDate.Year = ValidatedEndDate.Year) and (ValidatedStartDate.Month = ValidatedEndDate.Month) and
       (ValidatedStartDate.Day <= ValidatedEndDate.Day)) then begin
-      ErrorFlag := True;
-      ErrorText := ErrorText + ERROR_SEQUENCE_OF_DATES + LineEnding;
+      DateSequenceOk := False;
       LblEdStartDate.Color := clYellow;
       LblEdEndDate.Color := clYellow;
     end;
@@ -256,25 +292,50 @@ var
 begin
   LblEdInterval.Color := clDefault;
   Val(LblEdInterval.Text, ValidatedInterval, ErrorCode);
-  if ((not ErrorCode = 0) or (ValidatedInterval < 1)) then begin
-    ErrorFlag := True;
-    ErrorText := ErrorText + ERROR_INTERVAL + LineEnding;
+  if ((ErrorCode = 0) and (ValidatedInterval > 0)) then begin
+    LblEdInterval.Color := clDefault;
+    IntervalOk := True;
+  end else begin
     LblEdInterval.Color := clYellow;
+    IntervalOk := False;
   end;
 end;
 
-procedure TForm1.CheckCelPoints;
-var
-  Count, i: integer;
+
+procedure TForm1.CheckStatus;
 begin
-  SelectedCelPoints := TCelPointSpecArray.Create(CenCon.LookupValues.AllCelPoints[CbCelPoint.ItemIndex]);
-  Count:= Length(SelectedCelPoints);
-  for i:= 0 to Count-1 do begin
-      if ((SelectedCelPoints[i].FirstJd < StartJD) or (SelectedCelPoints[i].LastJD > EndJD)) then begin
-        ErrorFlag:= True;
-        ErrorText:= ErrorText+ SelectedCelPoints[i].Name + ERROR_OUT_OF_RANGE + LineEnding;
-      end;
+  if (StartDateOk and EndDateOk and DateSequenceOk and IntervalOk) then begin
+    CbCelPoint.Enabled := True;
+    DefineCelPoints;
+    if CbCelPoint.ItemIndex >= 0 then BtnOk.Enabled := True;
+  end else begin
+    CbCelPoint.Enabled := False;
+    BtnOk.Enabled := False;
   end;
 end;
+
+procedure TForm1.BtnOkClick(Sender: TObject);
+var
+  Api: TTimeSeriesAPI;
+  Request: TTimeSeriesRequest;
+  Response: TTimeSeriesResponse;
+  DataFilename, MetaFileName: string;
+begin
+  SgMeta.Clear;
+  SgPositions.Clear;
+  Api := TTimeSeriesApi.Create;
+  Request := DefineRequest;
+  Response := Api.GetTimeSeries(Request);
+  MetaFileName := Response.FileNameMeta;
+  SgMeta.LoadFromCSVFile(MetaFileName, ';', True, 0, True);
+  DataFilename := Response.FileNameData;
+  FormGraph.DataFileName := Response.FileNameData;
+  SgPositions.LoadFromCSVFile(DataFileName, ';', True, 0, True);
+  FormGraph.Close;
+  FormGraph.Show;
+end;
+
+
+
 
 end.

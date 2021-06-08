@@ -14,10 +14,9 @@ uses
 type
 
   TTimeSeriesRequest = record
-    StartDateTime: string;
-    EndDateTime: string;
-    Calendar: integer;
-    Interval: integer;
+    StartDateTime, EndDateTime: string;
+    Calendar, Interval: integer;
+    StartJd, EndJd: Double;
     CoordinateType: TCoordinateSpec;
     CycleType: TCycleTypeSpec;
     Ayanamsha: TAyanamshaSpec;

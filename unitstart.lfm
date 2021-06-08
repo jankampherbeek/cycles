@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 341
+  Left = 84
   Height = 1176
-  Top = 486
-  Width = 996
+  Top = 645
+  Width = 1094
   Caption = 'Form1'
   ClientHeight = 1176
-  ClientWidth = 996
+  ClientWidth = 1094
   DesignTimePPI = 144
   OnCreate = FormCreate
   LCLVersion = '2.0.12.0'
@@ -38,6 +38,7 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 0
     TextHint = 'yyyy/mm/dd'
+    OnEditingDone = LblEdStartDateEditingDone
   end
   object LblEdEndDate: TLabeledEdit
     Left = 36
@@ -52,6 +53,7 @@ object Form1: TForm1
     EditLabel.ParentFont = False
     ParentFont = False
     TabOrder = 1
+    OnEditingDone = LblEdEndDateEditingDone
   end
   object LblEdInterval: TLabeledEdit
     Left = 36
@@ -65,6 +67,7 @@ object Form1: TForm1
     EditLabel.ParentFont = False
     ParentFont = False
     TabOrder = 2
+    OnEditingDone = LblEdIntervalEditingDone
   end
   object BtnOk: TButton
     Left = 36
@@ -110,9 +113,9 @@ object Form1: TForm1
     ParentFont = False
   end
   object SgPositions: TStringGrid
-    Left = 312
+    Left = 400
     Height = 660
-    Top = 432
+    Top = 448
     Width = 648
     AutoFillColumns = True
     ColCount = 3
@@ -132,9 +135,9 @@ object Form1: TForm1
     )
   end
   object SgMeta: TStringGrid
-    Left = 312
-    Height = 296
-    Top = 112
+    Left = 400
+    Height = 272
+    Top = 120
     Width = 648
     AutoFillColumns = True
     ColCount = 2
@@ -179,6 +182,7 @@ object Form1: TForm1
     Top = 632
     Width = 216
     ItemHeight = 25
+    OnChange = CbCoordinateChange
     TabOrder = 9
   end
   object LblCycleType: TLabel
@@ -211,14 +215,7 @@ object Form1: TForm1
     Top = 715
     Width = 216
     ItemHeight = 25
+    OnEditingDone = CbCelPointEditingDone
     TabOrder = 11
-  end
-  object LblStatus: TLabel
-    Left = 36
-    Height = 25
-    Top = 808
-    Width = 48
-    Caption = 'Status'
-    ParentColor = False
   end
 end

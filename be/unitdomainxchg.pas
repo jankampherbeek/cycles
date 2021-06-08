@@ -31,9 +31,10 @@ type
     SeId: integer;
     Identification, Name: string;
     FirstJd, LastJD: double;
+    GeoCentric, HelioCentric, Distance: Boolean;
   end;
 
-  TCelPointSpecArray = array of TCelPointSpec;
+  TCelPointSpecArray = array[0..30] of TCelPointSpec;
 
   TAyanamshaSpec = record
     SeId: integer;
