@@ -9,7 +9,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, tachartlazaruspkg, unitstart, swissdelphi, unitastron, UnitProcess,
   UnitAPI, UnitConversions, UnitReqResp, unitdata, UnitInit,
-  unitcentralcontroller, unitgraph, UnitValidation
+  unitcentralcontroller, unitgraph, UnitValidation, unitrs
   { you can add units after this };
 
 {$R *.res}

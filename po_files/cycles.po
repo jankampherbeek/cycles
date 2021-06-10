@@ -87,3 +87,19 @@ msgstr ""
 msgid "FormGraph"
 msgstr ""
 
+#: unitrs.rsaccordingtofaganbradley
+msgid "According to Cyril Fagan and Donald Bradley"
+msgstr ""
+
+#: unitrs.rsfagan
+msgid "Fagan"
+msgstr ""
+
+#: unitrs.rsnone
+msgid "None"
+msgstr ""
+
+#: unitrs.rstropical
+msgid "Tropical"
+msgstr ""
+

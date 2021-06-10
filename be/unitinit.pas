@@ -10,7 +10,7 @@ unit UnitInit;
 interface
 
 uses
-  Classes, SysUtils, unitdomainxchg;
+  Classes, SysUtils, unitdomainxchg, unitrs;
 
 type
 
@@ -58,8 +58,8 @@ var
   nrOfAyanamshas: integer = 7;
 begin
   SetLength(FAllAyanamshas, nrOfAyanamshas);
-  FAllAyanamshas[0] := ConstructAyanamshaSpec(-1, 'None', 'Tropical');
-  FAllAyanamshas[1] := ConstructAyanamshaSpec(0, 'Fagan', 'According to Cyril Fagan and Donald Bradley');
+  FAllAyanamshas[0] := ConstructAyanamshaSpec(-1, rsNone, rsTropical);
+  FAllAyanamshas[1] := ConstructAyanamshaSpec(0, rsFagan, rsAccordingToFaganBradley);
   FAllAyanamshas[2] := ConstructAyanamshaSpec(1, 'Lahiri', 'Official Indian Ayanamsha');
   FAllAyanamshas[3] := ConstructAyanamshaSpec(2, 'Raman', ' According to B. V. Raman');
   FAllAyanamshas[4] := ConstructAyanamshaSpec(3, 'Krishnamurti', 'According to K. S. KRishnamurti');

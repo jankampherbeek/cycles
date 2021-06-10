@@ -1,3 +1,6 @@
+{ Jan Kampherbeek, (c)  2021.
+  Enigma Cycles is open source.
+  Please check the file copyright.txt in the root of the source for further details }
 unit UnitGraph;
 
 {$mode objfpc}{$H+}
@@ -5,8 +8,7 @@ unit UnitGraph;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, TAGraph, TASeries,
-  TAGUIConnectorBGRA;
+  Classes, Controls, Dialogs, Forms, Graphics, SysUtils, TAGraph, TAGUIConnectorBGRA, TASeries;
 
 type
 
@@ -63,10 +65,11 @@ var
   DateText: string;
   DataSize, i: integer;
 begin
+{ TODO : Add title, should be using TStrings. Use parameters for coordinate and cycletype to define title }
   LoadPopulationData(PopulationData);
   DataSize := Length(PopulationData);
-  for i := 0 to DataSize - 1 do
-  begin
+  ChartLineSeries.Title := 'Cel. point';  { TODO : Pass name(s) of celpoints to graph to show in legend }
+  for i := 0 to DataSize - 1 do begin
     DateText := PopulationData[i].DateText;
     ChartLineSeries.AddXy(i, StrToFloat(PopulationData[i].ValueText), DateText);
   end;
@@ -84,19 +87,16 @@ begin
     List1.LoadFromFile(FDataFileName);
     n := List1.Count;
     Data := TPopulationArray.Create;
-    ;
     SetLength(Data, n - 2);
     List2 := TStringList.Create;
     try
       List2.Delimiter := ';';
       List2.StrictDelimiter := True;
       j := 0;
-      for i := 2 to n - 1 do
-      begin
+      for i := 2 to n - 1 do begin
         List2.DelimitedText := List1[i];
         s := List1[i];
-        with Data[j] do
-        begin
+        with Data[j] do begin
           DateText := trim(List2[0]);
           JDText := trim(List2[1]);
           ValueText := trim(List2[2]);

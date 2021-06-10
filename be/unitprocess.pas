@@ -235,12 +235,10 @@ end;
 constructor TTimeSeriesHandler.Create;
 begin
   Ephemeris := TEphemeris.Create;
-  //DatetimeConversion := TDateTimeConversion.Create(Ephemeris);
 end;
 
 destructor TTimeSeriesHandler.Destroy;
 begin
-  //FreeAndNil(DatetimeConversion);
   FreeAndNil(Ephemeris);
   inherited;
 end;
@@ -248,7 +246,6 @@ end;
 function TTimeSeriesHandler.HandleRequest(Request: TTimeSeriesRequest): TTimeSeriesResponse;
 var
   StartDate, EndDate: string;
-  //StartJd, EndJd: double;
   AllTimeSeries: TTimeSeriesArray;
   CycleDefinition: TCycleDefinition;
   Response: TTimeSeriesResponse;
@@ -260,8 +257,6 @@ begin
   CelPoints := Request.CelPoints;
   NrOfCelPoints := Length(CelPoints);
   SetLength(AllTimeSeries, NrOfCelPoints);
-  //StartJD := DatetimeConversion.DateTextToJulianDay(StartDate, Calendar);
-  //EndJD := DatetimeConversion.DateTextToJulianDay(EndDate, Calendar);
   CycleDefinition.JdStart := Request.StartJD;
   CycleDefinition.JdEnd := Request.EndJD;
   CycleDefinition.Interval := Request.Interval;

@@ -46,11 +46,13 @@ object FormGraph: TFormGraph
     Foot.Font.Color = clBlue
     Legend.GridHorizontal.Color = clWhite
     Legend.GridVertical.Color = clWhite
+    Legend.Visible = True
     Title.Brush.Color = clBtnFace
     Title.Font.Color = clBlue
     Title.Text.Strings = (
       'TAChart'
     )
+    Title.Visible = True
     Align = alClient
     Color = clDefault
     object ChartLineSeries: TLineSeries

@@ -45,13 +45,13 @@ type
     procedure DefineAyanamshaItems;
     procedure DefineCoordinateItems;
     procedure DefineCycleTypeItems;
-    procedure DefineCelPoints;
+    procedure DefineCelPointsGeneral;
+    procedure DefineCelPointsWaves;
     procedure ProcessStartDate;
     procedure ProcessEndDate;
     procedure CheckDateSequence;
     procedure ProcessInterval;
     procedure CheckStatus;
-    //procedure CheckCelPoints;
     function DefineRequest: TTimeSeriesRequest;
   public
 
@@ -70,6 +70,7 @@ uses
 
 var
   ValidatedStartDate, ValidatedEndDate: TValidatedDate;
+  SelectedCycleType: TCycleTypeSpec;
   StartJD, EndJD: double;
   AvailableCelPoints, SelectedCelPoints: TCelPointSpecArray;
   ValidatedInterval: integer;
@@ -85,13 +86,10 @@ begin
   DateSequenceOk := False;
   IntervalOk := False;
   CenCon := TCenCon.Create;
-  //AvailableCelPoints:= TCelPointSpecArray.Create;
-  //SelectedCelPoints := TCelPointSpecArray.Create;
   DateTimeValidation := TDateTimeValidation.Create;
   DefineAyanamshaItems;
   DefineCoordinateItems;
   DefineCycleTypeItems;
-  DefineCelPoints;
   CbCelPoint.Enabled := False;
   BtnOk.Enabled := False;
 end;
@@ -99,7 +97,7 @@ end;
 
 procedure TForm1.CbCoordinateChange(Sender: TObject);
 begin
-  DefineCelPoints;
+  DefineCelPointsGeneral;
 end;
 
 
@@ -161,9 +159,10 @@ begin
   NrOfCycleTypes := Length(AllCycleTypes);
   for i := 0 to NrOfCycleTypes - 1 do CbCycleType.Items.add(AllCycleTypes[i].Name);
   CbCycleType.ItemIndex := 0;
+  SelectedCycleType := AllCycleTypes[0];
 end;
 
-procedure TForm1.DefineCelPoints;
+procedure TForm1.DefineCelPointsGeneral;
 var
   AllCelPoints: TCelPointSpecArray;
   CurrentCP: TCelPointSpec;
@@ -171,10 +170,9 @@ var
   i, SelectedSeId, NrOfCelPoints, CoordIndex, FirstCpIndex, AvailableIndex: integer;
 begin
   FirstCpFound := False;
-  AvailableIndex:= 0;
+  AvailableIndex := 0;
   AllCelPOints := CenCon.LookupValues.AllCelPoints;
   SelectedSeId := CbCelPoint.ItemIndex;
-  //SetLength(AvailableCelPoints,0);
   CbCelPoint.Items.Clear;
   NrOfCelPoints := Length(AllCelPoints);
   CoordIndex := CbCoordinate.ItemIndex;
@@ -185,7 +183,7 @@ begin
       ((CoordIndex = 6) and (CurrentCP.Distance))) and                  // Distance (RADV)
       ((CurrentCP.FirstJd <= StartJD) and (CurrentCP.LastJD >= EndJD))) then begin     // supported period
       CbCelPoint.Items.add(CurrentCP.Name);
-      AvailableCelPoints[AvailableIndex]:= CurrentCP;    { TODO : Check for max length of array }
+      AvailableCelPoints[AvailableIndex] := CurrentCP;    { TODO : Check for max length of array }
       Inc(AvailableIndex);
       if (not FirstCpFound) then begin
         FirstCpFound := True;
@@ -193,18 +191,37 @@ begin
       end;
       if (CurrentCP.SeId = SelectedSeId) then begin
         CbCelPoint.ItemIndex := i;
-        //SetLength(SelectedCelPoints, 0);       { TODO : Handle selection of multiple celpoints }
         SelectedCelPoints[0] := CurrentCP;
       end;
     end;
   end;
 end;
 
+procedure TForm1.DefineCelPointsWaves;
+var
+  AllCelPoints: TCelPointSpecArray;
+  CurrentCP: TCelpointSpec;
+  AvailableIndex, i, NrOfCelPoints: integer;
+begin
+  CbCelPoint.Items.Clear;
+  AllCelPOints := CenCon.LookupValues.AllCelPoints;
+  NrOfCelPoints := Length(AllCelPoints);
+  for i := 0 to NrOfCelPoints - 1 do begin
+    CurrentCP := AllCelPoints[i];
+    if ((CurrentCP.Identification = 'Jupiter') or (CurrentCP.Identification = 'Saturn') or (CurrentCP.Identification = 'Uranus') or
+      (CurrentCP.Identification = 'Neptune') or (CurrentCP.Identification = 'Pluto')) then begin
+      CbCelPoint.Items.add(CurrentCP.Name);
+      AvailableCelPoints[AvailableIndex] := CurrentCP;
+      Inc(AvailableIndex);
+    end;
+  end;
+end;
+
+
 procedure TForm1.CbCelPointEditingDone(Sender: TObject);
 var
   CelPointIndex: integer;
 begin
-  //SetLength(SelectedCelPoints, 0);
   CelPointIndex := CbCelPoint.ItemIndex;
   SelectedCelPoints[0] := AvailableCelPoints[CelPointIndex];
 end;
@@ -306,7 +323,7 @@ procedure TForm1.CheckStatus;
 begin
   if (StartDateOk and EndDateOk and DateSequenceOk and IntervalOk) then begin
     CbCelPoint.Enabled := True;
-    DefineCelPoints;
+    DefineCelPointsGeneral;
     if CbCelPoint.ItemIndex >= 0 then BtnOk.Enabled := True;
   end else begin
     CbCelPoint.Enabled := False;
