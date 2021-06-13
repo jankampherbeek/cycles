@@ -1,0 +1,108 @@
+object FormDlgCycleType: TFormDlgCycleType
+  Left = 382
+  Height = 480
+  Top = 506
+  Width = 500
+  Caption = 'FormDlgCycleType'
+  ClientHeight = 480
+  ClientWidth = 500
+  DesignTimePPI = 144
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object CbCycleType: TComboBox
+    Left = 35
+    Height = 33
+    Top = 135
+    Width = 430
+    ItemHeight = 25
+    OnSelect = CbCycleTypeSelect
+    TabOrder = 0
+    Text = 'CbCycleType'
+  end
+  object CbAyanamsha: TComboBox
+    Left = 35
+    Height = 33
+    Top = 228
+    Width = 430
+    ItemHeight = 25
+    OnSelect = CbAyanamshaSelect
+    TabOrder = 1
+    Text = 'CbAyanamsha'
+  end
+  object CbObserverPos: TComboBox
+    Left = 35
+    Height = 33
+    Top = 316
+    Width = 430
+    ItemHeight = 25
+    OnSelect = CbObserverPosSelect
+    TabOrder = 2
+    Text = 'CbObserverPos'
+  end
+  object LblCycleType: TLabel
+    Left = 35
+    Height = 25
+    Top = 100
+    Width = 111
+    Caption = 'The cycle type'
+    ParentColor = False
+  end
+  object LblAyanamsha: TLabel
+    Left = 35
+    Height = 25
+    Top = 196
+    Width = 311
+    Caption = 'Sidereal Ayanamsha - None for tropical'
+    ParentColor = False
+  end
+  object LblObserverPos: TLabel
+    Left = 35
+    Height = 25
+    Top = 284
+    Width = 189
+    Caption = 'Position of the observer'
+    ParentColor = False
+  end
+  object LblTitle: TLabel
+    Left = 35
+    Height = 48
+    Top = 27
+    Width = 253
+    Caption = 'Define the cycle'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -36
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object BtnContinue: TButton
+    Left = 80
+    Height = 38
+    Top = 392
+    Width = 113
+    Caption = 'Continue'
+    OnClick = BtnContinueClick
+    TabOrder = 3
+  end
+  object BtnHelp: TButton
+    Left = 216
+    Height = 38
+    Top = 392
+    Width = 113
+    Caption = 'Help'
+    OnClick = BtnHelpClick
+    TabOrder = 4
+  end
+  object BtnCancel: TButton
+    Left = 352
+    Height = 38
+    Top = 392
+    Width = 113
+    Caption = 'Cancel'
+    OnClick = BtnCancelClick
+    TabOrder = 5
+  end
+end

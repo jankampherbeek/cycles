@@ -1,0 +1,179 @@
+object FormDlgPairedCP: TFormDlgPairedCP
+  Left = 139
+  Height = 476
+  Top = 287
+  Width = 780
+  Caption = 'FormDlgPairedCP'
+  ClientHeight = 476
+  ClientWidth = 780
+  DesignTimePPI = 144
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object LblTitle: TLabel
+    Left = 36
+    Height = 48
+    Top = 32
+    Width = 581
+    Caption = 'Select max. 5 pairs of celestial points'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -36
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object CBoxCPLeft: TComboBox
+    Left = 34
+    Height = 33
+    Top = 125
+    Width = 300
+    ItemHeight = 25
+    OnEditingDone = CBoxCPLeftEditingDone
+    TabOrder = 0
+  end
+  object CboxCPRight: TComboBox
+    Left = 432
+    Height = 33
+    Top = 125
+    Width = 300
+    ItemHeight = 25
+    OnEditingDone = CboxCPRightEditingDone
+    TabOrder = 1
+  end
+  object LblAnd: TLabel
+    Left = 368
+    Height = 25
+    Top = 133
+    Width = 30
+    Caption = 'and'
+    ParentColor = False
+  end
+  object LblSet1: TLabel
+    Left = 36
+    Height = 25
+    Top = 192
+    Width = 40
+    Caption = 'Set 1'
+    ParentColor = False
+  end
+  object LblSet2: TLabel
+    Left = 36
+    Height = 25
+    Top = 216
+    Width = 40
+    Caption = 'Set 2'
+    ParentColor = False
+  end
+  object LblSet3: TLabel
+    Left = 36
+    Height = 25
+    Top = 240
+    Width = 40
+    Caption = 'Set 3'
+    ParentColor = False
+  end
+  object LblSet4: TLabel
+    Left = 36
+    Height = 25
+    Top = 264
+    Width = 40
+    Caption = 'Set 4'
+    ParentColor = False
+  end
+  object LblSet5: TLabel
+    Left = 36
+    Height = 25
+    Top = 288
+    Width = 40
+    Caption = 'Set 5'
+    ParentColor = False
+  end
+  object LblSet1Value: TLabel
+    Left = 128
+    Height = 25
+    Top = 192
+    Width = 82
+    Caption = 'Undefined'
+    ParentColor = False
+  end
+  object LblSet2Value: TLabel
+    Left = 128
+    Height = 25
+    Top = 216
+    Width = 82
+    Caption = 'Undefined'
+    ParentColor = False
+  end
+  object LblSet3Value: TLabel
+    Left = 128
+    Height = 25
+    Top = 240
+    Width = 82
+    Caption = 'Undefined'
+    ParentColor = False
+  end
+  object LblSet4Value: TLabel
+    Left = 128
+    Height = 25
+    Top = 264
+    Width = 82
+    Caption = 'Undefined'
+    ParentColor = False
+  end
+  object LblSet5Value: TLabel
+    Left = 128
+    Height = 25
+    Top = 288
+    Width = 82
+    Caption = 'Undefined'
+    ParentColor = False
+  end
+  object BtnAdd: TButton
+    Left = 112
+    Height = 38
+    Top = 389
+    Width = 113
+    Caption = 'Add Pair'
+    OnClick = BtnAddClick
+    TabOrder = 2
+  end
+  object BtnClear: TButton
+    Left = 240
+    Height = 38
+    Top = 389
+    Width = 113
+    Caption = 'Clear'
+    OnClick = BtnClearClick
+    TabOrder = 3
+  end
+  object BtnContinue: TButton
+    Left = 368
+    Height = 38
+    Top = 389
+    Width = 113
+    Caption = 'Continue'
+    Enabled = False
+    OnClick = BtnContinueClick
+    TabOrder = 4
+  end
+  object BtnHelp: TButton
+    Left = 496
+    Height = 38
+    Top = 389
+    Width = 113
+    Caption = 'Help'
+    OnClick = BtnHelpClick
+    TabOrder = 5
+  end
+  object BtnCancel: TButton
+    Left = 619
+    Height = 38
+    Top = 389
+    Width = 113
+    Caption = 'Cancel'
+    OnClick = BtnCancelClick
+    TabOrder = 6
+  end
+end

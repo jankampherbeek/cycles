@@ -13,6 +13,7 @@ msgstr ""
 "X-Generator: Poedit 2.4.3\n"
 
 #: tform1.btnhelp.caption
+msgctxt "tform1.btnhelp.caption"
 msgid "Help"
 msgstr "Help"
 
@@ -25,6 +26,7 @@ msgid "Form1"
 msgstr ""
 
 #: tform1.cbcalendar.text
+msgctxt "tform1.cbcalendar.text"
 msgid "Gregorian"
 msgstr "Gregoriaans"
 
@@ -33,6 +35,7 @@ msgid "Ayanamsha"
 msgstr "Ayanamsha"
 
 #: tform1.lblcalendar.caption
+msgctxt "tform1.lblcalendar.caption"
 msgid "Calendar"
 msgstr "Kalender"
 
@@ -49,6 +52,7 @@ msgid "Cycle type"
 msgstr "Soort cyclus"
 
 #: tform1.lbledenddate.editlabel.caption
+msgctxt "tform1.lbledenddate.editlabel.caption"
 msgid "End date (yyyy/mm/dd)"
 msgstr "Eind datum (jjjj//mm/dd)"
 
@@ -62,6 +66,7 @@ msgid "Interval in days"
 msgstr "Interval in dagen"
 
 #: tform1.lbledstartdate.editlabel.caption
+msgctxt "tform1.lbledstartdate.editlabel.caption"
 msgid "Start date (yyyy/mm/dd)"
 msgstr "Begin datun (jjjj/mm/dd)"
 
@@ -81,6 +86,367 @@ msgstr ""
 
 #: tform2.caption
 msgid "Form2"
+msgstr ""
+
+#: tformdlgcoordinate.btncancel.caption
+msgctxt "tformdlgcoordinate.btncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformdlgcoordinate.btncontinue.caption
+msgctxt "tformdlgcoordinate.btncontinue.caption"
+msgid "Continue"
+msgstr ""
+
+#: tformdlgcoordinate.btnhelp.caption
+#, fuzzy
+msgctxt "tformdlgcoordinate.btnhelp.caption"
+msgid "Help"
+msgstr "Help"
+
+#: tformdlgcoordinate.caption
+msgid "FormDlgCoordinate"
+msgstr ""
+
+#: tformdlgcoordinate.cbcoordinate.text
+msgid "CbCoordinate"
+msgstr ""
+
+#: tformdlgcoordinate.lbltitle.caption
+msgid "Select the coordinate"
+msgstr ""
+
+#: tformdlgcycletype.btncancel.caption
+msgctxt "tformdlgcycletype.btncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformdlgcycletype.btncontinue.caption
+msgctxt "tformdlgcycletype.btncontinue.caption"
+msgid "Continue"
+msgstr ""
+
+#: tformdlgcycletype.btnhelp.caption
+#, fuzzy
+msgctxt "tformdlgcycletype.btnhelp.caption"
+msgid "Help"
+msgstr "Help"
+
+#: tformdlgcycletype.caption
+msgid "FormDlgCycleType"
+msgstr ""
+
+#: tformdlgcycletype.cbayanamsha.text
+msgid "CbAyanamsha"
+msgstr ""
+
+#: tformdlgcycletype.cbcycletype.text
+msgid "CbCycleType"
+msgstr ""
+
+#: tformdlgcycletype.cbobserverpos.text
+msgid "CbObserverPos"
+msgstr ""
+
+#: tformdlgcycletype.lblayanamsha.caption
+msgid "Sidereal Ayanamsha - None for tropical"
+msgstr ""
+
+#: tformdlgcycletype.lblcycletype.caption
+msgid "The cycle type"
+msgstr ""
+
+#: tformdlgcycletype.lblobserverpos.caption
+msgid "Position of the observer"
+msgstr ""
+
+#: tformdlgcycletype.lbltitle.caption
+msgid "Define the cycle"
+msgstr ""
+
+#: tformdlgpairedcp.btnadd.caption
+msgid "Add Pair"
+msgstr ""
+
+#: tformdlgpairedcp.btncancel.caption
+msgctxt "tformdlgpairedcp.btncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformdlgpairedcp.btnclear.caption
+msgid "Clear"
+msgstr ""
+
+#: tformdlgpairedcp.btncontinue.caption
+msgctxt "tformdlgpairedcp.btncontinue.caption"
+msgid "Continue"
+msgstr ""
+
+#: tformdlgpairedcp.btnhelp.caption
+#, fuzzy
+msgctxt "tformdlgpairedcp.btnhelp.caption"
+msgid "Help"
+msgstr "Help"
+
+#: tformdlgpairedcp.caption
+msgid "FormDlgPairedCP"
+msgstr ""
+
+#: tformdlgpairedcp.lbland.caption
+msgid "and"
+msgstr ""
+
+#: tformdlgpairedcp.lblset1.caption
+msgid "Set 1"
+msgstr ""
+
+#: tformdlgpairedcp.lblset1value.caption
+msgctxt "tformdlgpairedcp.lblset1value.caption"
+msgid "Undefined"
+msgstr ""
+
+#: tformdlgpairedcp.lblset2.caption
+msgid "Set 2"
+msgstr ""
+
+#: tformdlgpairedcp.lblset2value.caption
+msgctxt "tformdlgpairedcp.lblset2value.caption"
+msgid "Undefined"
+msgstr ""
+
+#: tformdlgpairedcp.lblset3.caption
+msgid "Set 3"
+msgstr ""
+
+#: tformdlgpairedcp.lblset3value.caption
+msgctxt "tformdlgpairedcp.lblset3value.caption"
+msgid "Undefined"
+msgstr ""
+
+#: tformdlgpairedcp.lblset4.caption
+msgid "Set 4"
+msgstr ""
+
+#: tformdlgpairedcp.lblset4value.caption
+msgctxt "tformdlgpairedcp.lblset4value.caption"
+msgid "Undefined"
+msgstr ""
+
+#: tformdlgpairedcp.lblset5.caption
+msgid "Set 5"
+msgstr ""
+
+#: tformdlgpairedcp.lblset5value.caption
+msgctxt "tformdlgpairedcp.lblset5value.caption"
+msgid "Undefined"
+msgstr ""
+
+#: tformdlgpairedcp.lbltitle.caption
+msgid "Select max. 5 pairs of celestial points"
+msgstr ""
+
+#: tformdlgperiod.btncancel.caption
+msgctxt "tformdlgperiod.btncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformdlgperiod.btncontinue.caption
+msgctxt "tformdlgperiod.btncontinue.caption"
+msgid "Continue"
+msgstr ""
+
+#: tformdlgperiod.btnhelp.caption
+#, fuzzy
+msgctxt "tformdlgperiod.btnhelp.caption"
+msgid "Help"
+msgstr "Help"
+
+#: tformdlgperiod.caption
+msgid "FormDlgPeriod"
+msgstr ""
+
+#: tformdlgperiod.cbcalendar.text
+#, fuzzy
+msgctxt "tformdlgperiod.cbcalendar.text"
+msgid "Gregorian"
+msgstr "Gregoriaans"
+
+#: tformdlgperiod.lblcalendar.caption
+#, fuzzy
+msgctxt "tformdlgperiod.lblcalendar.caption"
+msgid "Calendar"
+msgstr "Kalender"
+
+#: tformdlgperiod.lbleditenddate.editlabel.caption
+#, fuzzy
+msgctxt "tformdlgperiod.lbleditenddate.editlabel.caption"
+msgid "End date (yyyy/mm/dd)"
+msgstr "Eind datum (jjjj//mm/dd)"
+
+#: tformdlgperiod.lbleditinterval.editlabel.caption
+msgid "Interval"
+msgstr ""
+
+#: tformdlgperiod.lbleditinterval.text
+msgid "1"
+msgstr ""
+
+#: tformdlgperiod.lbleditstartdate.editlabel.caption
+#, fuzzy
+msgctxt "tformdlgperiod.lbleditstartdate.editlabel.caption"
+msgid "Start date (yyyy/mm/dd)"
+msgstr "Begin datun (jjjj/mm/dd)"
+
+#: tformdlgperiod.lbltitle.caption
+msgid "Define the period"
+msgstr ""
+
+#: tformdlgsinglecp.btncancel.caption
+msgctxt "tformdlgsinglecp.btncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformdlgsinglecp.btncontinue.caption
+msgctxt "tformdlgsinglecp.btncontinue.caption"
+msgid "Continue"
+msgstr ""
+
+#: tformdlgsinglecp.btnhelp.caption
+#, fuzzy
+msgctxt "tformdlgsinglecp.btnhelp.caption"
+msgid "Help"
+msgstr "Help"
+
+#: tformdlgsinglecp.caption
+msgid "FormDlgSingleCP"
+msgstr ""
+
+#: tformdlgsinglecp.cbceres.caption
+msgid "Ceres"
+msgstr ""
+
+#: tformdlgsinglecp.cbchiron.caption
+msgid "Chiron"
+msgstr ""
+
+#: tformdlgsinglecp.cbearth.caption
+msgid "Earth"
+msgstr ""
+
+#: tformdlgsinglecp.cberis.caption
+msgid "Eris"
+msgstr ""
+
+#: tformdlgsinglecp.cbhaumea.caption
+msgid "Haumea"
+msgstr ""
+
+#: tformdlgsinglecp.cbhuya.caption
+msgid "Huya"
+msgstr ""
+
+#: tformdlgsinglecp.cbixion.caption
+msgid "Ixion"
+msgstr ""
+
+#: tformdlgsinglecp.cbjuno.caption
+msgid "Juno"
+msgstr ""
+
+#: tformdlgsinglecp.cbjupiter.caption
+msgid "Jupiter"
+msgstr ""
+
+#: tformdlgsinglecp.cbmakemake.caption
+msgid "MakeMake"
+msgstr ""
+
+#: tformdlgsinglecp.cbmars.caption
+msgid "Mars"
+msgstr ""
+
+#: tformdlgsinglecp.cbmeanapogee.caption
+msgid "Mean apogee"
+msgstr ""
+
+#: tformdlgsinglecp.cbmeannode.caption
+msgid "Mean node"
+msgstr ""
+
+#: tformdlgsinglecp.cbmercury.caption
+msgid "Mercury"
+msgstr ""
+
+#: tformdlgsinglecp.cbmoon.caption
+msgid "Moon"
+msgstr ""
+
+#: tformdlgsinglecp.cbneptune.caption
+msgid "Neptune"
+msgstr ""
+
+#: tformdlgsinglecp.cbnessus.caption
+msgid "Nessus"
+msgstr ""
+
+#: tformdlgsinglecp.cborcus.caption
+msgid "Orcus"
+msgstr ""
+
+#: tformdlgsinglecp.cboscnode.caption
+msgid "True (osculating) node"
+msgstr ""
+
+#: tformdlgsinglecp.cbpallas.caption
+msgid "Pallas"
+msgstr ""
+
+#: tformdlgsinglecp.cbpholus.caption
+msgid "Pholus"
+msgstr ""
+
+#: tformdlgsinglecp.cbpluto.caption
+msgid "Pluto"
+msgstr ""
+
+#: tformdlgsinglecp.cbquaoar.caption
+msgid "Quaoar"
+msgstr ""
+
+#: tformdlgsinglecp.cbsaturn.caption
+msgid "Saturn"
+msgstr ""
+
+#: tformdlgsinglecp.cbsedna.caption
+msgid "Sedna"
+msgstr ""
+
+#: tformdlgsinglecp.cbsun.caption
+msgid "Sun"
+msgstr ""
+
+#: tformdlgsinglecp.cbtrueapogee.caption
+msgid "True (osculating) apogee"
+msgstr ""
+
+#: tformdlgsinglecp.cburanus.caption
+msgid "Uranus"
+msgstr ""
+
+#: tformdlgsinglecp.cbvaruna.caption
+msgid "Varuna"
+msgstr ""
+
+#: tformdlgsinglecp.cbvenus.caption
+msgid "Venus"
+msgstr ""
+
+#: tformdlgsinglecp.cbvesta.caption
+msgid "Vesta"
+msgstr ""
+
+#: tformdlgsinglecp.lbltitle.caption
+msgid "Select celestial points"
 msgstr ""
 
 #: tformgraph.caption

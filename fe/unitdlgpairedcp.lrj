@@ -1,0 +1,20 @@
+{"version":1,"strings":[
+{"hash":252959104,"name":"tformdlgpairedcp.caption","sourcebytes":[70,111,114,109,68,108,103,80,97,105,114,101,100,67,80],"value":"FormDlgPairedCP"},
+{"hash":36931715,"name":"tformdlgpairedcp.lbltitle.caption","sourcebytes":[83,101,108,101,99,116,32,109,97,120,46,32,53,32,112,97,105,114,115,32,111,102,32,99,101,108,101,115,116,105,97,108,32,112,111,105,110,116,115],"value":"Select max. 5 pairs of celestial points"},
+{"hash":26692,"name":"tformdlgpairedcp.lbland.caption","sourcebytes":[97,110,100],"value":"and"},
+{"hash":5883441,"name":"tformdlgpairedcp.lblset1.caption","sourcebytes":[83,101,116,32,49],"value":"Set 1"},
+{"hash":5883442,"name":"tformdlgpairedcp.lblset2.caption","sourcebytes":[83,101,116,32,50],"value":"Set 2"},
+{"hash":5883443,"name":"tformdlgpairedcp.lblset3.caption","sourcebytes":[83,101,116,32,51],"value":"Set 3"},
+{"hash":5883444,"name":"tformdlgpairedcp.lblset4.caption","sourcebytes":[83,101,116,32,52],"value":"Set 4"},
+{"hash":5883445,"name":"tformdlgpairedcp.lblset5.caption","sourcebytes":[83,101,116,32,53],"value":"Set 5"},
+{"hash":180140276,"name":"tformdlgpairedcp.lblset1value.caption","sourcebytes":[85,110,100,101,102,105,110,101,100],"value":"Undefined"},
+{"hash":180140276,"name":"tformdlgpairedcp.lblset2value.caption","sourcebytes":[85,110,100,101,102,105,110,101,100],"value":"Undefined"},
+{"hash":180140276,"name":"tformdlgpairedcp.lblset3value.caption","sourcebytes":[85,110,100,101,102,105,110,101,100],"value":"Undefined"},
+{"hash":180140276,"name":"tformdlgpairedcp.lblset4value.caption","sourcebytes":[85,110,100,101,102,105,110,101,100],"value":"Undefined"},
+{"hash":180140276,"name":"tformdlgpairedcp.lblset5value.caption","sourcebytes":[85,110,100,101,102,105,110,101,100],"value":"Undefined"},
+{"hash":174417010,"name":"tformdlgpairedcp.btnadd.caption","sourcebytes":[65,100,100,32,80,97,105,114],"value":"Add Pair"},
+{"hash":4860802,"name":"tformdlgpairedcp.btnclear.caption","sourcebytes":[67,108,101,97,114],"value":"Clear"},
+{"hash":106627349,"name":"tformdlgpairedcp.btncontinue.caption","sourcebytes":[67,111,110,116,105,110,117,101],"value":"Continue"},
+{"hash":322608,"name":"tformdlgpairedcp.btnhelp.caption","sourcebytes":[72,101,108,112],"value":"Help"},
+{"hash":77089212,"name":"tformdlgpairedcp.btncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"}
+]}

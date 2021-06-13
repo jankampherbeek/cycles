@@ -36,11 +36,13 @@ type
     procedure CbCelPointEditingDone(Sender: TObject);
     procedure CbCoordinateChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure LblEdEndDateEditingDone(Sender: TObject);
     procedure LblEdIntervalEditingDone(Sender: TObject);
     procedure LblEdStartDateEditingDone(Sender: TObject);
   private
     CenCon: TCenCon;
+    FinStateMachine: TFinStateMachine;
     DateTimeValidation: TDateTimeValidation;
     procedure DefineAyanamshaItems;
     procedure DefineCoordinateItems;
@@ -81,17 +83,28 @@ var
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+
+    FinStateMachine:= TFinStateMachine.Create;
+
+  CenCon := TCenCon.Create;
   StartDateOk := False;
   EndDateOk := False;
   DateSequenceOk := False;
   IntervalOk := False;
-  CenCon := TCenCon.Create;
+
   DateTimeValidation := TDateTimeValidation.Create;
   DefineAyanamshaItems;
   DefineCoordinateItems;
   DefineCycleTypeItems;
   CbCelPoint.Enabled := False;
   BtnOk.Enabled := False;
+
+
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+    FinStateMachine.ChangeState(Start);
 end;
 
 

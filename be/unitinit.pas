@@ -14,15 +14,19 @@ uses
 
 type
 
+  { TLookupValues }
+
   TLookupValues = class
   strict private
     FAllAyanamshas: TAyanamshaSpecArray;
     FAllCoordinates: TCoordinateSpecArray;
     FAllCycleTypes: TCycleTypeSpecArray;
     FAllCelpoints: TCelPointSpecArray;
+    FAllObserverPos: TObserverPosSpecArray;
     function ConstructAyanamshaSpec(SeId: integer; Name, Descr: string): TAyanamshaSpec;
     function ConstructCoordinateSpec(Identification, Name: string): TCoordinateSpec;
     function ConstructCycleTypeSpec(Identification, Name: string): TCycleTypeSpec;
+    function ConstructObserverPosSpec(Identification, Name: string): TObserverPosSpec;
     function ConstructCelpointSpec(SeId: integer; Identification, Name: string; FirstJd, lastJd: double;
       Geocentric, HelioCentric, Distance: Boolean): TCelPointSpec;
   public
@@ -31,10 +35,12 @@ type
     procedure DefineAllCoordinates;
     procedure DefineAllCycleTypes;
     procedure DefineAllCelpoints;
+    procedure DefineAllObserverPos;
     property AllAyanamshas: TAyanamshaSpecArray read FAllAyanamshas;
     property AllCoordinates: TCoordinateSpecArray read FAllCoordinates;
     property AllCycleTypes: TCycleTypeSpecArray read FAllCycleTypes;
     property AllCelPoints: TCelPointSpecArray read FAllCelpoints;
+    property AllObserverPos: TObserverPosSpecArray read FAllObserverPos;
 
   end;
 
@@ -51,6 +57,7 @@ begin
   DefineAllCoordinates;
   DefineAllCycleTypes;
   DefineAllCelPoints;
+  DefineAllObserverPos;
 end;
 
 procedure TLookupValues.DefineAllAyanamshas;
@@ -62,7 +69,7 @@ begin
   FAllAyanamshas[1] := ConstructAyanamshaSpec(0, rsFagan, rsAccordingToFaganBradley);
   FAllAyanamshas[2] := ConstructAyanamshaSpec(1, 'Lahiri', 'Official Indian Ayanamsha');
   FAllAyanamshas[3] := ConstructAyanamshaSpec(2, 'Raman', ' According to B. V. Raman');
-  FAllAyanamshas[4] := ConstructAyanamshaSpec(3, 'Krishnamurti', 'According to K. S. KRishnamurti');
+  FAllAyanamshas[4] := ConstructAyanamshaSpec(3, 'Krishnamurti', 'According to K. S. Krishnamurti');
   FAllAyanamshas[5] := ConstructAyanamshaSpec(4, 'Huber',
     'Mean value of Babylonian Ayanamshas, defined by Peter Huber');
   FAllAyanamshas[6] := ConstructAyanamshaSpec(5, 'Galactic Center Brand', 'According to Rafael Gil Brand');
@@ -81,16 +88,14 @@ end;
 
 procedure TLookupValues.DefineAllCoordinates;
 var
-  NrOfCoordinates: integer = 7;
+  NrOfCoordinates: integer = 5;
 begin
   SetLength(FAllCoordinates, NrOfCoordinates);
-  FAllCoordinates[0] := ConstructCoordinateSpec('GeoLong', 'Geocentric Longitude');
-  FAllCoordinates[1] := ConstructCoordinateSpec('HelioLong', 'Heliocentric Longitude');
-  FAllCoordinates[2] := ConstructCoordinateSpec('GeoLat', 'Geocentric Latitude');
-  FAllCoordinates[3] := ConstructCoordinateSpec('HelioLat', 'Heliocentric Latitude');
-  FAllCoordinates[4] := ConstructCoordinateSpec('RightAsc', 'Right Ascension');
-  FAllCoordinates[5] := ConstructCoordinateSpec('Decl', 'Declination');
-  FAllCoordinates[6] := ConstructCoordinateSpec('Radv', 'Distance');
+  FAllCoordinates[0] := ConstructCoordinateSpec('Longitude', 'Ecliptic Longitude');
+  FAllCoordinates[1] := ConstructCoordinateSpec('Latitude', 'Ecliptic Latitude');
+  FAllCoordinates[2] := ConstructCoordinateSpec('RightAsc', 'Right Ascension');
+  FAllCoordinates[3] := ConstructCoordinateSpec('Decl', 'Declination');
+  FAllCoordinates[4] := ConstructCoordinateSpec('Radv', 'Distance');
 end;
 
 function TLookupValues.ConstructCoordinateSpec(Identification, Name: string): TCoordinateSpec;
@@ -104,11 +109,12 @@ end;
 
 procedure TLookupValues.DefineAllCycleTypes;
 var
-  NrOfCycleTypes: integer = 2;
+  NrOfCycleTypes: integer = 3;
 begin
   SetLength(FAllCycleTypes, NrOfCycleTypes);
-  FAllCycleTypes[0] := ConstructCycleTypeSpec('SinglePos', 'Position for single point');
-  FAllCycleTypes[1] := ConstructCycleTypeSpec('Waves', 'Waves according to Robert Doolaard');
+  FAllCycleTypes[0] := ConstructCycleTypeSpec('Position', 'Simple position');
+  FAllCycleTypes[1] := ConstructCycleTypeSpec('Angle', 'Angle between 2 celestial points');
+  FAllCycleTypes[2] := ConstructCycleTypeSpec('Frequency', 'Frequency of specific postions');
 end;
 
 function TLookupValues.ConstructCycleTypeSpec(Identification, Name: string): TCycleTypeSpec;
@@ -118,6 +124,25 @@ begin
   CycleTypeSpec.Identification := Identification;
   CycleTypeSpec.Name := Name;
   Result := CycleTypeSpec;
+end;
+
+
+procedure TLookupValues.DefineAllObserverPos;
+var
+  NrOfObserverPos: integer = 2;
+begin
+  SetLength(FAllObserverPos, NrOfObserverPos);
+  FAllObserverPos[0] := ConstructObserverPosSpec('Geocentric', 'Geocentric positions');
+  FAllObserverPos[1] := ConstructObserverPosSpec('Heliocentric', 'Heliocentric positions');
+end;
+
+function TLookupValues.ConstructObserverPosSpec(Identification, Name: string): TObserverPosSpec;
+var
+  ObserverPosSpec: TObserverPosSpec;
+begin
+  ObserverPosSpec.Identification:= Identification;
+  ObserverPosSpec.Name:= Name;
+  Result:= ObserverPosSpec;
 end;
 
 procedure TLookupValues.DefineAllCelpoints;
@@ -158,8 +183,9 @@ begin
   FAllCelpoints[30] := ConstructCelpointSpec(13, 'Apogee_oscu', 'Oscul. Apogee', -3026613.5, 5227458.5, true, false, false);
 end;
 
-function TLookupValues.ConstructCelpointSpec(SeId: integer; Identification, Name: string;
-  FirstJd, LastJd: double; Geocentric, HelioCentric, Distance: boolean): TCelPointSpec;
+function TLookupValues.ConstructCelpointSpec(SeId: integer; Identification,
+  Name: string; FirstJd, lastJd: double; Geocentric, HelioCentric,
+  Distance: Boolean): TCelPointSpec;
 var
   CelPointSpec: TCelPointSpec;
 begin

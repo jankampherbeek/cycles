@@ -34,7 +34,20 @@ type
     GeoCentric, HelioCentric, Distance: Boolean;
   end;
 
+  TCelPointPairedSpec = record
+    FirstCP: TCelPointSpec;
+    SecondCP: TCelPointSpec;
+  end;
+
   TCelPointSpecArray = array[0..30] of TCelPointSpec;
+
+  TCelPointPairedSpecArray = array [0..12] of TCelPointPairedSpec;
+
+  TPeriod = record
+    StartDate: TValidatedDate;
+    EndDate: TValidatedDate;
+    Interval: Integer;
+  end;
 
   TAyanamshaSpec = record
     SeId: integer;
@@ -48,6 +61,12 @@ type
   end;
 
   TCoordinateSpecArray = array of TCoordinateSpec;
+
+  TObserverPosSpec = record
+    Identification, Name: String;
+  end;
+
+  TObserverPosSpecArray = array of TObserverPosSpec;
 
   TCycleTypeSpec = record
     Identification, Name: string;

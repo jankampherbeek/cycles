@@ -9,7 +9,8 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, tachartlazaruspkg, unitstart, swissdelphi, unitastron, UnitProcess,
   UnitAPI, UnitConversions, UnitReqResp, unitdata, UnitInit,
-  unitcentralcontroller, unitgraph, UnitValidation, unitrs
+  unitcentralcontroller, unitgraph, UnitValidation, unitrs, UnitDlgCycleType,
+  UnitDlgCoordinate, UnitDlgPeriod, unitdlgsinglecp, unitdlgpairedcp
   { you can add units after this };
 
 {$R *.res}
@@ -21,6 +22,11 @@ begin
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TFormGraph, FormGraph);
+  Application.CreateForm(TFormDlgCycleType, FormDlgCycleType);
+  Application.CreateForm(TFormDlgCoordinate, FormDlgCoordinate);
+  Application.CreateForm(TFormDlgPeriod, FormDlgPeriod);
+  Application.CreateForm(TFormDlgSingleCP, FormDlgSingleCP);
+  Application.CreateForm(TFormDlgPairedCP, FormDlgPairedCP);
   Application.Run;
 end.
 

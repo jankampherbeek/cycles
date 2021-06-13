@@ -1,0 +1,115 @@
+object FormDlgPeriod: TFormDlgPeriod
+  Left = 421
+  Height = 542
+  Top = 540
+  Width = 500
+  Caption = 'FormDlgPeriod'
+  ClientHeight = 542
+  ClientWidth = 500
+  DesignTimePPI = 144
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object LblTitle: TLabel
+    Left = 32
+    Height = 48
+    Top = 21
+    Width = 278
+    Caption = 'Define the period'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -36
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object LblEditStartDate: TLabeledEdit
+    Left = 32
+    Height = 33
+    Top = 128
+    Width = 430
+    EditLabel.Height = 25
+    EditLabel.Width = 430
+    EditLabel.Caption = 'Start date (yyyy/mm/dd)'
+    EditLabel.ParentColor = False
+    TabOrder = 0
+    OnEditingDone = LblEditStartDateEditingDone
+  end
+  object LblEditEndDate: TLabeledEdit
+    Left = 32
+    Height = 33
+    Top = 200
+    Width = 430
+    EditLabel.Height = 25
+    EditLabel.Width = 430
+    EditLabel.Caption = 'End date (yyyy/mm/dd)'
+    EditLabel.ParentColor = False
+    TabOrder = 1
+    OnEditingDone = LblEditEndDateEditingDone
+  end
+  object LblEditInterval: TLabeledEdit
+    Left = 32
+    Height = 33
+    Top = 272
+    Width = 430
+    EditLabel.Height = 25
+    EditLabel.Width = 430
+    EditLabel.Caption = 'Interval'
+    EditLabel.ParentColor = False
+    TabOrder = 2
+    Text = '1'
+    OnEditingDone = LblEditIntervalEditingDone
+  end
+  object BtnCancel: TButton
+    Left = 352
+    Height = 38
+    Top = 454
+    Width = 113
+    Caption = 'Cancel'
+    OnClick = BtnCancelClick
+    TabOrder = 6
+  end
+  object BtnHelp: TButton
+    Left = 224
+    Height = 38
+    Top = 454
+    Width = 113
+    Caption = 'Help'
+    OnClick = BtnHelpClick
+    TabOrder = 5
+  end
+  object BtnContinue: TButton
+    Left = 96
+    Height = 38
+    Top = 454
+    Width = 113
+    Caption = 'Continue'
+    Enabled = False
+    OnClick = BtnContinueClick
+    TabOrder = 4
+  end
+  object LblCalendar: TLabel
+    Left = 32
+    Height = 25
+    Top = 324
+    Width = 69
+    Caption = 'Calendar'
+    ParentColor = False
+  end
+  object CbCalendar: TComboBox
+    Left = 32
+    Height = 33
+    Top = 356
+    Width = 430
+    ItemHeight = 25
+    ItemIndex = 0
+    Items.Strings = (
+      'Gregorian'
+      'Julian'
+    )
+    TabOrder = 3
+    Text = 'Gregorian'
+  end
+end
