@@ -15,7 +15,7 @@ uses
 type
 
   TStates = (Init, Started, Cancelled, DefiningCycleType, DefiningCoordinate, DefiningPeriod, DefiningSingleCP,
-    DefiningPairedCP);
+    DefiningPairedCP, Confirming, Calculating);
   TStateMessages = (Start, Cancel, CycleTypeDefined, CoordinateDefined, PeriodDefined,
     PairedCPDefined, SingleCPDefined);
 
@@ -56,7 +56,7 @@ type
 
 implementation
 
-uses UnitDlgCoordinate, UnitDlgCycleType, UnitDlgPeriod, unitdlgsinglecp, unitdlgpairedcp;
+uses UnitDlgCoordinate, UnitDlgCycleType, UnitDlgPeriod, unitdlgsinglecp, unitdlgpairedcp, unitdlgconfirm;
 
 var
   CenConSingleton: TCenCon = nil;
@@ -97,6 +97,10 @@ begin
         CurrentState:= DefiningPairedCP;
         FormDlgPairedCP.ShowModal;
       end;
+    end;
+    PairedCpDefined, SingleCPDefined: begin
+      CurrentState:= Confirming;
+      FormDlgConfirm.ShowModal;
     end;
 
   end;

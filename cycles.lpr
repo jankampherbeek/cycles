@@ -10,7 +10,7 @@ uses
   Forms, tachartlazaruspkg, unitstart, swissdelphi, unitastron, UnitProcess,
   UnitAPI, UnitConversions, UnitReqResp, unitdata, UnitInit,
   unitcentralcontroller, unitgraph, UnitValidation, unitrs, UnitDlgCycleType,
-  UnitDlgCoordinate, UnitDlgPeriod, unitdlgsinglecp, unitdlgpairedcp
+  UnitDlgCoordinate, UnitDlgPeriod, unitdlgsinglecp, unitdlgpairedcp, unitdlgconfirm
   { you can add units after this };
 
 {$R *.res}
@@ -27,6 +27,7 @@ begin
   Application.CreateForm(TFormDlgPeriod, FormDlgPeriod);
   Application.CreateForm(TFormDlgSingleCP, FormDlgSingleCP);
   Application.CreateForm(TFormDlgPairedCP, FormDlgPairedCP);
+  Application.CreateForm(TFormDlgConfirm, FormDlgConfirm);
   Application.Run;
 end.
 

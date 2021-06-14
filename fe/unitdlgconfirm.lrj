@@ -1,0 +1,23 @@
+{"version":1,"strings":[
+{"hash":13993725,"name":"tformdlgconfirm.caption","sourcebytes":[70,111,114,109,68,108,103,67,111,110,102,105,114,109],"value":"FormDlgConfirm"},
+{"hash":137199443,"name":"tformdlgconfirm.lbltitle.caption","sourcebytes":[89,111,117,32,109,97,100,101,32,116,104,101,32,102,111,108,108,111,119,105,110,103,32,115,101,108,101,99,116,105,111,110,115],"value":"You made the following selections"},
+{"hash":41103301,"name":"tformdlgconfirm.lblcycletype.caption","sourcebytes":[67,121,99,108,101,32,116,121,112,101],"value":"Cycle type"},
+{"hash":138936593,"name":"tformdlgconfirm.lblayanamsha.caption","sourcebytes":[65,121,97,110,97,109,115,104,97],"value":"Ayanamsha"},
+{"hash":84162738,"name":"tformdlgconfirm.lblobserverpos.caption","sourcebytes":[80,111,115,105,116,105,111,110,32,111,102,32,116,104,101,32,111,98,115,101,114,118,101,114],"value":"Position of the observer"},
+{"hash":145551045,"name":"tformdlgconfirm.lblcoordinate.caption","sourcebytes":[67,111,111,114,100,105,110,97,116,101],"value":"Coordinate"},
+{"hash":157483557,"name":"tformdlgconfirm.lblstartdate.caption","sourcebytes":[83,116,97,114,116,32,100,97,116,101],"value":"Start date"},
+{"hash":73837669,"name":"tformdlgconfirm.lblenddate.caption","sourcebytes":[69,110,100,32,100,97,116,101],"value":"End date"},
+{"hash":95197564,"name":"tformdlgconfirm.lblinterval.caption","sourcebytes":[73,110,116,101,114,118,97,108],"value":"Interval"},
+{"hash":198946419,"name":"tformdlgconfirm.lblcelpoints.caption","sourcebytes":[67,101,108,101,115,116,105,97,108,32,112,111,105,110,116,115],"value":"Celestial points"},
+{"hash":159145749,"name":"tformdlgconfirm.lblcycletypevalue.caption","sourcebytes":[76,98,108,67,121,99,108,101,84,121,112,101,86,97,108,117,101],"value":"LblCycleTypeValue"},
+{"hash":22714277,"name":"tformdlgconfirm.lblayanamshavalue.caption","sourcebytes":[76,98,108,65,121,97,110,97,109,115,104,97,86,97,108,117,101],"value":"LblAyanamshaValue"},
+{"hash":142736645,"name":"tformdlgconfirm.lblobserverposvalue.caption","sourcebytes":[76,98,108,79,98,115,101,114,118,101,114,80,111,115,86,97,108,117,101],"value":"LblObserverPosValue"},
+{"hash":151555413,"name":"tformdlgconfirm.lblcoordinatevalue.caption","sourcebytes":[76,98,108,67,111,111,114,100,105,110,97,116,101,86,97,108,117,101],"value":"LblCoordinateValue"},
+{"hash":7829653,"name":"tformdlgconfirm.lblstartdatevalue.caption","sourcebytes":[76,98,108,83,116,97,114,116,68,97,116,101,86,97,108,117,101],"value":"LblStartDateValue"},
+{"hash":174635941,"name":"tformdlgconfirm.lblenddatevalue.caption","sourcebytes":[76,98,108,69,110,100,68,97,116,101,86,97,108,117,101],"value":"LblEndDateValue"},
+{"hash":138650469,"name":"tformdlgconfirm.lblintervalvalue.caption","sourcebytes":[76,98,108,73,110,116,101,114,118,97,108,86,97,108,117,101],"value":"LblIntervalValue"},
+{"hash":130659189,"name":"tformdlgconfirm.lblcelpointsvalue.caption","sourcebytes":[76,98,108,67,101,108,80,111,105,110,116,115,86,97,108,117,101],"value":"LblCelPointsValue"},
+{"hash":174379213,"name":"tformdlgconfirm.btnconfirm.caption","sourcebytes":[67,111,110,102,105,114,109],"value":"Confirm"},
+{"hash":322608,"name":"tformdlgconfirm.btnhelp.caption","sourcebytes":[72,101,108,112],"value":"Help"},
+{"hash":77089212,"name":"tformdlgconfirm.btncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"}
+]}

@@ -1,0 +1,236 @@
+object FormDlgConfirm: TFormDlgConfirm
+  Left = 224
+  Height = 528
+  Top = 522
+  Width = 759
+  Caption = 'FormDlgConfirm'
+  ClientHeight = 528
+  ClientWidth = 759
+  DesignTimePPI = 144
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object LblTitle: TLabel
+    Left = 32
+    Height = 48
+    Top = 24
+    Width = 541
+    Caption = 'You made the following selections'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -36
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object LblCycleType: TLabel
+    Left = 32
+    Height = 25
+    Top = 112
+    Width = 81
+    Caption = 'Cycle type'
+    ParentColor = False
+  end
+  object LblAyanamsha: TLabel
+    Left = 32
+    Height = 25
+    Top = 142
+    Width = 92
+    Caption = 'Ayanamsha'
+    ParentColor = False
+  end
+  object LblObserverPos: TLabel
+    Left = 32
+    Height = 25
+    Top = 172
+    Width = 189
+    Caption = 'Position of the observer'
+    ParentColor = False
+  end
+  object LblCoordinate: TLabel
+    Left = 32
+    Height = 25
+    Top = 202
+    Width = 88
+    Caption = 'Coordinate'
+    ParentColor = False
+  end
+  object LblStartDate: TLabel
+    Left = 32
+    Height = 25
+    Top = 232
+    Width = 76
+    Caption = 'Start date'
+    ParentColor = False
+  end
+  object LblEndDate: TLabel
+    Left = 32
+    Height = 25
+    Top = 262
+    Width = 70
+    Caption = 'End date'
+    ParentColor = False
+  end
+  object LblInterval: TLabel
+    Left = 32
+    Height = 25
+    Top = 292
+    Width = 58
+    Caption = 'Interval'
+    ParentColor = False
+  end
+  object LblCelPoints: TLabel
+    Left = 32
+    Height = 25
+    Top = 322
+    Width = 119
+    Caption = 'Celestial points'
+    ParentColor = False
+  end
+  object LblCycleTypeValue: TLabel
+    Left = 272
+    Height = 25
+    Top = 112
+    Width = 143
+    Caption = 'LblCycleTypeValue'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object LblAyanamshaValue: TLabel
+    Left = 272
+    Height = 25
+    Top = 142
+    Width = 157
+    Caption = 'LblAyanamshaValue'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object LblObserverPosValue: TLabel
+    Left = 272
+    Height = 25
+    Top = 172
+    Width = 165
+    Caption = 'LblObserverPosValue'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object LblCoordinateValue: TLabel
+    Left = 272
+    Height = 25
+    Top = 202
+    Width = 153
+    Caption = 'LblCoordinateValue'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object LblStartDateValue: TLabel
+    Left = 272
+    Height = 25
+    Top = 232
+    Width = 138
+    Caption = 'LblStartDateValue'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object LblEndDateValue: TLabel
+    Left = 272
+    Height = 25
+    Top = 262
+    Width = 132
+    Caption = 'LblEndDateValue'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object LblIntervalValue: TLabel
+    Left = 272
+    Height = 25
+    Top = 292
+    Width = 123
+    Caption = 'LblIntervalValue'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object LblCelPointsValue: TLabel
+    Left = 272
+    Height = 25
+    Top = 322
+    Width = 137
+    Caption = 'LblCelPointsValue'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    WordWrap = True
+  end
+  object BtnConfirm: TButton
+    Left = 360
+    Height = 38
+    Top = 456
+    Width = 113
+    Caption = 'Confirm'
+    TabOrder = 0
+  end
+  object BtnHelp: TButton
+    Left = 480
+    Height = 38
+    Top = 456
+    Width = 113
+    Caption = 'Help'
+    TabOrder = 1
+  end
+  object BtnCancel: TButton
+    Left = 600
+    Height = 38
+    Top = 456
+    Width = 113
+    Caption = 'Cancel'
+    TabOrder = 2
+  end
+end

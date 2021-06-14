@@ -31,6 +31,7 @@ msgid "Gregorian"
 msgstr "Gregoriaans"
 
 #: tform1.lblayanamsha.caption
+msgctxt "tform1.lblayanamsha.caption"
 msgid "Ayanamsha"
 msgstr "Ayanamsha"
 
@@ -44,10 +45,12 @@ msgid "Celestial Point"
 msgstr "Hemelpunt"
 
 #: tform1.lblcoordinate.caption
+msgctxt "tform1.lblcoordinate.caption"
 msgid "Coordinate"
 msgstr "Coördinaat"
 
 #: tform1.lblcycletype.caption
+msgctxt "tform1.lblcycletype.caption"
 msgid "Cycle type"
 msgstr "Soort cyclus"
 
@@ -86,6 +89,101 @@ msgstr ""
 
 #: tform2.caption
 msgid "Form2"
+msgstr ""
+
+#: tformdlgconfirm.btncancel.caption
+msgctxt "tformdlgconfirm.btncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformdlgconfirm.btnconfirm.caption
+msgid "Confirm"
+msgstr ""
+
+#: tformdlgconfirm.btnhelp.caption
+#, fuzzy
+msgctxt "tformdlgconfirm.btnhelp.caption"
+msgid "Help"
+msgstr "Help"
+
+#: tformdlgconfirm.caption
+msgid "FormDlgConfirm"
+msgstr ""
+
+#: tformdlgconfirm.lblayanamsha.caption
+#, fuzzy
+msgctxt "tformdlgconfirm.lblayanamsha.caption"
+msgid "Ayanamsha"
+msgstr "Ayanamsha"
+
+#: tformdlgconfirm.lblayanamshavalue.caption
+msgid "LblAyanamshaValue"
+msgstr ""
+
+#: tformdlgconfirm.lblcelpoints.caption
+msgid "Celestial points"
+msgstr ""
+
+#: tformdlgconfirm.lblcelpointsvalue.caption
+msgid "LblCelPointsValue"
+msgstr ""
+
+#: tformdlgconfirm.lblcoordinate.caption
+#, fuzzy
+msgctxt "tformdlgconfirm.lblcoordinate.caption"
+msgid "Coordinate"
+msgstr "Coördinaat"
+
+#: tformdlgconfirm.lblcoordinatevalue.caption
+msgid "LblCoordinateValue"
+msgstr ""
+
+#: tformdlgconfirm.lblcycletype.caption
+#, fuzzy
+msgctxt "tformdlgconfirm.lblcycletype.caption"
+msgid "Cycle type"
+msgstr "Soort cyclus"
+
+#: tformdlgconfirm.lblcycletypevalue.caption
+msgid "LblCycleTypeValue"
+msgstr ""
+
+#: tformdlgconfirm.lblenddate.caption
+msgid "End date"
+msgstr ""
+
+#: tformdlgconfirm.lblenddatevalue.caption
+msgid "LblEndDateValue"
+msgstr ""
+
+#: tformdlgconfirm.lblinterval.caption
+msgctxt "tformdlgconfirm.lblinterval.caption"
+msgid "Interval"
+msgstr ""
+
+#: tformdlgconfirm.lblintervalvalue.caption
+msgid "LblIntervalValue"
+msgstr ""
+
+#: tformdlgconfirm.lblobserverpos.caption
+msgctxt "tformdlgconfirm.lblobserverpos.caption"
+msgid "Position of the observer"
+msgstr ""
+
+#: tformdlgconfirm.lblobserverposvalue.caption
+msgid "LblObserverPosValue"
+msgstr ""
+
+#: tformdlgconfirm.lblstartdate.caption
+msgid "Start date"
+msgstr ""
+
+#: tformdlgconfirm.lblstartdatevalue.caption
+msgid "LblStartDateValue"
+msgstr ""
+
+#: tformdlgconfirm.lbltitle.caption
+msgid "You made the following selections"
 msgstr ""
 
 #: tformdlgcoordinate.btncancel.caption
@@ -157,6 +255,7 @@ msgid "The cycle type"
 msgstr ""
 
 #: tformdlgcycletype.lblobserverpos.caption
+msgctxt "tformdlgcycletype.lblobserverpos.caption"
 msgid "Position of the observer"
 msgstr ""
 
@@ -284,6 +383,7 @@ msgid "End date (yyyy/mm/dd)"
 msgstr "Eind datum (jjjj//mm/dd)"
 
 #: tformdlgperiod.lbleditinterval.editlabel.caption
+msgctxt "tformdlgperiod.lbleditinterval.editlabel.caption"
 msgid "Interval"
 msgstr ""
 
