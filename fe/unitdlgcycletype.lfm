@@ -1,8 +1,9 @@
 object FormDlgCycleType: TFormDlgCycleType
-  Left = 382
+  Left = 277
   Height = 480
-  Top = 506
+  Top = 491
   Width = 500
+  Align = alClient
   Caption = 'FormDlgCycleType'
   ClientHeight = 480
   ClientWidth = 500
@@ -16,8 +17,8 @@ object FormDlgCycleType: TFormDlgCycleType
     Width = 430
     ItemHeight = 25
     OnSelect = CbCycleTypeSelect
+    Style = csDropDownList
     TabOrder = 0
-    Text = 'CbCycleType'
   end
   object CbAyanamsha: TComboBox
     Left = 35
@@ -26,8 +27,8 @@ object FormDlgCycleType: TFormDlgCycleType
     Width = 430
     ItemHeight = 25
     OnSelect = CbAyanamshaSelect
+    Style = csDropDownList
     TabOrder = 1
-    Text = 'CbAyanamsha'
   end
   object CbObserverPos: TComboBox
     Left = 35
@@ -36,8 +37,8 @@ object FormDlgCycleType: TFormDlgCycleType
     Width = 430
     ItemHeight = 25
     OnSelect = CbObserverPosSelect
+    Style = csDropDownList
     TabOrder = 2
-    Text = 'CbObserverPos'
   end
   object LblCycleType: TLabel
     Left = 35

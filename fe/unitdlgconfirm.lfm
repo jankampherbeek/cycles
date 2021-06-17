@@ -1,7 +1,7 @@
 object FormDlgConfirm: TFormDlgConfirm
-  Left = 224
+  Left = 84
   Height = 528
-  Top = 522
+  Top = 973
   Width = 759
   Caption = 'FormDlgConfirm'
   ClientHeight = 528

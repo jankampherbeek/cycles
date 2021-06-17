@@ -30,8 +30,8 @@ object FormDlgCoordinate: TFormDlgCoordinate
     Top = 128
     Width = 430
     ItemHeight = 25
+    Style = csDropDownList
     TabOrder = 0
-    Text = 'CbCoordinate'
   end
   object BtnCancel: TButton
     Left = 348

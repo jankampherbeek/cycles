@@ -1,8 +1,5 @@
 {"version":1,"strings":[
 {"hash":161278981,"name":"tformdlgcycletype.caption","sourcebytes":[70,111,114,109,68,108,103,67,121,99,108,101,84,121,112,101],"value":"FormDlgCycleType"},
-{"hash":174320277,"name":"tformdlgcycletype.cbcycletype.text","sourcebytes":[67,98,67,121,99,108,101,84,121,112,101],"value":"CbCycleType"},
-{"hash":135209233,"name":"tformdlgcycletype.cbayanamsha.text","sourcebytes":[67,98,65,121,97,110,97,109,115,104,97],"value":"CbAyanamsha"},
-{"hash":12185827,"name":"tformdlgcycletype.cbobserverpos.text","sourcebytes":[67,98,79,98,115,101,114,118,101,114,80,111,115],"value":"CbObserverPos"},
 {"hash":201402917,"name":"tformdlgcycletype.lblcycletype.caption","sourcebytes":[84,104,101,32,99,121,99,108,101,32,116,121,112,101],"value":"The cycle type"},
 {"hash":120218428,"name":"tformdlgcycletype.lblayanamsha.caption","sourcebytes":[83,105,100,101,114,101,97,108,32,65,121,97,110,97,109,115,104,97,32,45,32,78,111,110,101,32,102,111,114,32,116,114,111,112,105,99,97,108],"value":"Sidereal Ayanamsha - None for tropical"},
 {"hash":84162738,"name":"tformdlgcycletype.lblobserverpos.caption","sourcebytes":[80,111,115,105,116,105,111,110,32,111,102,32,116,104,101,32,111,98,115,101,114,118,101,114],"value":"Position of the observer"},

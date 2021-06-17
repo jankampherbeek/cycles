@@ -31,6 +31,7 @@ object FormDlgPairedCP: TFormDlgPairedCP
     Width = 300
     ItemHeight = 25
     OnEditingDone = CBoxCPLeftEditingDone
+    Style = csDropDownList
     TabOrder = 0
   end
   object CboxCPRight: TComboBox
@@ -40,6 +41,7 @@ object FormDlgPairedCP: TFormDlgPairedCP
     Width = 300
     ItemHeight = 25
     OnEditingDone = CboxCPRightEditingDone
+    Style = csDropDownList
     TabOrder = 1
   end
   object LblAnd: TLabel

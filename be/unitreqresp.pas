@@ -13,17 +13,37 @@ uses
 
 type
 
-  TTimeSeriesRequest = record
-    StartDateTime, EndDateTime: string;
-    Calendar, Interval: integer;
-    StartJd, EndJd: Double;
-    CoordinateType: TCoordinateSpec;
+  TSeriesSingleRequest = record
+    Period: TPeriod;
     CycleType: TCycleTypeSpec;
     Ayanamsha: TAyanamshaSpec;
+    Coordinate: TCoordinateSpec;
+    ObserverPos: TObserverPosSpec;
     CelPoints: TCelPointSpecArray;
   end;
 
-  TTimeSeriesResponse = record
+  TSeriesPairedRequest = record
+    Period: TPeriod;
+    CycleType: TCycleTypeSpec;
+    Ayanamsha: TAyanamshaSpec;
+    Coordinate: TCoordinateSpec;
+    ObserverPos: TObserverPosSpec;
+    CelPointPairs: TCelPointPairedSpecArray;
+  end;
+
+//
+//  { TODO : Remove TTimeSeriesRequest: obsolete }
+//  TTimeSeriesRequest = record
+//    StartDateTime, EndDateTime: string;
+//    Calendar, Interval: integer;
+//    StartJd, EndJd: Double;
+//    CoordinateType: TCoordinateSpec;
+//    CycleType: TCycleTypeSpec;
+//    Ayanamsha: TAyanamshaSpec;
+//    CelPoints: TCelPointSpecArray;
+//  end;
+
+  TSeriesResponse = record
     Errors: boolean;
     ErrorText: string;
     FileNameData, FileNameMeta: string;

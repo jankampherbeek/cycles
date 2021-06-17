@@ -206,10 +206,6 @@ msgstr "Help"
 msgid "FormDlgCoordinate"
 msgstr ""
 
-#: tformdlgcoordinate.cbcoordinate.text
-msgid "CbCoordinate"
-msgstr ""
-
 #: tformdlgcoordinate.lbltitle.caption
 msgid "Select the coordinate"
 msgstr ""
@@ -232,18 +228,6 @@ msgstr "Help"
 
 #: tformdlgcycletype.caption
 msgid "FormDlgCycleType"
-msgstr ""
-
-#: tformdlgcycletype.cbayanamsha.text
-msgid "CbAyanamsha"
-msgstr ""
-
-#: tformdlgcycletype.cbcycletype.text
-msgid "CbCycleType"
-msgstr ""
-
-#: tformdlgcycletype.cbobserverpos.text
-msgid "CbObserverPos"
 msgstr ""
 
 #: tformdlgcycletype.lblayanamsha.caption

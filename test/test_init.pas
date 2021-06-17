@@ -44,12 +44,12 @@ end;
 
 procedure TTestLookupValues.TestCoordinates;
 begin
-  AssertEquals(7, Length(LookupValues.AllCoordinates));
+  AssertEquals(5, Length(LookupValues.AllCoordinates));
 end;
 
 procedure TTestLookupValues.TestCycleTypes;
 begin
-  AssertEquals(2, Length(LookupValues.AllCycleTypes));
+  AssertEquals(3, Length(LookupValues.AllCycleTypes));
 end;
 
 initialization

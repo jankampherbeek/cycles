@@ -80,6 +80,7 @@ type
     CoordinateType: TCoordinateSpec;
     Ayanamsha: TAyanamshaSpec;
     CycleType: TCycleTypeSpec;
+    ObserverPos: TObserverPosSpec;
   end;
 
   TTimedPosition = class

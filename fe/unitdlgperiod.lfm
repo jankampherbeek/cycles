@@ -109,6 +109,7 @@ object FormDlgPeriod: TFormDlgPeriod
       'Gregorian'
       'Julian'
     )
+    Style = csDropDownList
     TabOrder = 3
     Text = 'Gregorian'
   end

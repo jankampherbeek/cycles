@@ -12,35 +12,71 @@ uses Classes, SysUtils, UnitProcess, UnitReqResp;
 
 type
 
-  { Handles requests for the calculation of timeseries. }
-  TTimeSeriesAPI = class
+  { TSeriesAPI }
+
+  TSeriesAPI = class
   strict private
-    Handler: TTimeSeriesHandler;
+    Handler: TSeriesHandler;
   public
     constructor Create;
     destructor Destroy; override;
-    function GetTimeSeries(request: TTimeSeriesRequest): TTimeSeriesResponse;
+    function GetSeriesForSingleCPs(request: TSeriesSingleRequest): TSeriesResponse;
+    function GetSeriesForPairedCPs(request: TSeriesPairedRequest): TSeriesResponse;
+  end;
+
+
+  { Handles requests for the calculation of timeseries. }
+  TTimeSeriesAPI = class
+  strict private
+    Handler: TSeriesHandler;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    function GetTimeSeries(request: TSeriesSingleRequest): TSeriesResponse;
   end;
 
 
 implementation
 
+{ TSeriesAPI }
+
+constructor TSeriesAPI.Create;
+begin
+  Handler:= TSeriesHandler.Create;
+end;
+
+destructor TSeriesAPI.Destroy;
+begin
+  FreeAndNil(Handler);
+  inherited Destroy;
+end;
+
+function TSeriesAPI.GetSeriesForSingleCPs(request: TSeriesSingleRequest): TSeriesResponse;
+begin
+
+end;
+
+function TSeriesAPI.GetSeriesForPairedCPs(request: TSeriesPairedRequest): TSeriesResponse;
+begin
+
+end;
+
 { TTimeSeriesAPI ----------------------------------------------------------------------------------------------------- }
 
 constructor TTimeSeriesAPI.Create;
 begin
-  Handler := TTimeSeriesHandler.Create;
+  Handler := TSeriesHandler.Create;
 end;
 
 destructor TTimeSeriesAPI.Destroy;
 begin
   FreeAndNil(Handler);
-  Inherited;
+  inherited;
 end;
 
-function TTimeSeriesAPI.GetTimeSeries(request: TTimeSeriesRequest): TTimeSeriesResponse;
+function TTimeSeriesAPI.GetTimeSeries(request: TSeriesSingleRequest): TSeriesResponse;
 begin
-  Result := Handler.HandleRequest(Request);
+  //Result := Handler.HandleRequest(Request);
 end;
 
 end.
