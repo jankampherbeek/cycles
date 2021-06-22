@@ -53,6 +53,14 @@ You can use the dll and datafiles that are part of the installation package of E
 
 ..
 
+#### Interfaces
+
+I apply interfaces for two reasons: to facilitate testing and to support loosely coupling. I do not define an interface for each object, only if it makes sense because of the reasons I just mentioned.
+
+Free Pascal suports two types of interfaces: com-interfaces and CORBA-interfaces. In Cycles I only use CORBA-interfaces. The name could be misleading as CORBA is not used. CORBA-interfaces do not support reference-count, which I consider as an advantage, especially as I do not want to create an interface for everything. Actually, the CORBA-interface is comparable with interfacing in Java or Kotlin. 
+
+CORBA-interfaces are specific for Free Pascal and not supported in Delphi.
+
 #### Testing
 
 ..

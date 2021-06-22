@@ -109,12 +109,11 @@ end;
 
 procedure TLookupValues.DefineAllCycleTypes;
 var
-  NrOfCycleTypes: integer = 3;
+  NrOfCycleTypes: integer = 2;
 begin
   SetLength(FAllCycleTypes, NrOfCycleTypes);
   FAllCycleTypes[0] := ConstructCycleTypeSpec('Position', 'Simple position');
   FAllCycleTypes[1] := ConstructCycleTypeSpec('Angle', 'Angle between 2 celestial points');
-  FAllCycleTypes[2] := ConstructCycleTypeSpec('Frequency', 'Frequency of specific postions');
 end;
 
 function TLookupValues.ConstructCycleTypeSpec(Identification, Name: string): TCycleTypeSpec;

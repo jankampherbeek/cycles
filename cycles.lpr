@@ -10,7 +10,8 @@ uses
   Forms, tachartlazaruspkg, unitstart, swissdelphi, unitastron, UnitProcess,
   UnitAPI, UnitConversions, UnitReqResp, unitdata, UnitInit,
   unitcentralcontroller, unitgraph, UnitValidation, unitrs, UnitDlgCycleType,
-  UnitDlgCoordinate, UnitDlgPeriod, unitdlgsinglecp, unitdlgpairedcp, unitdlgconfirm
+  UnitDlgCoordinate, UnitDlgPeriod, unitdlgsinglecp, unitdlgpairedcp,
+  unitdlgconfirm, UnitConst
   { you can add units after this };
 
 {$R *.res}

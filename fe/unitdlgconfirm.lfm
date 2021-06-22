@@ -1,7 +1,7 @@
 object FormDlgConfirm: TFormDlgConfirm
-  Left = 84
+  Left = 75
   Height = 528
-  Top = 973
+  Top = 1482
   Width = 759
   Caption = 'FormDlgConfirm'
   ClientHeight = 528
@@ -215,6 +215,7 @@ object FormDlgConfirm: TFormDlgConfirm
     Top = 456
     Width = 113
     Caption = 'Confirm'
+    OnClick = BtnConfirmClick
     TabOrder = 0
   end
   object BtnHelp: TButton
@@ -223,6 +224,7 @@ object FormDlgConfirm: TFormDlgConfirm
     Top = 456
     Width = 113
     Caption = 'Help'
+    OnClick = BtnHelpClick
     TabOrder = 1
   end
   object BtnCancel: TButton
@@ -231,6 +233,7 @@ object FormDlgConfirm: TFormDlgConfirm
     Top = 456
     Width = 113
     Caption = 'Cancel'
+    OnClick = BtnCancelClick
     TabOrder = 2
   end
 end

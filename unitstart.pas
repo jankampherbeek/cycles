@@ -54,7 +54,7 @@ type
     procedure CheckDateSequence;
     procedure ProcessInterval;
     procedure CheckStatus;
-    function DefineRequest: TSeriesSingleRequest;
+    //function DefineRequest: TSeriesSingleRequestObs;
   public
 
   end;
@@ -240,25 +240,25 @@ begin
 end;
 
 
-function TForm1.DefineRequest: TSeriesSingleRequest;
-var
-  Request: TSeriesSingleRequest;
-  Ayanamsha: TAyanamshaSpec;
-begin
-  { TODO : Request is now retrieved from UnitProcess. It should be moved to a unit that is exchangeable. Same for response. }
-  //Request.Calendar := 1;
-  //if CbCalendar.ItemIndex = 1 then Request.Calendar := 0;
-  Request.Ayanamsha := CenCon.LookupValues.AllAyanamshas[CbAyanamsha.ItemIndex];
-  Request.Coordinate := CenCon.LookupValues.AllCoordinates[CbCoordinate.ItemIndex];
-  Request.CycleType := CenCon.LookupValues.AllCycleTypes[CbCycleType.ItemIndex];
-  //Request.StartDateTime := LblEdStartDate.Text;
-  //Request.EndDateTime := LblEdEndDate.Text;
-  //Request.StartJd := StartJD;
-  //Request.EndJd := EndJd;
-  //Request.Interval := StrToInt(LblEdInterval.Text);
-  Request.CelPoints := SelectedCelPoints;
-  Result := Request;
-end;
+//function TForm1.DefineRequest: TSeriesSingleRequestObs;
+//var
+//  Request: TSeriesSingleRequestObs;
+//  Ayanamsha: TAyanamshaSpec;
+//begin
+//  { TODO : Request is now retrieved from UnitProcess. It should be moved to a unit that is exchangeable. Same for response. }
+//  //Request.Calendar := 1;
+//  //if CbCalendar.ItemIndex = 1 then Request.Calendar := 0;
+//  Request.Ayanamsha := CenCon.LookupValues.AllAyanamshas[CbAyanamsha.ItemIndex];
+//  Request.Coordinate := CenCon.LookupValues.AllCoordinates[CbCoordinate.ItemIndex];
+//  Request.CycleType := CenCon.LookupValues.AllCycleTypes[CbCycleType.ItemIndex];
+//  //Request.StartDateTime := LblEdStartDate.Text;
+//  //Request.EndDateTime := LblEdEndDate.Text;
+//  //Request.StartJd := StartJD;
+//  //Request.EndJd := EndJd;
+//  //Request.Interval := StrToInt(LblEdInterval.Text);
+//  Request.CelPoints := SelectedCelPoints;
+//  Result := Request;
+//end;
 
 procedure TForm1.ProcessStartDate;
 var
@@ -346,23 +346,23 @@ end;
 
 procedure TForm1.BtnOkClick(Sender: TObject);
 var
-  Api: TTimeSeriesAPI;
-  Request: TSeriesSingleRequest;
-  Response: TSeriesResponse;
+  Api: TSeriesAPI;
+  //Request: TSeriesSingleRequestObs;
+  //Response: TSeriesResponseObs;
   DataFilename, MetaFileName: string;
 begin
   SgMeta.Clear;
   SgPositions.Clear;
-  Api := TTimeSeriesApi.Create;
-  Request := DefineRequest;
-  Response := Api.GetTimeSeries(Request);
-  MetaFileName := Response.FileNameMeta;
-  SgMeta.LoadFromCSVFile(MetaFileName, ';', True, 0, True);
-  DataFilename := Response.FileNameData;
-  FormGraph.DataFileName := Response.FileNameData;
-  SgPositions.LoadFromCSVFile(DataFileName, ';', True, 0, True);
-  FormGraph.Close;
-  FormGraph.Show;
+  //Api := TSeriesApi.Create;
+  //Request := DefineRequest;
+  //Response := Api. GetTimeSeries(Request);
+  //MetaFileName := Response.FileNameMeta;
+  //SgMeta.LoadFromCSVFile(MetaFileName, ';', True, 0, True);
+  //DataFilename := Response.FileNameData;
+  //FormGraph.DataFileName := Response.FileNameData;
+  //SgPositions.LoadFromCSVFile(DataFileName, ';', True, 0, True);
+  //FormGraph.Close;
+  //FormGraph.Show;
 end;
 
 

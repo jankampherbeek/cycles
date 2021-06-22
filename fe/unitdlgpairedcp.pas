@@ -147,6 +147,7 @@ begin
   RightSelect := AvailableCPs[CboxCPRight.ItemIndex];
   PairToAdd.FirstCP := LeftSelect;
   PairToAdd.SecondCP := RightSelect;
+  SetLength(SelectedPairs, IndexForSelectedPairs + 1);
   SelectedPairs[IndexForSelectedPairs] := PairtoAdd;
   DescrText := LeftSelect.Name + ' - ' + RightSelect.Name;
   case IndexForSelectedPairs of

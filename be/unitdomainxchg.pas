@@ -15,6 +15,7 @@ uses
 type
   TDoubleArray = array of double;
   TIntegerArray = array of integer;
+  TStringArray = array of string;
 
   TValidatedDate = record
     IsValid: boolean;
@@ -31,7 +32,7 @@ type
     SeId: integer;
     Identification, Name: string;
     FirstJd, LastJD: double;
-    GeoCentric, HelioCentric, Distance: Boolean;
+    GeoCentric, HelioCentric, Distance, Selected: Boolean;
   end;
 
   TCelPointPairedSpec = record
@@ -39,9 +40,9 @@ type
     SecondCP: TCelPointSpec;
   end;
 
-  TCelPointSpecArray = array[0..30] of TCelPointSpec;
+  TCelPointSpecArray = array [0..30] of TCelPointSpec;
 
-  TCelPointPairedSpecArray = array [0..12] of TCelPointPairedSpec;
+  TCelPointPairedSpecArray = array of TCelPointPairedSpec;
 
   TPeriod = record
     StartDate: TValidatedDate;
@@ -76,7 +77,7 @@ type
 
   TCycleDefinition = record
     JdStart, JdEnd: double;
-    Interval: integer;
+    Calendar, Interval: integer;
     CoordinateType: TCoordinateSpec;
     Ayanamsha: TAyanamshaSpec;
     CycleType: TCycleTypeSpec;

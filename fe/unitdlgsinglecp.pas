@@ -59,7 +59,6 @@ type
     procedure DefineCPs;
     function PeriodSupported(CpIndex: integer; StartJd, EndJd: double): boolean;
     procedure SaveState;
-    function SaveStateHelper(CpIndex, Count: integer): integer;
   public
 
   end;
@@ -153,46 +152,39 @@ procedure TFormDlgSingleCP.SaveState;
 var
   Count: integer;
 begin
-  Count := 0;
-  if (CbSun.Checked) then Count := SaveStateHelper(0, Count);
-  if (CbMoon.Checked) then Count := SaveStateHelper(1, Count);
-  if (CbMercury.Checked) then Count := SaveStateHelper(2, Count);
-  if (CbVenus.Checked) then Count := SaveStateHelper(3, Count);
-  if (CbMars.Checked) then Count := SaveStateHelper(4, Count);
-  if (CbJupiter.Checked) then Count := SaveStateHelper(5, Count);
-  if (CbSaturn.Checked) then Count := SaveStateHelper(6, Count);
-  if (CbUranus.Checked) then Count := SaveStateHelper(7, Count);
-  if (CbNeptune.Checked) then Count := SaveStateHelper(8, Count);
-  if (CbPluto.Checked) then Count := SaveStateHelper(9, Count);
-  if (CbMeanNode.Checked) then Count := SaveStateHelper(10, Count);
-  if (CbOscNode.Checked) then Count := SaveStateHelper(11, Count);
-  if (CbEarth.Checked) then Count := SaveStateHelper(12, Count);
-  if (CbChiron.Checked) then Count := SaveStateHelper(13, Count);
-  if (CbPholus.Checked) then Count := SaveStateHelper(14, Count);
-  if (CbCeres.Checked) then Count := SaveStateHelper(15, Count);
-  if (CbPallas.Checked) then Count := SaveStateHelper(16, Count);
-  if (CbJuno.Checked) then Count := SaveStateHelper(17, Count);
-  if (CbVesta.Checked) then Count := SaveStateHelper(18, Count);
-  if (CbNessus.Checked) then Count := SaveStateHelper(19, Count);
-  if (CbHuya.Checked) then Count := SaveStateHelper(20, Count);
-  if (CbMakeMake.Checked) then Count := SaveStateHelper(21, Count);
-  if (CbHaumea.Checked) then Count := SaveStateHelper(22, Count);
-  if (CbEris.Checked) then Count := SaveStateHelper(23, Count);
-  if (CbIxion.Checked) then Count := SaveStateHelper(24, Count);
-  if (CbOrcus.Checked) then Count := SaveStateHelper(25, Count);
-  if (CbQuaoar.Checked) then Count := SaveStateHelper(26, Count);
-  if (CbSedna.Checked) then Count := SaveStateHelper(27, Count);
-  if (CbVaruna.Checked) then Count := SaveStateHelper(28, Count);
-  if (CbMeanApogee.Checked) then Count := SaveStateHelper(29, Count);
-  if (CbTrueApogee.Checked) then Count := SaveStateHelper(30, Count);
+  SelectedCPs:= AllCPs;
+  SelectedCPs[0].Selected:= CbSun.Checked;
+  SelectedCPs[1].Selected:= CbMoon.Checked;
+  SelectedCPs[2].Selected:= CbMercury.Checked;
+  SelectedCPs[3].Selected:= CbVenus.Checked;
+  SelectedCPs[4].Selected:= CbMars.Checked;
+  SelectedCPs[5].Selected:= CbJupiter.Checked;
+  SelectedCPs[6].Selected:= CbSaturn.Checked;
+  SelectedCPs[7].Selected:= CbUranus.Checked;
+  SelectedCPs[8].Selected:= CbNeptune.Checked;
+  SelectedCPs[9].Selected:= CbPluto.Checked;
+  SelectedCPs[10].Selected:= CbMeanNode.Checked;
+  SelectedCPs[11].Selected:= CbOscNode.Checked;
+  SelectedCPs[12].Selected:= CbEarth.Checked;
+  SelectedCPs[13].Selected:= CbChiron.Checked;
+  SelectedCPs[14].Selected:= CbPholus.Checked;
+  SelectedCPs[15].Selected:= CbCeres.Checked;
+  SelectedCPs[16].Selected:= CbPallas.Checked;
+  SelectedCPs[17].Selected:= CbJuno.Checked;
+  SelectedCPs[18].Selected:= CbVesta.Checked;
+  SelectedCPs[19].Selected:= CbNessus.Checked;
+  SelectedCPs[20].Selected:= CbHuya.Checked;
+  SelectedCPs[21].Selected:= CbMakeMake.Checked;
+  SelectedCPs[22].Selected:= CbHaumea.Checked;
+  SelectedCPs[23].Selected:= CbEris.Checked;
+  SelectedCPs[24].Selected:= CbIxion.Checked;
+  SelectedCPs[25].Selected:= CbOrcus.Checked;
+  SelectedCPs[26].Selected:= CbQuaoar.Checked;
+  SelectedCPs[27].Selected:= CbSedna.Checked;
+  SelectedCPs[28].Selected:= CbVaruna.Checked;
+  SelectedCPs[29].Selected:= CbMeanApogee.Checked;
+  SelectedCPs[30].Selected:= CbTrueApogee.Checked;
   StateMachine.SingleCPs := SelectedCPs;
-end;
-
-function TFormDlgSingleCP.SaveStateHelper(CpIndex, Count: integer): integer;
-begin
-  SelectedCPs[Count] := AllCPs[CpIndex];
-  Inc(Count);
-  Result := Count;
 end;
 
 end.

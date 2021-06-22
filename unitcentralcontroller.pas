@@ -10,14 +10,14 @@ unit unitcentralcontroller;
 interface
 
 uses
-  Classes, Forms, SysUtils, unitdomainxchg, unitinit;
+  Classes, Forms, SysUtils, unitapi, unitdomainxchg, unitinit, unitreqresp;
 
 type
 
   TStates = (Init, Started, Cancelled, DefiningCycleType, DefiningCoordinate, DefiningPeriod, DefiningSingleCP,
     DefiningPairedCP, Confirming, Calculating);
   TStateMessages = (Start, Cancel, CycleTypeDefined, CoordinateDefined, PeriodDefined,
-    PairedCPDefined, SingleCPDefined);
+    PairedCPDefined, SingleCPDefined, Confirmed);
 
   TCenCon = class
   strict private
@@ -40,6 +40,8 @@ type
     FPairedCPs: TCelPointPairedSpecArray;
     CurrentState: TStates;
     CurrentForm: TForm;
+    SeriesAPI: TSeriesAPI;
+    function CreateRequest: TSeriesRequest;
   public
     constructor Create;
     property Ayanamsha: TAyanamshaSpec read FAyanamsha write FAyanamsha;
@@ -56,7 +58,7 @@ type
 
 implementation
 
-uses UnitDlgCoordinate, UnitDlgCycleType, UnitDlgPeriod, unitdlgsinglecp, unitdlgpairedcp, unitdlgconfirm;
+uses unitdlgconfirm, UnitDlgCoordinate, UnitDlgCycleType, unitdlgpairedcp, UnitDlgPeriod, unitdlgsinglecp;
 
 var
   CenConSingleton: TCenCon = nil;
@@ -64,17 +66,32 @@ var
 
 { TFinStateMachine }
 
+function TFinStateMachine.CreateRequest: TSeriesRequest;
+var
+  Request: TSeriesRequest;
+begin
+  if (CycleType.Identification = 'Position') then
+    Request := TSeriesSingleRequest.Create(Period, CycleType, Ayanamsha, Coordinate, ObserverPos, SingleCPs)
+  else
+    Request := TSeriesPairedRequest.Create(Period, CycleType, Ayanamsha, Coordinate, ObserverPos, PairedCPs);
+  Result := Request;
+end;
+
 constructor TFinStateMachine.Create;
 begin
   if not (Assigned(FinStateMachineSingleton)) then begin
     inherited;
     FinStateMachineSingleton := self;
     CurrentState := Init;
+    SeriesAPI := TSeriesAPI.Create;
   end else
     self := FinStateMachineSingleton;
 end;
 
 procedure TFinStateMachine.ChangeState(Message: TStateMessages);
+var
+  Request: TSeriesRequest;
+  Response: TSeriesResponse;
 begin
   case Message of
     Start: begin
@@ -86,26 +103,31 @@ begin
       FormDlgCoordinate.ShowModal;
     end;
     CoordinateDefined: begin
-      CurrentState:= DefiningPeriod;
+      CurrentState := DefiningPeriod;
       FormDlgPeriod.ShowModal;
     end;
-    PeriodDefined: begin
-      if ((CycleType.Identification = 'Position') or (CycleType.Identification = 'Frequency')) then begin
-        CurrentState:= DefiningSingleCP;
+    PeriodDefined: if (CycleType.Identification = 'Position') then begin
+        CurrentState := DefiningSingleCP;
         FormDlgSingleCP.ShowModal;
       end else begin
-        CurrentState:= DefiningPairedCP;
+        CurrentState := DefiningPairedCP;
         FormDlgPairedCP.ShowModal;
       end;
-    end;
     PairedCpDefined, SingleCPDefined: begin
-      CurrentState:= Confirming;
+      CurrentState := Confirming;
       FormDlgConfirm.ShowModal;
+    end;
+    Confirmed: begin
+      Request := CreateRequest;
+      Response := SeriesAPI.GetSeries(Request);
+
+      // show results
+
     end;
 
   end;
-
 end;
+
 
 constructor TCenCon.Create;
 begin

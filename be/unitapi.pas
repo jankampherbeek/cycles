@@ -8,76 +8,74 @@ unit UnitAPI;
 
 interface
 
-uses Classes, SysUtils, UnitProcess, UnitReqResp;
+uses Classes, SysUtils, unitdomainxchg, UnitProcess, UnitReqResp;
 
 type
+
+
+
+
+  { API for series. }
 
   { TSeriesAPI }
 
   TSeriesAPI = class
   strict private
-    Handler: TSeriesHandler;
+    Series: TSeries;
   public
     constructor Create;
     destructor Destroy; override;
-    function GetSeriesForSingleCPs(request: TSeriesSingleRequest): TSeriesResponse;
-    function GetSeriesForPairedCPs(request: TSeriesPairedRequest): TSeriesResponse;
-  end;
-
-
-  { Handles requests for the calculation of timeseries. }
-  TTimeSeriesAPI = class
-  strict private
-    Handler: TSeriesHandler;
-  public
-    constructor Create;
-    destructor Destroy; override;
-    function GetTimeSeries(request: TSeriesSingleRequest): TSeriesResponse;
+    function GetSeries(request: TSeriesRequest): TSeriesResponse;
   end;
 
 
 implementation
 
+
+uses
+  UnitAstron, UnitConversions;
+
 { TSeriesAPI }
 
 constructor TSeriesAPI.Create;
 begin
-  Handler:= TSeriesHandler.Create;
+  //Handler := TSeriesHandler.Create;
 end;
 
 destructor TSeriesAPI.Destroy;
 begin
-  FreeAndNil(Handler);
+  //FreeAndNil(Handler);
   inherited Destroy;
 end;
 
-function TSeriesAPI.GetSeriesForSingleCPs(request: TSeriesSingleRequest): TSeriesResponse;
+function TSeriesAPI.GetSeries(Request: TSeriesRequest): TSeriesResponse;
+var
+  Ephemeris: TEphemeris;
+  JulianDayConversion: TJulianDayConversion;
+  FloatingToDecimalDegreeConversion: TFloatingToDecimalDegreeConversion;
+  CycleDefinition: TCycleDefinition;
+  Response: TSeriesResponse;
 begin
+  CycleDefinition.JdStart:= Request.Period.StartDate.JulianDay;
+  CycleDefinition.JdEnd:= Request.Period.EndDate.JulianDay;
+  CycleDefinition.Calendar:= Request.Period.StartDate.Calendar;
+  CycleDefinition.Interval:= Request.Period.Interval;
+  CycleDefinition.CoordinateType:= Request.Coordinate;
+  CycleDefinition.Ayanamsha:= Request.Ayanamsha;
+  CycleDefinition.CycleType:= Request.CycleType;
+  CycleDefinition.ObserverPos:= Request.ObserverPos;
 
+  Ephemeris:= TEphemeris.Create;
+  JulianDayConversion:= TJulianDayConversion.Create(Ephemeris.SeFrontend);
+  FloatingToDecimalDegreeConversion:= TFloatingToDecimalDegreeConversion.Create;
+  Series:= TSeries.Create(Ephemeris, JulianDayConversion, FloatingToDecimalDegreeConversion);
+  if (CycleDefinition.CycleType.Identification = 'Position') then
+    Response:= Series.HandleCycle(CycleDefinition, (Request as TSeriesSingleRequest).CelPoints)
+  else Response:= Series.HandleCycle(CycleDefinition, (Request as TSeriesPairedRequest).CelPointPairs);
+  Result:= Response;
 end;
 
-function TSeriesAPI.GetSeriesForPairedCPs(request: TSeriesPairedRequest): TSeriesResponse;
-begin
 
-end;
-
-{ TTimeSeriesAPI ----------------------------------------------------------------------------------------------------- }
-
-constructor TTimeSeriesAPI.Create;
-begin
-  Handler := TSeriesHandler.Create;
-end;
-
-destructor TTimeSeriesAPI.Destroy;
-begin
-  FreeAndNil(Handler);
-  inherited;
-end;
-
-function TTimeSeriesAPI.GetTimeSeries(request: TSeriesSingleRequest): TSeriesResponse;
-begin
-  //Result := Handler.HandleRequest(Request);
-end;
 
 end.
 

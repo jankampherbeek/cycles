@@ -6,7 +6,7 @@ uses
   Interfaces, Forms, GuiTestRunner, test_astron, UnitAstron, swissdelphi,
   unitdomainxchg, UnitProcess, test_process, UnitAPI, UnitConversions,
   test_conversions, UnitInit, UnitValidation, UnitReqResp, test_init,
-  test_validation;
+  test_validation, test_api, test_reqresp;
 
 {$R *.res}
 

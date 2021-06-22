@@ -32,6 +32,9 @@ type
     LblStartDate: TLabel;
     LblStartDateValue: TLabel;
     LblTitle: TLabel;
+    procedure BtnCancelClick(Sender: TObject);
+    procedure BtnConfirmClick(Sender: TObject);
+    procedure BtnHelpClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     CenCon: TCenCon;
@@ -59,6 +62,23 @@ begin
   CenCon := TCenCon.Create;
   StateMachine := TFinStateMachine.Create;
   Populate;
+end;
+
+procedure TFormDlgConfirm.BtnConfirmClick(Sender: TObject);
+begin
+    Hide;
+  StateMachine.ChangeState(Confirmed);
+end;
+
+procedure TFormDlgConfirm.BtnCancelClick(Sender: TObject);
+begin
+    Close;
+  StateMachine.ChangeState(Cancel);
+end;
+
+procedure TFormDlgConfirm.BtnHelpClick(Sender: TObject);
+begin
+    ShowMessage('To be replaced with help');
 end;
 
 procedure TFormDlgConfirm.Populate;
@@ -101,7 +121,7 @@ begin
 
   for i := 0 to Length(CelPoints) - 1 do begin
     CpName := CelPoints[i].Name;
-    if (Length(CpName) > 1) then begin
+    if (CelPoints[i].Selected) then begin
       Inc(Count);
       if (Count > 4) then begin
         CpText := CpText + LineEnding;

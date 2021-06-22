@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="23">
+    <Units Count="26">
       <Unit0>
         <Filename Value="cycles.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -18,9 +18,9 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="321"/>
-        <CursorPos X="93" Y="331"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="326"/>
+        <CursorPos Y="350"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -36,15 +36,16 @@
         <Filename Value="be\unitastron.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitAstron"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="16" Y="119"/>
+        <EditorIndex Value="5"/>
+        <CursorPos Y="6"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="be\unitdomainxchg.pas"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="12" Y="4"/>
+        <TopLine Value="10"/>
+        <CursorPos X="36" Y="45"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
       </Unit4>
@@ -52,11 +53,9 @@
         <Filename Value="be\unitprocess.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitProcess"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="141"/>
-        <CursorPos X="113" Y="110"/>
-        <FoldState Value=" T3mI05012 TMnN0M111^"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="261"/>
+        <CursorPos X="113" Y="268"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -64,8 +63,9 @@
         <Filename Value="be\unitapi.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitAPI"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="68" Y="77"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="46"/>
+        <CursorPos X="68" Y="67"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -73,7 +73,7 @@
         <Filename Value="be\unitconversions.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitConversions"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="18" Y="13"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -82,8 +82,9 @@
         <Filename Value="be\unitreqresp.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitReqResp"/>
-        <EditorIndex Value="4"/>
-        <CursorPos X="30" Y="27"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="77"/>
+        <CursorPos X="43" Y="105"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit8>
@@ -101,8 +102,9 @@
         <Filename Value="be\unitinit.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitInit"/>
-        <EditorIndex Value="8"/>
-        <CursorPos X="94" Y="116"/>
+        <EditorIndex Value="15"/>
+        <TopLine Value="70"/>
+        <CursorPos X="57" Y="116"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
@@ -115,8 +117,9 @@
       <Unit11>
         <Filename Value="unitcentralcontroller.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
-        <CursorPos X="106" Y="59"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="65"/>
+        <CursorPos X="62" Y="109"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
       </Unit11>
@@ -143,9 +146,10 @@
       <Unit14>
         <Filename Value="unitrs.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="3"/>
         <CursorPos X="26" Y="16"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="191"/>
+        <Loaded Value="True"/>
       </Unit14>
       <Unit15>
         <Filename Value="fe\unitdlgcycletype.pas"/>
@@ -154,10 +158,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnitDlgCycleType"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="64"/>
-        <CursorPos X="48" Y="75"/>
-        <UsageCount Value="116"/>
+        <EditorIndex Value="14"/>
+        <TopLine Value="46"/>
+        <CursorPos Y="73"/>
+        <UsageCount Value="157"/>
+        <Loaded Value="True"/>
       </Unit15>
       <Unit16>
         <Filename Value="fe\unitdlgcoordinate.pas"/>
@@ -169,7 +174,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="46"/>
         <CursorPos X="69" Y="53"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="153"/>
       </Unit16>
       <Unit17>
         <Filename Value="fe\unitdlgperiod.pas"/>
@@ -181,7 +186,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="106"/>
         <CursorPos X="68" Y="118"/>
-        <UsageCount Value="101"/>
+        <UsageCount Value="142"/>
       </Unit17>
       <Unit18>
         <Filename Value="fe\unitdlgsinglecp.pas"/>
@@ -189,10 +194,11 @@
         <ComponentName Value="FormDlgSingleCP"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="106"/>
-        <CursorPos X="45" Y="113"/>
-        <UsageCount Value="87"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="148"/>
+        <CursorPos Y="156"/>
+        <UsageCount Value="128"/>
+        <Loaded Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="fe\unitdlgpairedcp.pas"/>
@@ -200,10 +206,11 @@
         <ComponentName Value="FormDlgPairedCP"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="28"/>
-        <CursorPos Y="71"/>
-        <UsageCount Value="67"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="130"/>
+        <CursorPos X="84" Y="155"/>
+        <UsageCount Value="108"/>
+        <Loaded Value="True"/>
       </Unit19>
       <Unit20>
         <Filename Value="fe\unitdlgconfirm.pas"/>
@@ -211,145 +218,169 @@
         <ComponentName Value="FormDlgConfirm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="98"/>
-        <CursorPos X="11" Y="134"/>
-        <UsageCount Value="62"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="13"/>
+        <TopLine Value="102"/>
+        <CursorPos X="30" Y="124"/>
+        <UsageCount Value="103"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit20>
       <Unit21>
-        <Filename Value="copyright-template.txt"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="20"/>
-        <DefaultSyntaxHighlighter Value="None"/>
+        <Filename Value="unitconst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitConst"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="32" Y="27"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
       </Unit21>
       <Unit22>
+        <Filename Value="copyright-template.txt"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="15"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit22>
+      <Unit23>
         <Filename Value="C:\lazarus32\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2294"/>
         <CursorPos Y="2326"/>
-        <UsageCount Value="1"/>
-      </Unit22>
+        <UsageCount Value="6"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="D:\dev2harvest\dev-oud\fpprojects\enigmaproject\enigma\src\backend\shared\besharedhandlers.pas"/>
+        <UnitName Value="BeSharedHandlers"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="7"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="test\test_api.pas"/>
+        <EditorIndex Value="10"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit25>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="296" Column="74" TopLine="248"/>
+        <Caret Line="193" Column="38" TopLine="175"/>
       </Position1>
       <Position2>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="92" TopLine="62"/>
+        <Filename Value="fe\unitdlgpairedcp.pas"/>
+        <Caret Line="150" Column="54" TopLine="130"/>
       </Position2>
       <Position3>
-        <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="93" Column="27" TopLine="43"/>
+        <Filename Value="unitcentralcontroller.pas"/>
+        <Caret Line="109" Column="62" TopLine="65"/>
       </Position3>
       <Position4>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="360" Column="46" TopLine="313"/>
+        <Caret Line="69"/>
       </Position4>
       <Position5>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="361" Column="46" TopLine="327"/>
+        <Caret Line="88" Column="48" TopLine="59"/>
       </Position5>
       <Position6>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="92" TopLine="44"/>
+        <Caret Line="90" Column="28" TopLine="84"/>
       </Position6>
       <Position7>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="160" Column="3" TopLine="132"/>
+        <Caret Line="88" Column="33" TopLine="52"/>
       </Position7>
       <Position8>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="363" Column="35" TopLine="323"/>
+        <Caret Line="24" Column="34"/>
       </Position8>
       <Position9>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="51"/>
+        <Caret Line="13" Column="85" TopLine="2"/>
       </Position9>
       <Position10>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="139" Column="111" TopLine="122"/>
+        <Caret Line="66" Column="32" TopLine="44"/>
       </Position10>
       <Position11>
-        <Filename Value="be\unitreqresp.pas"/>
-        <Caret Line="27" Column="30"/>
+        <Filename Value="be\unitprocess.pas"/>
+        <Caret Line="25" Column="17" TopLine="4"/>
       </Position11>
       <Position12>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="158" Column="17" TopLine="124"/>
+        <Caret Line="152" TopLine="128"/>
       </Position12>
       <Position13>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="166" Column="30" TopLine="135"/>
+        <Caret Line="154" Column="99" TopLine="111"/>
       </Position13>
       <Position14>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="407" Column="84" TopLine="377"/>
+        <Caret Line="231" Column="60" TopLine="212"/>
       </Position14>
       <Position15>
-        <Filename Value="unitstart.pas"/>
-        <Caret Line="57" Column="42" TopLine="28"/>
+        <Filename Value="be\unitprocess.pas"/>
+        <Caret Line="103" Column="49" TopLine="83"/>
       </Position15>
       <Position16>
-        <Filename Value="be\unitapi.pas"/>
-        <Caret Line="35" Column="57" TopLine="5"/>
+        <Filename Value="be\unitprocess.pas"/>
+        <Caret Line="30" Column="40"/>
       </Position16>
       <Position17>
-        <Filename Value="be\unitapi.pas"/>
-        <Caret Line="77" Column="68" TopLine="47"/>
+        <Filename Value="be\unitprocess.pas"/>
+        <Caret Line="266" Column="24" TopLine="239"/>
       </Position17>
       <Position18>
-        <Filename Value="unitstart.pas"/>
-        <Caret Line="254" TopLine="214"/>
+        <Filename Value="be\unitprocess.pas"/>
+        <Caret Line="102" Column="46" TopLine="73"/>
       </Position18>
       <Position19>
-        <Filename Value="unitstart.pas"/>
-        <Caret Line="249" Column="13" TopLine="219"/>
+        <Filename Value="be\unitprocess.pas"/>
+        <Caret Line="30" Column="69"/>
       </Position19>
       <Position20>
-        <Filename Value="unitstart.pas"/>
-        <Caret Line="252" Column="22" TopLine="222"/>
+        <Filename Value="be\unitprocess.pas"/>
+        <Caret Line="275" Column="7" TopLine="253"/>
       </Position20>
       <Position21>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="50" Column="25"/>
+        <Caret Line="278" Column="37" TopLine="256"/>
       </Position21>
       <Position22>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="183" Column="27" TopLine="152"/>
+        <Caret Line="279" Column="115" TopLine="257"/>
       </Position22>
       <Position23>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="179" TopLine="131"/>
+        <Caret Line="281" Column="34" TopLine="248"/>
       </Position23>
       <Position24>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="171" Column="11" TopLine="136"/>
+        <Caret Line="280" Column="57" TopLine="258"/>
       </Position24>
       <Position25>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="169" Column="20" TopLine="140"/>
+        <Caret Line="286" Column="19" TopLine="243"/>
       </Position25>
       <Position26>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="170" Column="34" TopLine="118"/>
+        <Caret Line="287" Column="9" TopLine="258"/>
       </Position26>
       <Position27>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="50" Column="14" TopLine="17"/>
+        <Caret Line="25" Column="28" TopLine="6"/>
       </Position27>
       <Position28>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="133" Column="16" TopLine="126"/>
+        <Caret Line="283" Column="41" TopLine="243"/>
       </Position28>
       <Position29>
         <Filename Value="be\unitprocess.pas"/>
-        <Caret Line="126" Column="46" TopLine="100"/>
+        <Caret Line="117" Column="39" TopLine="95"/>
       </Position29>
       <Position30>
-        <Filename Value="be\unitdomainxchg.pas"/>
-        <Caret Line="4"/>
+        <Filename Value="fe\unitdlgconfirm.pas"/>
+        <Caret Line="124" Column="17" TopLine="101"/>
       </Position30>
     </JumpHistory>
     <RunParams>
@@ -358,10 +389,19 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <Watches Count="1">
+    <Watches Count="4">
       <Item1>
-        <Expression Value="Period"/>
+        <Expression Value="i"/>
       </Item1>
+      <Item2>
+        <Expression Value="debugName"/>
+      </Item2>
+      <Item3>
+        <Expression Value="CsvHeader"/>
+      </Item3>
+      <Item4>
+        <Expression Value="CelPOints[i]"/>
+      </Item4>
     </Watches>
   </Debugging>
 </CONFIG>
