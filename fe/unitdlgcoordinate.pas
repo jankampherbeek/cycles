@@ -20,6 +20,7 @@ type
     procedure BtnCancelClick(Sender: TObject);
     procedure BtnContinueClick(Sender: TObject);
     procedure BtnHelpClick(Sender: TObject);
+    procedure CbCoordinateEditingDone(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     CenCon: TCenCon;
@@ -43,6 +44,7 @@ uses
 
 var
   SelectedCoordinate: TCoordinateSpec;
+  AllCoordinates: TCoordinateSpecArray;
 
 procedure TFormDlgCoordinate.FormShow(Sender: TObject);
 begin
@@ -74,10 +76,17 @@ begin
   ShowMessage('To be replaced with help');
 end;
 
+procedure TFormDlgCoordinate.CbCoordinateEditingDone(Sender: TObject);
+  var
+    Index: Integer;
+  begin
+    Index:= CbCoordinate.ItemIndex;
+    SelectedCoordinate:= AllCoordinates[Index];
+end;
+
 
 procedure TFormDlgCoordinate.DefineCoordinateItems;
 var
-  AllCoordinates: TCoordinateSpecArray;
   i, NrOfCoordinates: integer;
   var ObserverPos, Coordinate: string;
 begin

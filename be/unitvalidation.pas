@@ -44,7 +44,7 @@ var
   ValidatedDate: TValidatedDate;
   ValidatedJulianDay: TValidatedJulianDay;
 begin
-  Valid := True;
+       Valid := True;
   SplittedInput := SplitString(DateText, '/');
   Val(SplittedInput[0], Year, ErrorCode);
   if ErrorCode <> 0 then Valid := False;

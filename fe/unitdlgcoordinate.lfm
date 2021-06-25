@@ -1,7 +1,7 @@
 object FormDlgCoordinate: TFormDlgCoordinate
-  Left = 398
+  Left = 219
   Height = 360
-  Top = 523
+  Top = 696
   Width = 500
   Caption = 'FormDlgCoordinate'
   ClientHeight = 360
@@ -30,6 +30,7 @@ object FormDlgCoordinate: TFormDlgCoordinate
     Top = 128
     Width = 430
     ItemHeight = 25
+    OnEditingDone = CbCoordinateEditingDone
     Style = csDropDownList
     TabOrder = 0
   end

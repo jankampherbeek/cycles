@@ -61,13 +61,14 @@ type
   strict private
     FErrors: boolean;
     FErrorText: string;
-    FFileNameData, FFileNameMeta: string;
+    FFilenameData, FFilenameFreq, FFilenameMeta: string;
   public
-    constructor Create(PFilenameData, PFilenameMeta, PErrorText: string; PErrors: boolean);
+    constructor Create(PFilenameData, PFilenameFreq, PFilenameMeta, PErrorText: string; PErrors: boolean);
     property Errors: boolean read FErrors;
     property ErrorText: string read FErrorText;
-    property FilenameData: string read FFileNameData;
-    property FileNameMeta: string read FFileNameMeta;
+    property FilenameData: string read FFilenameData;
+    property FilenameFreq: string read FFilenameFreq;
+    property FilenameMeta: string read FFilenameMeta;
   end;
 
 
@@ -76,10 +77,11 @@ implementation
 
 { TSeriesResponse }
 
-constructor TSeriesResponse.Create(PFilenameData, PFilenameMeta, PErrorText: string; PErrors: boolean);
+constructor TSeriesResponse.Create(PFilenameData, PFilenameFreq, PFilenameMeta, PErrorText: string; PErrors: boolean);
 begin
-  FFileNameData := PFilenameData;
-  FFileNameMeta := PFilenameMeta;
+  FFilenameData := PFilenameData;
+  FFilenameFreq := PFilenameFreq;
+  FFilenameMeta := PFilenameMeta;
   FErrorText := PErrorText;
   FErrors := PErrors;
 end;

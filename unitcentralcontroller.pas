@@ -14,9 +14,9 @@ uses
 
 type
 
-  TStates = (Init, Started, Cancelled, DefiningCycleType, DefiningCoordinate, DefiningPeriod, DefiningSingleCP,
+  TStates = (Initialized, Started, Cancelled, DefiningCycleType, DefiningCoordinate, DefiningPeriod, DefiningSingleCP,
     DefiningPairedCP, Confirming, Calculating);
-  TStateMessages = (Start, Cancel, CycleTypeDefined, CoordinateDefined, PeriodDefined,
+  TStateMessages = (Init, Start, Cancel, CycleTypeDefined, CoordinateDefined, PeriodDefined,
     PairedCPDefined, SingleCPDefined, Confirmed);
 
   TCenCon = class
@@ -39,7 +39,6 @@ type
     FSingleCPs: TCelPointSpecArray;
     FPairedCPs: TCelPointPairedSpecArray;
     CurrentState: TStates;
-    CurrentForm: TForm;
     SeriesAPI: TSeriesAPI;
     function CreateRequest: TSeriesRequest;
   public
@@ -58,7 +57,7 @@ type
 
 implementation
 
-uses unitdlgconfirm, UnitDlgCoordinate, UnitDlgCycleType, unitdlgpairedcp, UnitDlgPeriod, unitdlgsinglecp;
+uses unitmain, unitdlgconfirm, UnitDlgCoordinate, UnitDlgCycleType, unitdlgpairedcp, UnitDlgPeriod, unitdlgsinglecp;
 
 var
   CenConSingleton: TCenCon = nil;
@@ -82,7 +81,7 @@ begin
   if not (Assigned(FinStateMachineSingleton)) then begin
     inherited;
     FinStateMachineSingleton := self;
-    CurrentState := Init;
+    CurrentState := Initialized;
     SeriesAPI := TSeriesAPI.Create;
   end else
     self := FinStateMachineSingleton;
@@ -94,7 +93,20 @@ var
   Response: TSeriesResponse;
 begin
   case Message of
+    Init: begin
+        CurrentState:= Initialized;
+    end;
     Start: begin
+      // recreate forms
+      FormMain:= TFormMain.Create(Nil);
+      FormDlgCycleType := TFormDlgCycleType.Create(Nil);
+      FormDlgCoordinate := TFormDlgCoordinate.Create(Nil);
+      FormDlgPeriod:= TFormDlgPeriod.Create(Nil);
+      FormDlgSingleCP:= TFormDlgSingleCP.Create(Nil);
+      FormDlgPairedCP:= TFormDlgPairedCP.Create(Nil);
+      FormDlgConfirm:= TFormDlgConfirm.Create(Nil);
+
+
       CurrentState := DefiningCycleType;
       FormDlgCycleType.ShowModal;
     end;
@@ -115,16 +127,15 @@ begin
       end;
     PairedCpDefined, SingleCPDefined: begin
       CurrentState := Confirming;
-      FormDlgConfirm.ShowModal;
+      FormDlgConfirm.Show;
     end;
     Confirmed: begin
       Request := CreateRequest;
       Response := SeriesAPI.GetSeries(Request);
-
-      // show results
-
+      FormMain.Visible:= False;
+      FormMain.Populate(Response.FilenameData, Response.FilenameMeta);
+      FormMain.ShowModal;
     end;
-
   end;
 end;
 

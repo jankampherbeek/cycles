@@ -12,6 +12,13 @@ interface
 uses
   Classes, SysUtils, Types, unitastron, UnitConversions, unitdomainxchg, UnitReqResp;
 
+const
+  SEMI_COLON = ';';
+  SEMI_COL_SPACE = '; ';
+  DATAFILE_POSTFIX = '_data.csv';
+  METAFILE_POSTFIX = '_meta.csv';
+  FREQFILE_POSTFIX = '_freq.csv';
+
 type
 
   { TSeries }
@@ -22,6 +29,8 @@ type
     FJulianDayConversion: TJulianDayConversion;
     FEphemeris: TEphemeris;
     Frequencies: TIntegerDynArray;
+    FilenameData, FilenameFreq, FilenameMeta, ErrorText: string;
+    Errors: boolean;
     procedure InitFrequency(PCycleDefinition: TCycleDefinition);
     procedure HandleFrequency(Position: double; Coordinate: TCoordinateSpec);
     procedure WriteCsvFile(CycleDefinition: TCycleDefinition; CelPoints: TCelPointSpecArray);
@@ -86,21 +95,25 @@ end;
 
 function TSeries.HandleCycle(PCycleDefinition: TCycleDefinition; PCelPoints: TCelPointSpecArray): TSeriesResponse;
 begin
+  Errors:= false;
+  ErrorText:= '';
   InitFrequency(PCycleDefinition);
   WriteCsvFile(PCycleDefinition, PCelPoints);
   WriteMetaFile(PCycleDefinition);
   WriteFrequenciesFile(PCycleDefinition);
-  // create response
+  Result:= TSeriesResponse.Create(FilenameData, FilenameFreq, FilenameMeta, ErrorText, Errors);
 end;
 
 function TSeries.HandleCycle(PCycleDefinition: TCycleDefinition;
   PCelPointPairs: TCelPointPairedSpecArray): TSeriesResponse;
 begin
+    Errors:= false;
+  ErrorText:= '';
   InitFrequency(PCycleDefinition);
   WriteCsvFile(PCycleDefinition, PCelPointPairs);
   WriteMetaFile(PCycleDefinition);
   WriteFrequenciesFile(PCycleDefinition);
-  // create response
+  Result:= TSeriesResponse.Create(FilenameData, FilenameFreq, FilenameMeta, ErrorText, Errors);
 end;
 
 procedure TSeries.InitFrequency(PCycleDefinition: TCycleDefinition);
@@ -108,13 +121,17 @@ var
   i: integer;
 begin
   case PCycleDefinition.CoordinateType.Identification of
-    'Longitude': SetLength(Frequencies, MAX_INDEX_LON - MIN_INDEX_LON + 1);
-    'Latitude': SetLength(Frequencies, MAX_INDEX_LAT - MIN_INDEX_LAT + 1);
-    'RightAsc': SetLength(Frequencies, MAX_INDEX_RA - MIN_INDEX_RA + 1);
-    'Decl': SetLength(Frequencies, MAX_INDEX_DECL - MIN_INDEX_DECL + 1);
-    else SetLength(Frequencies, 0);
+    COORD_LONG: SetLength(Frequencies, MAX_INDEX_LON - MIN_INDEX_LON + 1);
+    COORD_LAT: SetLength(Frequencies, MAX_INDEX_LAT - MIN_INDEX_LAT + 1);
+    COORD_RA: SetLength(Frequencies, MAX_INDEX_RA - MIN_INDEX_RA + 1);
+    COORD_DECL: SetLength(Frequencies, MAX_INDEX_DECL - MIN_INDEX_DECL + 1);
+    else begin
+      SetLength(Frequencies, 0);
+      Errors:= true;
+      ErrorText:= ErrorText + 'Wrong coordinate while initializing frequency: ' + PCycleDefinition.CoordinateType.Identification;
+    end;
   end;
-  for i:= 0 to Length(Frequencies) - 1 do Frequencies[i]:= 0;
+  for i := 0 to Length(Frequencies) - 1 do Frequencies[i] := 0;
 end;
 
 procedure TSeries.HandleFrequency(Position: double; Coordinate: TCoordinateSpec);
@@ -123,11 +140,15 @@ var
 begin
   IntegerPos := Ceil(Position);
   case Coordinate.Identification of
-    'Longitude': Index := IntegerPos - MIN_INDEX_LON;
-    'Latitude': Index := IntegerPos - MIN_INDEX_LAT;
-    'RightAsc': Index := IntegerPos - MIN_INDEX_RA;
-    'Decl': Index := IntegerPos - MIN_INDEX_DECL;
-    else Index := -1;
+    COORD_LONG: Index := IntegerPos - MIN_INDEX_LON;
+    COORD_LAT: Index := IntegerPos - MIN_INDEX_LAT;
+    COORD_RA: Index := IntegerPos - MIN_INDEX_RA;
+    COORD_DECL: Index := IntegerPos - MIN_INDEX_DECL;
+    else begin
+      Index := -1;
+      Errors:= true;
+      ErrorText:= ErrorText + 'Wrong coordinate while calculating frequency: ' + Coordinate.Identification;
+    end;
   end;
   if (Index >= 0) then Inc(Frequencies[Index]);
 end;
@@ -135,7 +156,7 @@ end;
 
 procedure TSeries.WriteCsvFile(CycleDefinition: TCycleDefinition; CelPoints: TCelPointSpecArray);
 var
-  CsvFilename, CsvHeader, CsvLine, DateTimeText, PositionText: string;
+  CsvHeader, CsvLine, DateTimeText, PositionText: string;
   CsvFile: TextFile;
   Position, CurrentJd: double;
   SeFlags: TSeFlags;
@@ -146,29 +167,29 @@ begin
   SeFlags := TSeFlags.Create(CycleDefinition.CoordinateType, CycleDefinition.Ayanamsha);
   Flags := SeFlags.FlagsValue;
   CurrentJd := CycleDefinition.JdStart;
-  try
-    CsvFilename := CycleDefinition.CoordinateType.Name + '_data.csv';
-    AssignFile(CsvFile, CsvFilename);
+  try             { TODO : add exception branch for creating errortext }
+    FilenameData := CycleDefinition.CoordinateType.Name + DATAFILE_POSTFIX;
+    AssignFile(CsvFile, FilenameData);
     CsvHeader := Concat('Date; Julian Day nr;');
     for i := 0 to Length(CelPoints) - 1 do if (CelPoints[i].Selected) then
-        CsvHeader := CsvHeader + CelPoints[i].Name + ';';
+        CsvHeader := CsvHeader + CelPoints[i].Name + SEMI_COLON;
     rewrite(CsvFile);
     writeLn(CsvFile, CsvHeader);
     repeat
-      DateTimeText := FJulianDayConversion.ConvertJdToDateText(CycleDefinition.JdStart, CycleDefinition.Calendar);
+      DateTimeText := FJulianDayConversion.ConvertJdToDateText(CurrentJd, CycleDefinition.Calendar);
       PositionText := '';
       for i := 0 to Length(CelPoints) - 1 do if (CelPoints[i].Selected) then begin
           FullPosForCoordinate := FEphemeris.CalcCelPoint(CurrentJD, CelPoints[i].SeId, flags);
           case CycleDefinition.CoordinateType.Identification of
-            'Longitude', 'RightAsc': Position := FullPosForCoordinate.MainPos;
-            'Latitude', 'Decl': Position := FullPosForCoordinate.DeviationPos;
-            'Radv': Position := FullPosForCoordinate.DistancePos;
+            COORD_LONG, COORD_RA: Position := FullPosForCoordinate.MainPos;
+            COORD_LAT, COORD_DECL: Position := FullPosForCoordinate.DeviationPos;
+            COORD_RADV: Position := FullPosForCoordinate.DistancePos;
           end;
           HandleFrequency(Position, CycleDefinition.CoordinateType);
           PositionText := PositionText + FFloatingToDecimalDegreeConversion.ConvertDoubleToFormattedText(
-            Position) + ';';
+            Position) + SEMI_COLON;
         end;
-      CsvLine := DateTimeText + '; ' + FloatToStr(CycleDefinition.JdStart) + '; ' + PositionText;
+      CsvLine := DateTimeText + SEMI_COL_SPACE + FloatToStr(CurrentJd) + SEMI_COL_SPACE + PositionText;
       writeln(CsvFile, CsvLine);
       CurrentJd := CurrentJd + 1.0;
     until CurrentJd > CycleDefinition.JdEnd;
@@ -179,7 +200,7 @@ end;
 
 procedure TSeries.WriteCsvFile(CycleDefinition: TCycleDefinition; CelPointPairs: TCelPointPairedSpecArray);
 var
-  CsvFilename, CsvHeader, CsvLine, DateTimeText, PositionText, PairText: string;
+  CsvHeader, CsvLine, DateTimeText, PositionText, PairText: string;
   CsvFile: TextFile;
   Position1, Position2, PosMax, PosMin, Angle, CurrentJd: double;
   SeFlags: TSeFlags;
@@ -190,18 +211,19 @@ begin
   SeFlags := TSeFlags.Create(CycleDefinition.CoordinateType, CycleDefinition.Ayanamsha);
   Flags := SeFlags.FlagsValue;
   CurrentJd := CycleDefinition.JdStart;
-  try
-    CsvFilename := CycleDefinition.CoordinateType.Name + '_data.csv';
-    AssignFile(CsvFile, CsvFilename);
+  try              { TODO : add exception branch for creating errortext }
+    FilenameData := CycleDefinition.CoordinateType.Name + DATAFILE_POSTFIX;
+    AssignFile(CsvFile, FilenameData);
     CsvHeader := Concat('Date; Julian Day nr;');
     for i := 0 to Length(CelPointPairs) - 1 do begin
-      PairText := CelPointPairs[0].FirstCP.Name + ';' + CelPointPairs[0].SecondCP.Name + ';' + 'Value';
+      PairText := CelPointPairs[i].FirstCP.Name + SEMI_COL_SPACE + CelPointPairs[i].SecondCP.Name +
+        SEMI_COL_SPACE + 'Value' + SEMI_COL_SPACE;
       CsvHeader := CsvHeader + PairText;
     end;
     rewrite(CsvFile);
     writeLn(CsvFile, CsvHeader);
     repeat
-      DateTimeText := FJulianDayConversion.ConvertJdToDateText(CycleDefinition.JdStart, CycleDefinition.Calendar);
+      DateTimeText := FJulianDayConversion.ConvertJdToDateText(CurrentJd, CycleDefinition.Calendar);
       PairText := '';
       for i := 0 to Length(CelPointPairs) - 1 do begin
         FullPosForCoordinate1 := FEphemeris.CalcCelPoint(CurrentJd, CelPointPairs[i].FirstCP.SeId, flags);
@@ -227,10 +249,10 @@ begin
         if (Angle > 180.0) then Angle := 360.0 - Angle;
         HandleFrequency(Angle, CycleDefinition.CoordinateType);
         PairText := PairText + FFloatingToDecimalDegreeConversion.ConvertDoubleToFormattedText(Position1) +
-          ';' + FFloatingToDecimalDegreeConversion.ConvertDoubleToFormattedText(Position2) +
-          ';' + FFloatingToDecimalDegreeConversion.ConvertDoubleToFormattedText(Angle) + ';';
+          SEMI_COL_SPACE + FFloatingToDecimalDegreeConversion.ConvertDoubleToFormattedText(Position2) +
+          SEMI_COL_SPACE + FFloatingToDecimalDegreeConversion.ConvertDoubleToFormattedText(Angle) + SEMI_COLON;
       end;
-      CsvLine := DateTimeText + '; ' + FloatToStr(CycleDefinition.JdStart) + '; ' + PairText;
+      CsvLine := DateTimeText + SEMI_COL_SPACE + FloatToStr(CurrentJd) + SEMI_COL_SPACE + PairText;
       writeln(CsvFile, CsvLine);
       CurrentJd := CUrrentJd + 1.0;
     until CurrentJd > CycleDefinition.JdEnd;
@@ -241,22 +263,22 @@ end;
 
 procedure TSeries.WriteMetaFile(CycleDefinition: TCycleDefinition);
 var
-  MetaFileName: string;
   MetaFile: TextFile;
 begin
   try
-    MetaFilename := CycleDefinition.CoordinateType.Name + '_meta.csv';
-    AssignFile(MetaFile, MetaFilename);
+    FilenameMeta := CycleDefinition.CoordinateType.Name + METAFILE_POSTFIX;
+    AssignFile(MetaFile, FilenameMeta);
     rewrite(MetaFile);
-    writeln(MetaFile, 'CycleType;' + CycleDefinition.CycleType.Name);
-    writeln(MetaFile, 'Coordinate;' + CycleDefinition.CoordinateType.Name);
-    writeln(MetaFile, 'Ayanamsha;' + CycleDefinition.Ayanamsha.Name);
-    writeln(MetaFile, 'Start Date;' + FJulianDayConversion.ConvertJdToDateText(CycleDefinition.JdStart,
+    writeln(MetaFile, 'Property; Value');
+    writeln(MetaFile, 'CycleType; ' + CycleDefinition.CycleType.Name);
+    writeln(MetaFile, 'Coordinate; ' + CycleDefinition.CoordinateType.Name);
+    writeln(MetaFile, 'Ayanamsha; ' + CycleDefinition.Ayanamsha.Name);
+    writeln(MetaFile, 'Start Date; ' + FJulianDayConversion.ConvertJdToDateText(CycleDefinition.JdStart,
       CycleDefinition.Calendar));
-    writeln(MetaFile, 'End Date;' + FJulianDayConversion.ConvertJdToDateText(CycleDefinition.JdEnd,
+    writeln(MetaFile, 'End Date; ' + FJulianDayConversion.ConvertJdToDateText(CycleDefinition.JdEnd,
       CycleDefinition.Calendar));
-    writeln(MetaFile, 'Interval;' + IntToStr(CycleDefinition.Interval));
-  finally
+    writeln(MetaFile, 'Interval; ' + IntToStr(CycleDefinition.Interval));
+  finally                                         { TODO : add exception branch for creating errortext }
     CloseFile(MetaFile);
   end;
 
@@ -265,25 +287,24 @@ end;
 procedure TSeries.WriteFrequenciesFile(CycleDefinition: TCycleDefinition);
 var
   i, Offset: integer;
-  FreqFileName, FreqText: string;
+  FreqText: string;
   FreqFile: TextFile;
 begin
   case CycleDefinition.CoordinateType.Identification of
-    'Longitude': Offset := MIN_INDEX_LON;
-    'Latitude': Offset := MIN_INDEX_LAT;
-    'RightAsc': Offset := MIN_INDEX_RA;
-    'Decl': Offset := MIN_INDEX_DECL;
+    COORD_LONG: Offset := MIN_INDEX_LON;
+    COORD_LAT: Offset := MIN_INDEX_LAT;
+    COORD_RA: Offset := MIN_INDEX_RA;
+    COORD_DECL: Offset := MIN_INDEX_DECL;
     else Offset := 0;
   end;
   try
-    FreqFilename := CycleDefinition.CoordinateType.Name + '_freq.csv';
-    AssignFile(FreqFile, FreqFileName);
+    FilenameFreq := CycleDefinition.CoordinateType.Name + FREQFILE_POSTFIX;
+    AssignFile(FreqFile, FileNameFreq);
     rewrite(FreqFile);
     writeln(FreqFile, 'Bucket; Value');
     for i := 0 to Length(Frequencies) - 1 do begin
-      FreqText := IntToStr(i + Offset) + '; ' + IntToStr(Frequencies[i]);
+      FreqText := IntToStr(i + Offset) + SEMI_COL_SPACE + IntToStr(Frequencies[i]);
       writeln(FreqFile, FreqText);
-
     end;
   finally
     CloseFile(FreqFile);

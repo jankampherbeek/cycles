@@ -7,12 +7,11 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, tachartlazaruspkg, unitstart, swissdelphi, unitastron, UnitProcess,
+  Forms, tachartlazaruspkg, unitmain, swissdelphi, unitastron, UnitProcess,
   UnitAPI, UnitConversions, UnitReqResp, unitdata, UnitInit,
   unitcentralcontroller, unitgraph, UnitValidation, unitrs, UnitDlgCycleType,
   UnitDlgCoordinate, UnitDlgPeriod, unitdlgsinglecp, unitdlgpairedcp,
-  unitdlgconfirm, UnitConst
-  { you can add units after this };
+  unitdlgconfirm, UnitConst;
 
 {$R *.res}
 
@@ -20,7 +19,7 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TFormGraph, FormGraph);
   Application.CreateForm(TFormDlgCycleType, FormDlgCycleType);

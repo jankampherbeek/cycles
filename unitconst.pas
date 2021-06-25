@@ -22,6 +22,12 @@ const
   MIN_INDEX_DECL = -90;
   MAX_INDEX_DECL = 90;
 
+  COORD_LONG = 'Longitude';
+  COORD_LAT = 'Latitude';
+  COORD_RA = 'RightAsc';
+  COORD_DECL= 'Decl';
+  COORD_RADV = 'Radv';
+
 implementation
 
 end.

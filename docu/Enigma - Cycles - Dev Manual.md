@@ -1,10 +1,24 @@
 # Enigma - Cycles
 
-## Programmers manual version 0.0
+## Programmers manual version 0.1
 
-Information for programmers about the program *Cycles*.
+Information for programmers about the program *Enigma Cycles*.
+
+### Introduction
+
+Enigma Cycles (from now on *Cycles* for short) supports the calculation and presentation of several cycles. For a description of the functionality, please check the User Manual.
+
+This document is for developers who want to use the code, create an own version or are just curious.
+
+Cycles is free software and open source. You are allowed to use it provided your own software is also free and open source. The same goes for the use of the Swiss Ephemeris, a library for astronomical calculations that is used by Cycles. Check the file copyright.txt in the root of the source for a formal description about restrictions and possibilities regarding copyright.
+
+Please note that my experience as a programmer is mainly with Java. Cycles is written in *Free Pascal*. I have used several Pascal versions before but that was mostly a long time ago. So I am actually learning on the job. This will not result in the best code possible but I will try to improve it consistently.
 
 ### Setting up your development environment
+
+The source of Cycles is written in Free Pascal, an open source implementation of Object Pascal and to a high degree compatible with Delphi. However, I do use some constructions that are not supported by Delphi. If you want to use Delphi, you will need to make some changes in the code. 
+
+If you want to check the code of Cycles and compile the program yourself, you should use Free Pascal and the standard IDE called *Lazarus*.
 
 #### Free Pascal and Lazarus
 
@@ -18,7 +32,7 @@ The installation itself is straightforward. One point to keep in mind: do not in
 
 It is easy to install additional packages in Lazarus. This will cause the environment to be rebuild, but that is an automatic process.
 
-Enigma Cycles uses the following additional packages:
+Cycles uses the following additional packages:
 
 - BGRABitmap (graphics, supports anti-aliasing)
 - BGRAControls (required for BGRABitmap)
@@ -57,7 +71,7 @@ You can use the dll and datafiles that are part of the installation package of E
 
 I apply interfaces for two reasons: to facilitate testing and to support loosely coupling. I do not define an interface for each object, only if it makes sense because of the reasons I just mentioned.
 
-Free Pascal suports two types of interfaces: com-interfaces and CORBA-interfaces. In Cycles I only use CORBA-interfaces. The name could be misleading as CORBA is not used. CORBA-interfaces do not support reference-count, which I consider as an advantage, especially as I do not want to create an interface for everything. Actually, the CORBA-interface is comparable with interfacing in Java or Kotlin. 
+Free Pascal supports two types of interfaces: com-interfaces and CORBA-interfaces. In Cycles I only use CORBA-interfaces. The name is actually misleading as CORBA is not used. These interfaces do not support reference-count, which I consider as an advantage, especially as I do not want to create an interface for everything. Actually, the CORBA-interface is comparable with interfacing in Java or Kotlin. 
 
 CORBA-interfaces are specific for Free Pascal and not supported in Delphi.
 

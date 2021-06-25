@@ -168,7 +168,7 @@ begin
     if (ValidatedStartDate.Year > ValidatedEndDate.Year) or
       ((ValidatedStartDate.Year = ValidatedEndDate.Year) and (ValidatedStartDate.Month > ValidatedEndDate.Month)) or
       ((ValidatedStartDate.Year = ValidatedEndDate.Year) and (ValidatedStartDate.Month = ValidatedEndDate.Month) and
-      (ValidatedStartDate.Day <= ValidatedEndDate.Day)) then begin
+      (ValidatedStartDate.Day >= ValidatedEndDate.Day)) then begin
       DateSequenceOk := False;
       LblEditStartDate.Color := clYellow;
       LblEditEndDate.Color := clYellow;

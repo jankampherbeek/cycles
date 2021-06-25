@@ -70,7 +70,6 @@ end;
 
 procedure TFormDlgCycleType.BtnContinueClick(Sender: TObject);
 begin
-  Hide;
   SaveState;
   StateMachine.ChangeState(CycleTypeDefined);
 end;

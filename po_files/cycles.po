@@ -12,81 +12,6 @@ msgstr ""
 "Language: nl\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: tform1.btnhelp.caption
-msgctxt "tform1.btnhelp.caption"
-msgid "Help"
-msgstr "Help"
-
-#: tform1.btnok.caption
-msgid "OK"
-msgstr "OK"
-
-#: tform1.caption
-msgid "Form1"
-msgstr ""
-
-#: tform1.cbcalendar.text
-msgctxt "tform1.cbcalendar.text"
-msgid "Gregorian"
-msgstr "Gregoriaans"
-
-#: tform1.lblayanamsha.caption
-msgctxt "tform1.lblayanamsha.caption"
-msgid "Ayanamsha"
-msgstr "Ayanamsha"
-
-#: tform1.lblcalendar.caption
-msgctxt "tform1.lblcalendar.caption"
-msgid "Calendar"
-msgstr "Kalender"
-
-#: tform1.lblcelpoint.caption
-msgid "Celestial Point"
-msgstr "Hemelpunt"
-
-#: tform1.lblcoordinate.caption
-msgctxt "tform1.lblcoordinate.caption"
-msgid "Coordinate"
-msgstr "Coördinaat"
-
-#: tform1.lblcycletype.caption
-msgctxt "tform1.lblcycletype.caption"
-msgid "Cycle type"
-msgstr "Soort cyclus"
-
-#: tform1.lbledenddate.editlabel.caption
-msgctxt "tform1.lbledenddate.editlabel.caption"
-msgid "End date (yyyy/mm/dd)"
-msgstr "Eind datum (jjjj//mm/dd)"
-
-#: tform1.lbledenddate.hint
-msgctxt "tform1.lbledenddate.hint"
-msgid "yyyy/mm/dd"
-msgstr "jjjj/mm/dd"
-
-#: tform1.lbledinterval.editlabel.caption
-msgid "Interval in days"
-msgstr "Interval in dagen"
-
-#: tform1.lbledstartdate.editlabel.caption
-msgctxt "tform1.lbledstartdate.editlabel.caption"
-msgid "Start date (yyyy/mm/dd)"
-msgstr "Begin datun (jjjj/mm/dd)"
-
-#: tform1.lbledstartdate.hint
-msgctxt "tform1.lbledstartdate.hint"
-msgid "yyyy/mm/dd"
-msgstr "jjjj/mm/dd"
-
-#: tform1.lbledstartdate.texthint
-msgctxt "tform1.lbledstartdate.texthint"
-msgid "yyyy/mm/dd"
-msgstr "jjjj/mm/dd"
-
-#: tform1.lbltitle.caption
-msgid "Enigma - Cycles"
-msgstr ""
-
 #: tform2.caption
 msgid "Form2"
 msgstr ""
@@ -535,6 +460,37 @@ msgstr ""
 
 #: tformgraph.caption
 msgid "FormGraph"
+msgstr ""
+
+#: tformmain.btnexit.caption
+msgid "Exit"
+msgstr ""
+
+#: tformmain.btnfreq.caption
+msgid "Frequency"
+msgstr ""
+
+#: tformmain.btnhelp.caption
+#, fuzzy
+msgctxt "tformmain.btnhelp.caption"
+msgid "Help"
+msgstr "Help"
+
+#: tformmain.btnlinechart.caption
+msgid "Line Chart"
+msgstr ""
+
+#: tformmain.btnnew.caption
+msgid "New"
+msgstr ""
+
+#: tformmain.caption
+msgid "FormMain"
+msgstr ""
+
+#: tformmain.lbltitle.caption
+msgctxt "tformmain.lbltitle.caption"
+msgid "Enigma - Cycles"
 msgstr ""
 
 #: unitrs.rsaccordingtofaganbradley
