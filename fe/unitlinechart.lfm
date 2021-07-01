@@ -1,0 +1,145 @@
+object FormLineChart: TFormLineChart
+  Left = 386
+  Height = 1171
+  Top = 402
+  Width = 1599
+  Caption = 'FormLineChart'
+  ClientHeight = 1171
+  ClientWidth = 1599
+  DesignTimePPI = 144
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object Chart1: TChart
+    Left = 16
+    Height = 924
+    Top = 32
+    Width = 1552
+    AntialiasingMode = amOn
+    AxisList = <    
+      item
+        Grid.Color = clSkyBlue
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelFont.Color = clBlue
+        Title.LabelFont.Orientation = 900
+        Title.LabelFont.Style = [fsBold]
+        Title.Visible = True
+        Title.Caption = 'Degrees'
+        Title.LabelBrush.Style = bsClear
+      end    
+      item
+        Grid.Color = clSkyBlue
+        Alignment = calBottom
+        Marks.LabelFont.Orientation = 900
+        Marks.Format = '%2:s'
+        Marks.LabelBrush.Style = bsClear
+        Marks.OverlapPolicy = opHideNeighbour
+        Marks.Source = LineChartDateTimeIntervalChartSource
+        Marks.Style = smsLabel
+        Minors = <>
+        Title.LabelFont.Color = clBlue
+        Title.LabelFont.Style = [fsBold]
+        Title.Visible = True
+        Title.Caption = 'Period'
+        Title.LabelBrush.Style = bsClear
+      end>
+    BackColor = clWhite
+    Foot.Brush.Color = clBtnFace
+    Foot.Font.Color = clBlue
+    Legend.Alignment = laBottomCenter
+    Legend.ColumnCount = 5
+    Legend.Visible = True
+    Title.Brush.Color = clBtnFace
+    Title.Font.Color = clBlue
+    Title.Text.Strings = (
+      'TAChart'
+    )
+    Color = clWhite
+    object Series1: TLineSeries
+      Title = 'Series 1'
+      LinePen.Color = clBlue
+      LinePen.Width = 2
+    end
+    object Series2: TLineSeries
+      Title = 'Series 2'
+      LinePen.Color = clRed
+      LinePen.Width = 2
+    end
+    object Series3: TLineSeries
+      Title = 'Series 3'
+      LinePen.Color = clGreen
+      LinePen.Width = 2
+    end
+    object Series4: TLineSeries
+      Title = 'Series 4'
+      LinePen.Color = clMaroon
+      LinePen.Width = 2
+    end
+    object Series5: TLineSeries
+      Title = 'Series 5'
+      LinePen.Color = clSilver
+      LinePen.Width = 2
+    end
+  end
+  object BtnClose: TButton
+    Left = 1454
+    Height = 38
+    Top = 984
+    Width = 113
+    Caption = 'Close'
+    TabOrder = 1
+  end
+  object BtnHelp: TButton
+    Left = 1304
+    Height = 38
+    Top = 984
+    Width = 113
+    Caption = 'Help'
+    TabOrder = 2
+  end
+  object LblCoordinate: TLabel
+    Left = 24
+    Height = 25
+    Top = 976
+    Width = 88
+    Caption = 'Coordinate'
+    ParentColor = False
+  end
+  object LblAyanamsha: TLabel
+    Left = 24
+    Height = 25
+    Top = 1000
+    Width = 92
+    Caption = 'Ayanamsha'
+    ParentColor = False
+  end
+  object LblObserverPos: TLabel
+    Left = 24
+    Height = 25
+    Top = 1024
+    Width = 100
+    Caption = 'ObserverPos'
+    ParentColor = False
+  end
+  object LblPeriod: TLabel
+    Left = 24
+    Height = 25
+    Top = 1048
+    Width = 50
+    Caption = 'Period'
+    ParentColor = False
+  end
+  object LblInterval: TLabel
+    Left = 24
+    Height = 25
+    Top = 1072
+    Width = 58
+    Caption = 'Interval'
+    ParentColor = False
+  end
+  object LineChartDateTimeIntervalChartSource: TDateTimeIntervalChartSource
+    Left = 1165
+    Top = 218
+  end
+end

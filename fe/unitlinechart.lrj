@@ -1,0 +1,10 @@
+{"version":1,"strings":[
+{"hash":166775380,"name":"tformlinechart.caption","sourcebytes":[70,111,114,109,76,105,110,101,67,104,97,114,116],"value":"FormLineChart"},
+{"hash":4863637,"name":"tformlinechart.btnclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":322608,"name":"tformlinechart.btnhelp.caption","sourcebytes":[72,101,108,112],"value":"Help"},
+{"hash":145551045,"name":"tformlinechart.lblcoordinate.caption","sourcebytes":[67,111,111,114,100,105,110,97,116,101],"value":"Coordinate"},
+{"hash":138936593,"name":"tformlinechart.lblayanamsha.caption","sourcebytes":[65,121,97,110,97,109,115,104,97],"value":"Ayanamsha"},
+{"hash":161083555,"name":"tformlinechart.lblobserverpos.caption","sourcebytes":[79,98,115,101,114,118,101,114,80,111,115],"value":"ObserverPos"},
+{"hash":91000916,"name":"tformlinechart.lblperiod.caption","sourcebytes":[80,101,114,105,111,100],"value":"Period"},
+{"hash":95197564,"name":"tformlinechart.lblinterval.caption","sourcebytes":[73,110,116,101,114,118,97,108],"value":"Interval"}
+]}

@@ -1,0 +1,115 @@
+object FormMain: TFormMain
+  Left = 41
+  Height = 1176
+  Top = 799
+  Width = 2144
+  Caption = 'FormMain'
+  ClientHeight = 1176
+  ClientWidth = 2144
+  DesignTimePPI = 144
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  Visible = True
+  object LblTitle: TLabel
+    Left = 36
+    Height = 65
+    Top = 0
+    Width = 333
+    Caption = 'Enigma - Cycles'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -48
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object BtnNew: TButton
+    Left = 36
+    Height = 38
+    Top = 800
+    Width = 112
+    Caption = 'New'
+    OnClick = BtnNewClick
+    ParentFont = False
+    TabOrder = 0
+  end
+  object BtnHelp: TButton
+    Left = 416
+    Height = 38
+    Top = 800
+    Width = 112
+    Caption = 'Help'
+    OnClick = BtnHelpClick
+    ParentFont = False
+    TabOrder = 1
+  end
+  object SgPositions: TStringGrid
+    Left = 720
+    Height = 716
+    Top = 120
+    Width = 1344
+    AutoFillColumns = True
+    ColCount = 3
+    Constraints.MinWidth = 300
+    DefaultColWidth = 300
+    DefaultDrawing = False
+    Flat = True
+    ParentFont = False
+    RowCount = 2
+    TabOrder = 2
+    TabStop = False
+    ColWidths = (
+      447
+      448
+      448
+    )
+  end
+  object SgMeta: TStringGrid
+    Left = 36
+    Height = 200
+    Top = 120
+    Width = 648
+    AutoFillColumns = True
+    ColCount = 2
+    Constraints.MinWidth = 450
+    DefaultColWidth = 450
+    FixedCols = 0
+    Flat = True
+    ParentFont = False
+    TabOrder = 3
+    ColWidths = (
+      323
+      324
+    )
+  end
+  object BtnLineChart: TButton
+    Left = 160
+    Height = 38
+    Top = 800
+    Width = 113
+    Caption = 'Line Chart'
+    OnClick = BtnLineChartClick
+    TabOrder = 4
+  end
+  object BtnFreq: TButton
+    Left = 288
+    Height = 38
+    Top = 800
+    Width = 113
+    Caption = 'Frequency'
+    OnClick = BtnFreqClick
+    TabOrder = 5
+  end
+  object BtnExit: TButton
+    Left = 544
+    Height = 38
+    Top = 800
+    Width = 113
+    Caption = 'Exit'
+    OnClick = BtnExitClick
+    TabOrder = 6
+  end
+end
