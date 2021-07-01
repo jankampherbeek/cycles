@@ -12,10 +12,6 @@ msgstr ""
 "Language: nl\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: tform2.caption
-msgid "Form2"
-msgstr ""
-
 #: tformdlgconfirm.btncancel.caption
 msgctxt "tformdlgconfirm.btncancel.caption"
 msgid "Cancel"
@@ -458,8 +454,40 @@ msgstr ""
 msgid "Select celestial points"
 msgstr ""
 
-#: tformgraph.caption
-msgid "FormGraph"
+#: tformlinechart.btnclose.caption
+msgid "Close"
+msgstr ""
+
+#: tformlinechart.btnhelp.caption
+msgctxt "tformlinechart.btnhelp.caption"
+msgid "Help"
+msgstr ""
+
+#: tformlinechart.caption
+msgid "FormLineChart"
+msgstr ""
+
+#: tformlinechart.lblayanamsha.caption
+msgctxt "tformlinechart.lblayanamsha.caption"
+msgid "Ayanamsha"
+msgstr ""
+
+#: tformlinechart.lblcoordinate.caption
+msgctxt "tformlinechart.lblcoordinate.caption"
+msgid "Coordinate"
+msgstr ""
+
+#: tformlinechart.lblinterval.caption
+msgctxt "tformlinechart.lblinterval.caption"
+msgid "Interval"
+msgstr ""
+
+#: tformlinechart.lblobserverpos.caption
+msgid "ObserverPos"
+msgstr ""
+
+#: tformlinechart.lblperiod.caption
+msgid "Period"
 msgstr ""
 
 #: tformmain.btnexit.caption

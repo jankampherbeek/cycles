@@ -25,7 +25,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="1"/>
-      <BuildNr Value="144"/>
+      <BuildNr Value="179"/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -49,7 +49,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="22">
+    <Units Count="21">
       <Unit0>
         <Filename Value="cycles.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -95,88 +95,80 @@
         <UnitName Value="UnitReqResp"/>
       </Unit8>
       <Unit9>
-        <Filename Value="fe\unitdata.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form2"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit9>
-      <Unit10>
         <Filename Value="be\unitinit.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitInit"/>
-      </Unit10>
-      <Unit11>
+      </Unit9>
+      <Unit10>
         <Filename Value="unitcentralcontroller.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="fe\unitgraph.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="FormGraph"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="UnitGraph"/>
-      </Unit12>
-      <Unit13>
+      </Unit10>
+      <Unit11>
         <Filename Value="be\unitvalidation.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitValidation"/>
-      </Unit13>
-      <Unit14>
+      </Unit11>
+      <Unit12>
         <Filename Value="unitrs.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit14>
-      <Unit15>
+      </Unit12>
+      <Unit13>
         <Filename Value="fe\unitdlgcycletype.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormDlgCycleType"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnitDlgCycleType"/>
-      </Unit15>
-      <Unit16>
+      </Unit13>
+      <Unit14>
         <Filename Value="fe\unitdlgcoordinate.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormDlgCoordinate"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnitDlgCoordinate"/>
-      </Unit16>
-      <Unit17>
+      </Unit14>
+      <Unit15>
         <Filename Value="fe\unitdlgperiod.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormDlgPeriod"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnitDlgPeriod"/>
-      </Unit17>
-      <Unit18>
+      </Unit15>
+      <Unit16>
         <Filename Value="fe\unitdlgsinglecp.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormDlgSingleCP"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit18>
-      <Unit19>
+      </Unit16>
+      <Unit17>
         <Filename Value="fe\unitdlgpairedcp.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormDlgPairedCP"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit19>
-      <Unit20>
+      </Unit17>
+      <Unit18>
         <Filename Value="fe\unitdlgconfirm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormDlgConfirm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit20>
-      <Unit21>
+      </Unit18>
+      <Unit19>
         <Filename Value="unitconst.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UnitConst"/>
-      </Unit21>
+      </Unit19>
+      <Unit20>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormLineChart"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit20>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

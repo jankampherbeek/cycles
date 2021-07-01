@@ -38,6 +38,7 @@ type
     FPeriod: TPeriod;
     FSingleCPs: TCelPointSpecArray;
     FPairedCPs: TCelPointPairedSpecArray;
+    FDataFilename, FFreqFilename, FMetaFilename: string;
     CurrentState: TStates;
     SeriesAPI: TSeriesAPI;
     function CreateRequest: TSeriesRequest;
@@ -50,6 +51,9 @@ type
     property Period: TPeriod read FPeriod write FPeriod;
     property SingleCPs: TCelPointSpecArray read FSingleCPs write FSingleCPs;
     property PairedCPs: TCelPointPairedSpecArray read FPairedCPs write FPairedCPs;
+    property DataFilename: string read FDataFilename write FDataFilename;
+    property FreqFilename: string read FFreqFilename write FFreqFilename;
+    property MetaFilename: string read FMetaFilename write FMetaFilename;
     procedure ChangeState(Message: TStateMessages);
   end;
 
@@ -98,13 +102,13 @@ begin
     end;
     Start: begin
       // recreate forms
-      FormMain:= TFormMain.Create(Nil);
-      FormDlgCycleType := TFormDlgCycleType.Create(Nil);
-      FormDlgCoordinate := TFormDlgCoordinate.Create(Nil);
-      FormDlgPeriod:= TFormDlgPeriod.Create(Nil);
-      FormDlgSingleCP:= TFormDlgSingleCP.Create(Nil);
-      FormDlgPairedCP:= TFormDlgPairedCP.Create(Nil);
-      FormDlgConfirm:= TFormDlgConfirm.Create(Nil);
+      //FormMain:= TFormMain.Create(Nil);
+      //FormDlgCycleType := TFormDlgCycleType.Create(Nil);
+      //FormDlgCoordinate := TFormDlgCoordinate.Create(Nil);
+      //FormDlgPeriod:= TFormDlgPeriod.Create(Nil);
+      //FormDlgSingleCP:= TFormDlgSingleCP.Create(Nil);
+      //FormDlgPairedCP:= TFormDlgPairedCP.Create(Nil);
+      //FormDlgConfirm:= TFormDlgConfirm.Create(Nil);
 
 
       CurrentState := DefiningCycleType;
@@ -133,6 +137,9 @@ begin
       Request := CreateRequest;
       Response := SeriesAPI.GetSeries(Request);
       FormMain.Visible:= False;
+      DataFilename:= Response.FilenameData;
+      FreqFilename:= Response.FilenameFreq;
+      MetaFilename:= Response.FilenameMeta;
       FormMain.Populate(Response.FilenameData, Response.FilenameMeta);
       FormMain.ShowModal;
     end;
