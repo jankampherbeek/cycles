@@ -25,7 +25,11 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="1"/>
+<<<<<<< HEAD
       <BuildNr Value="188"/>
+=======
+      <BuildNr Value="178"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>

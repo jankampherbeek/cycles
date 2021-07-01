@@ -99,7 +99,10 @@
           <CursorPos X="57" Y="116"/>
         </ExtraEditor1>
         <UsageCount Value="205"/>
+<<<<<<< HEAD
         <Loaded Value="True"/>
+=======
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit9>
       <Unit10>
         <Filename Value="unitcentralcontroller.pas"/>
@@ -181,7 +184,11 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="130"/>
         <CursorPos X="84" Y="155"/>
+<<<<<<< HEAD
         <UsageCount Value="191"/>
+=======
+        <UsageCount Value="182"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit17>
       <Unit18>
         <Filename Value="fe\unitdlgconfirm.pas"/>
@@ -192,7 +199,11 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="38"/>
         <CursorPos X="36" Y="76"/>
+<<<<<<< HEAD
         <UsageCount Value="186"/>
+=======
+        <UsageCount Value="177"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit18>
       <Unit19>
         <Filename Value="unitconst.pas"/>
@@ -200,7 +211,11 @@
         <UnitName Value="UnitConst"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23" Y="29"/>
+<<<<<<< HEAD
         <UsageCount Value="113"/>
+=======
+        <UsageCount Value="104"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit19>
       <Unit20>
         <Filename Value="fe\unitlinechart.pas"/>
@@ -210,8 +225,14 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
+<<<<<<< HEAD
         <CursorPos Y="133"/>
         <UsageCount Value="69"/>
+=======
+        <TopLine Value="63"/>
+        <CursorPos X="30" Y="90"/>
+        <UsageCount Value="60"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit20>
@@ -223,12 +244,20 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="46" Y="5"/>
+<<<<<<< HEAD
         <UsageCount Value="200"/>
+=======
+        <UsageCount Value="201"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit21>
       <Unit22>
         <Filename Value="copyright-template.txt"/>
         <EditorIndex Value="-1"/>
+<<<<<<< HEAD
         <UsageCount Value="8"/>
+=======
+        <UsageCount Value="9"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit22>
       <Unit23>
@@ -236,24 +265,40 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2925"/>
         <CursorPos Y="2946"/>
+<<<<<<< HEAD
         <UsageCount Value="8"/>
+=======
+        <UsageCount Value="9"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit23>
       <Unit24>
         <Filename Value="D:\dev2harvest\dev-oud\fpprojects\enigmaproject\enigma\src\backend\shared\besharedhandlers.pas"/>
         <UnitName Value="BeSharedHandlers"/>
         <EditorIndex Value="-1"/>
+<<<<<<< HEAD
         <UsageCount Value="10"/>
+=======
+        <UsageCount Value="1"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit24>
       <Unit25>
         <Filename Value="test\test_api.pas"/>
         <EditorIndex Value="-1"/>
+<<<<<<< HEAD
         <UsageCount Value="16"/>
+=======
+        <UsageCount Value="17"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit25>
       <Unit26>
         <Filename Value="cycles.lpi"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="56"/>
+<<<<<<< HEAD
         <UsageCount Value="3"/>
+=======
+        <UsageCount Value="4"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
         <DefaultSyntaxHighlighter Value="XML"/>
       </Unit26>
       <Unit27>
@@ -262,35 +307,55 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="889"/>
         <CursorPos Y="911"/>
+<<<<<<< HEAD
         <UsageCount Value="9"/>
+=======
+        <UsageCount Value="10"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit27>
       <Unit28>
         <Filename Value="C:\lazarus32\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3923"/>
         <CursorPos Y="3945"/>
+<<<<<<< HEAD
         <UsageCount Value="8"/>
+=======
+        <UsageCount Value="9"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit28>
       <Unit29>
         <Filename Value="C:\lazarus32\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8606"/>
         <CursorPos Y="8631"/>
+<<<<<<< HEAD
         <UsageCount Value="8"/>
+=======
+        <UsageCount Value="9"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit29>
       <Unit30>
         <Filename Value="unitmain.lfm"/>
         <EditorIndex Value="2"/>
         <TopLine Value="103"/>
         <CursorPos X="68" Y="115"/>
+<<<<<<< HEAD
         <UsageCount Value="24"/>
+=======
+        <UsageCount Value="19"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit30>
       <Unit31>
         <Filename Value="fe\unitlinechart.lfm"/>
         <EditorIndex Value="-1"/>
+<<<<<<< HEAD
         <UsageCount Value="8"/>
+=======
+        <UsageCount Value="9"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit31>
       <Unit32>
@@ -299,7 +364,11 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="328"/>
         <CursorPos Y="350"/>
+<<<<<<< HEAD
         <UsageCount Value="9"/>
+=======
+        <UsageCount Value="10"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit32>
       <Unit33>
         <Filename Value="C:\lazarus32\components\tachart\tasources.pas"/>
@@ -307,7 +376,11 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="470"/>
         <CursorPos Y="500"/>
+<<<<<<< HEAD
         <UsageCount Value="9"/>
+=======
+        <UsageCount Value="10"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit33>
       <Unit34>
         <Filename Value="C:\lazarus32\components\tachart\taintervalsources.pas"/>
@@ -315,12 +388,17 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="233"/>
         <CursorPos X="90" Y="226"/>
+<<<<<<< HEAD
         <UsageCount Value="9"/>
+=======
+        <UsageCount Value="10"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Unit34>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="fe\unitlinechart.pas"/>
+<<<<<<< HEAD
         <Caret Line="145" TopLine="121"/>
       </Position1>
       <Position2>
@@ -438,6 +516,125 @@
       <Position30>
         <Filename Value="fe\unitlinechart.pas"/>
         <Caret Line="154" Column="9" TopLine="109"/>
+=======
+        <Caret Line="120" TopLine="91"/>
+      </Position1>
+      <Position2>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="110" Column="54" TopLine="97"/>
+      </Position2>
+      <Position3>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="109" Column="54" TopLine="96"/>
+      </Position3>
+      <Position4>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="124" Column="62" TopLine="96"/>
+      </Position4>
+      <Position5>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="102" Column="54" TopLine="80"/>
+      </Position5>
+      <Position6>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="103" Column="12" TopLine="81"/>
+      </Position6>
+      <Position7>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="122" Column="46" TopLine="82"/>
+      </Position7>
+      <Position8>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="123" Column="46" TopLine="83"/>
+      </Position8>
+      <Position9>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="124" Column="46" TopLine="84"/>
+      </Position9>
+      <Position10>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="125" Column="46" TopLine="85"/>
+      </Position10>
+      <Position11>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="126" Column="46" TopLine="86"/>
+      </Position11>
+      <Position12>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="113" Column="34" TopLine="86"/>
+      </Position12>
+      <Position13>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="116" Column="54" TopLine="80"/>
+      </Position13>
+      <Position14>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="113" Column="46" TopLine="92"/>
+      </Position14>
+      <Position15>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="85" Column="35" TopLine="67"/>
+      </Position15>
+      <Position16>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="139" Column="128" TopLine="122"/>
+      </Position16>
+      <Position17>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="140" Column="39" TopLine="101"/>
+      </Position17>
+      <Position18>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="139" Column="131" TopLine="116"/>
+      </Position18>
+      <Position19>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="150" Column="21" TopLine="126"/>
+      </Position19>
+      <Position20>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="139" Column="115" TopLine="116"/>
+      </Position20>
+      <Position21>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="142" Column="111" TopLine="110"/>
+      </Position21>
+      <Position22>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="90" Column="25" TopLine="73"/>
+      </Position22>
+      <Position23>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="146" Column="79" TopLine="122"/>
+      </Position23>
+      <Position24>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="145" Column="80" TopLine="116"/>
+      </Position24>
+      <Position25>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="146" Column="146" TopLine="123"/>
+      </Position25>
+      <Position26>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="144" Column="150" TopLine="126"/>
+      </Position26>
+      <Position27>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="146" Column="17" TopLine="106"/>
+      </Position27>
+      <Position28>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="144" Column="89" TopLine="121"/>
+      </Position28>
+      <Position29>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="145" TopLine="121"/>
+      </Position29>
+      <Position30>
+        <Filename Value="fe\unitlinechart.pas"/>
+        <Caret Line="157" Column="30" TopLine="127"/>
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       </Position30>
     </JumpHistory>
     <RunParams>
@@ -446,7 +643,11 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
+<<<<<<< HEAD
     <Watches Count="14">
+=======
+    <Watches Count="10">
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
       <Item1>
         <Expression Value="SplittedLine"/>
       </Item1>
@@ -477,6 +678,7 @@
       <Item10>
         <Expression Value="Cardinality"/>
       </Item10>
+<<<<<<< HEAD
       <Item11>
         <Expression Value="i"/>
       </Item11>
@@ -489,6 +691,8 @@
       <Item14>
         <Expression Value="PrevValues[2]"/>
       </Item14>
+=======
+>>>>>>> 4c1159e96c18c51deb336b4dd65f027a017ac4a1
     </Watches>
   </Debugging>
 </CONFIG>
